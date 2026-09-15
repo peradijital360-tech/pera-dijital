@@ -308,37 +308,4 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 
 </main>
 
-<!-- ▸ REPLACE the address, phone, email and social URLs before launch.
-       Organization carries the @id that case-study CreativeWork nodes
-       point their "creator" at, so this must stay on the homepage. -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.peradijital.com.tr/#organization",
-  "name": "Pera Dijital",
-  "url": "https://www.peradijital.com.tr/",
-  "logo": "https://www.peradijital.com.tr/assets/img/logos/pera-dijital.svg",
-  "sameAs": [],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "sales",
-    "telephone": "+90-501-559-24-19",
-    "email": "hello@peradijital.com.tr",
-    "areaServed": "TR",
-    "availableLanguage": ["tr"]
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://www.peradijital.com.tr/#website",
-  "url": "https://www.peradijital.com.tr/",
-  "name": "Pera Dijital",
-  "inLanguage": "tr-TR",
-  "publisher": { "@id": "https://www.peradijital.com.tr/#organization" }
-}
-</script>
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/footer.php';

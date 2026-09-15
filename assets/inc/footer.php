@@ -72,6 +72,63 @@ $social = [
   </div>
 </footer>
 
+<!-- The organisation and the website, on every page, defined once here.
+     Pages point at these through "@id" (provider, publisher, isPartOf).
+     Facts only from the site itself. No sameAs until the social profiles in
+     the footer have real URLs; an empty or placeholder sameAs is worse than
+     none. Keep in step with CONTACT_* in config.php. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.peradijital.com.tr/#organization",
+      "name": "Pera Dijital",
+      "url": "https://www.peradijital.com.tr/",
+      "logo": "https://www.peradijital.com.tr/assets/img/logos/pera-dijital.svg",
+      "description": "İstanbul Bahçeşehir’de markalar için tasarım, yazılım ve dijital pazarlama çalışmaları yürüten dijital ajans. Web sitelerini hazır tema kullanmadan elde kodlar; reklam, SEO ve yapay zeka görünürlüğü çalışmalarını aynı ekipte yürütür.",
+      "foundingDate": "2017",
+      "email": "hello@peradijital.com.tr",
+      "telephone": "+90-501-559-24-19",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bahçeşehir 2. Kısım Mah. Mercedes Bulv. No:30Bag",
+        "addressLocality": "Başakşehir",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      },
+      "areaServed": { "@type": "Country", "name": "Türkiye" },
+      "knowsAbout": [
+        "Performans reklam yönetimi",
+        "Lead generation",
+        "Kurumsal web tasarım",
+        "E-ticaret site kurulumu",
+        "Grafik tasarım",
+        "Yapay zekada görünürlük (GEO)",
+        "Arama motoru optimizasyonu (SEO)"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+90-501-559-24-19",
+        "email": "hello@peradijital.com.tr",
+        "areaServed": "TR",
+        "availableLanguage": ["tr"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.peradijital.com.tr/#website",
+      "url": "https://www.peradijital.com.tr/",
+      "name": "Pera Dijital",
+      "inLanguage": "tr-TR",
+      "publisher": { "@id": "https://www.peradijital.com.tr/#organization" }
+    }
+  ]
+}
+</script>
+
 <script type="module" src="<?= u('assets/js/main.js') ?>"></script>
 <script type="module" src="<?= u('assets/js/nav.js') ?>"></script>
 <?php foreach ($page['js'] as $module): ?>

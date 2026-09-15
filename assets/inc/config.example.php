@@ -10,7 +10,9 @@
    'live'     normal indexing; /robots.txt allows crawling and lists the
               sitemap.
 
-   A missing config.local.php, or any value other than exactly 'live', is
-   staging. This template is not read by the site and is not deployed. */
+   Since launch (15 Sep 2026) a MISSING config.local.php means live. Create
+   the file only to switch the site to staging. Inside the file, any value
+   other than exactly 'live' is staging. This template is not read by the
+   site and is not deployed. */
 
 const SITE_ENV = 'staging';

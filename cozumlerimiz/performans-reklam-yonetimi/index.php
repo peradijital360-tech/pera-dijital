@@ -342,6 +342,34 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         ]
       }
       </script>
+
+      <!-- Service schema. No offers, no priceRange, no result claims. -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.peradijital.com.tr/cozumlerimiz/performans-reklam-yonetimi/#service",
+        "name": "Performans Reklam Yönetimi",
+        "serviceType": "Dijital reklam yönetimi",
+        "description": "Meta, Google, YouTube ve TikTok’ta kampanya stratejisi, kreatif üretim, landing page üretimi, medya satın alma, ölçümleme kurulumu ve raporlama.",
+        "url": "https://www.peradijital.com.tr/cozumlerimiz/performans-reklam-yonetimi/",
+        "inLanguage": "tr-TR",
+        "provider": { "@id": "https://www.peradijital.com.tr/#organization" },
+        "areaServed": { "@type": "Country", "name": "Türkiye" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Performans reklam yönetimi kapsamı",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kampanya stratejisi" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kreatif üretim" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing page üretimi" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Medya satın alma" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ölçümleme kurulumu" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Raporlama ve değerlendirme" } }
+          ]
+        }
+      }
+      </script>
     </div>
   </section>
 

@@ -4,14 +4,16 @@
 
 declare(strict_types=1);
 
-/* Environment: 'staging' or 'live', set in config.local.php. A missing file
-   or any value other than exactly 'live' is staging, so a broken deploy can
-   never make the site indexable by accident. */
+/* Environment: 'live' or 'staging'. The site launched on 15 Sep 2026, so a
+   missing config.local.php now means LIVE. To take the site out of the
+   index again (maintenance, a staging copy), put a server-only
+   assets/inc/config.local.php containing: const SITE_ENV = 'staging';
+   Any value other than exactly 'live' in that file is staging. */
 if (is_file(__DIR__ . '/config.local.php')) {
     require __DIR__ . '/config.local.php';
 }
 if (!defined('SITE_ENV')) {
-    define('SITE_ENV', 'staging');
+    define('SITE_ENV', 'live');
 }
 
 /* Change only if the site ever moves into a subdirectory. */
