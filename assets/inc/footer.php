@@ -42,14 +42,11 @@ $social = [
     <nav class="site-footer__col" aria-label="Kurumsal">
       <p class="site-footer__heading">Kurumsal</p>
       <ul role="list">
-        <!-- ▸ REPLACE: Nasıl Çalışıyoruz and Basında Biz do not exist yet. -->
         <li><a href="<?= u('hakkimizda/') ?>">Hakkımızda</a></li>
 <?php if (SHOW_WORK): ?>
         <li><a href="<?= u('islerimiz/') ?>">İşlerimiz</a></li>
 <?php endif; ?>
         <li><a href="<?= u('referanslarimiz/') ?>">Referanslarımız</a></li>
-        <li><a href="#">Nasıl Çalışıyoruz</a></li>
-        <li><a href="#">Basında Biz</a></li>
       </ul>
     </nav>
 
