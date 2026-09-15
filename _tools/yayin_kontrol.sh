@@ -96,7 +96,10 @@ status "$SITE/assets/inc/config.php" 403
 status "$SITE/assets/inc/config.local.php" 403
 status "$SITE/_tools/render.py" 404
 status "$SITE/README.md" 404
-status "$SITE/.cpanel.yml" 404
+status "$SITE/YAYINA-ALMA.md" 404
+status "$SITE/.github/workflows/deploy.yml" 404
+status "$SITE/assets/inc/config.example.php" 403
+status "$SITE/.ftp-deploy-sync-state.json" 403
 
 echo; echo "Özet: $pass geçti, $fail kaldı."
 [ "$fail" -eq 0 ]

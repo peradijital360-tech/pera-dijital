@@ -1,136 +1,129 @@
-# Pera Dijital — yayına alma
+# Pera Dijital — yayına alma (GitHub Actions + FTP)
 
-Bu dosya depoda durur, sunucuya kopyalanmaz (`.cpanel.yml` yalnızca site
-dosyalarını kopyalar). Üç bölüm var:
+Bu dosya depoda durur, sunucuya yüklenmez (workflow'daki `exclude`
+listesinde). Dört bölüm var:
 
-- **A. Bugün:** cPanel ile GitHub bağlantısı. Yayına almadan.
+- **A. Bugün:** FTP hesabı, GitHub secret'ları, bağlantı testi. **Deploy yok.**
 - **B. Geçiş günü:** tek seferde yayına alma, sırayla.
 - **C. Yayın sonrası:** kontrol listesi, form testi, Search Console.
+- **D. Deploy çalıştı mı:** nasıl anlaşılır, hata olursa ne yapılır.
 
-`KULLANICI` gördüğünüz yere cPanel kullanıcı adınızı yazın (cPanel sağ üstte
-ve *General Information* kutusunda yazar).
+Nasıl çalışıyor, tek paragraf: GitHub'daki `main` dalı,
+`.github/workflows/deploy.yml` ile FTP üzerinden `public_html` klasörüne
+yüklenir. Build adımı yok. Deploy **yalnızca kendi yüklediği dosyaları**
+günceller ya da siler; eski WordPress dosyalarına ve sunucudaki
+`config.local.php` dosyasına hiç dokunmaz.
+
+> **Güvenlik kilidi:** GitHub'da `DEPLOY_ON_PUSH` adlı değişken **yoksa**,
+> push yapmak siteye hiçbir şey yüklemez. Tek deploy yolu Actions ekranındaki
+> **Run workflow** düğmesidir. Bu değişkeni **yalnızca geçiş günü, B7'de**
+> ekleyeceksiniz. Daha önce eklerseniz bir sonraki push yeni `index.php` ve
+> `.htaccess` dosyalarını WordPress'in üstüne yazar ve eski site bozulur.
 
 ---
 
-## A. Bugün: cPanel ↔ GitHub bağlantısı (yayına ALMADAN)
+## A. Bugün: hazırlık (deploy YOK)
 
-> **UYARI:** Bu bölümün sonunda cPanel'de **Deploy HEAD Commit** düğmesine
-> **basmayın.** Basarsanız yeni sitenin `index.php` ve `.htaccess` dosyaları
-> eski WordPress'in üstüne yazılır ve eski site bozulur.
+### A1. cPanel'de sadece bu site için FTP hesabı aç
 
-### A1. cPanel'de SSH anahtarı üret
-
-cPanel'de **Terminal** varsa (Advanced → Terminal) en kısa yol budur. Sırayla
-yapıştırın:
-
-```
-ssh-keygen -t ed25519 -C "cpanel-deploy" -f ~/.ssh/id_ed25519 -N ""
-cat ~/.ssh/id_ed25519.pub
-```
-
-İkinci komutun çıktısını (`ssh-ed25519 AAAA... cpanel-deploy`) kopyalayın.
-
-Terminal yoksa: **SSH Access → Manage SSH Keys → Generate a New Key**
-- Key Name: `id_rsa` olarak bırakın
-- Key Password: **boş** bırakın (cPanel şifreli anahtarla çekemez)
-- Key Type: RSA, 4096 → **Generate Key**
-- Sonra listede anahtarın yanında **Manage → Authorize**
-- **View/Download** → *Public key* kutusundakini kopyalayın.
-
-### A2. Anahtarı GitHub'a deploy key olarak ekle
-
-1. <https://github.com/peradijital360-tech/pera-dijital/settings/keys>
-2. **Add deploy key**
-3. Title: `cPanel peradijital.com.tr`
-4. Key: A1'de kopyaladığınız satır
-5. **Allow write access: işaretlemeyin**
-6. **Add key**
-
-### A3. Bağlantıyı test et (Terminal varsa)
-
-```
-ssh -T git@github.com
-```
-
-İlk seferde `Are you sure you want to continue connecting` sorusuna `yes`
-yazın. Beklenen cevap:
-`Hi peradijital360-tech/pera-dijital! You've successfully authenticated...`
-
-### A4. Depoyu cPanel'e klonla
-
-**Git™ Version Control → Create**
+cPanel → **Files → FTP Accounts** → *Add FTP Account*
 
 | Alan | Değer |
 |---|---|
-| Clone a Repository | açık |
-| Clone URL | `git@github.com:peradijital360-tech/pera-dijital.git` |
-| Repository Path | `repositories/pera-dijital` |
-| Repository Name | `pera-dijital` |
+| Log In | `deploy` |
+| Domain | `peradijital.com.tr` |
+| Password | **Generate** → çıkan şifreyi kopyalayıp bir yere not edin |
+| Directory | otomatik `public_html/deploy` yazar → **`/deploy` kısmını silin**, yalnızca `public_html` kalsın |
+| Quota | Unlimited |
 
-**Create** → birkaç saniye sürer. Listede `pera-dijital` görünür.
+**Create FTP Account.**
 
-> Repository Path kesinlikle `public_html` içinde olmasın.
+Aşağıdaki listede yeni hesabın yanında **Configure FTP Client**'a tıklayın.
+Orada yazan iki bilgiyi not edin:
+- **FTP Username:** `deploy@peradijital.com.tr`
+- **FTP Server:** `ftp.peradijital.com.tr` (port 21)
 
-### A5. Hazır olduğunu doğrula (deploy etmeden)
+> Neden ayrı hesap: bu hesap yalnızca `public_html` içini görür. Ana cPanel
+> şifreniz GitHub'a hiç girmez. Şifre sızarsa bu hesabı silmek yeter.
 
-**Manage → Pull or Deploy** sekmesi:
-- *HEAD Commit* GitHub'daki son commit mesajıyla aynı olmalı.
-- **Deploy HEAD Commit düğmesine basmayın.** Bugünlük iş bitti.
+### A2. Bağlantıyı Mac'ten test et (hiçbir şey yüklemez, sadece listeler)
 
-Hata alırsanız (`Permission denied (publickey)` / `Host key verification
-failed`): A3'teki testi çalıştırıp `yes` deyin, sonra A4'ü tekrarlayın.
+Mac Terminal:
+
+```
+curl --user 'deploy@peradijital.com.tr' --list-only ftp://ftp.peradijital.com.tr/
+```
+
+Şifreyi sorar, A1'deki şifreyi yapıştırın (ekranda görünmez) → Enter.
+
+- **Doğru:** `wp-admin`, `wp-content`, `index.php`, `wp-config.php` gibi
+  WordPress dosyaları listelenir. Bu, hesabın kökünün `public_html` olduğunu
+  gösterir → A3'te `FTP_SERVER_DIR` = `./`
+- **Liste `public_html`, `mail`, `etc` gibi klasörler gösteriyorsa:** hesabın
+  kökü ev klasörü. Ya A1'de Directory'yi düzeltin, ya da A3'te
+  `FTP_SERVER_DIR` = `public_html/` yazın.
+- **`Login denied` / `530`:** kullanıcı adı `@peradijital.com.tr` ile tam
+  yazılmalı; şifreyi kontrol edin.
+
+### A3. GitHub'a secret'ları ekle
+
+<https://github.com/peradijital360-tech/pera-dijital/settings/secrets/actions>
+→ **Secrets** sekmesi → **New repository secret** (her biri için ayrı ayrı):
+
+| Name (birebir bu yazımla) | Secret | Nereden |
+|---|---|---|
+| `FTP_SERVER` | `ftp.peradijital.com.tr` | A1 → Configure FTP Client → *FTP Server*. Başına `ftp://` **yazmayın**. |
+| `FTP_USERNAME` | `deploy@peradijital.com.tr` | A1 → Configure FTP Client → *FTP Username* |
+| `FTP_PASSWORD` | A1'de ürettiğiniz şifre | A1'de not ettiğiniz şifre. Unuttuysanız FTP Accounts → *Change Password* |
+| `FTP_SERVER_DIR` | `./` | A2 sonucuna göre `./` ya da `public_html/`. **Sonu `/` ile bitmeli.** |
+
+**Variables** sekmesine şimdi **hiçbir şey eklemeyin** (güvenlik kilidi).
+
+### A4. Workflow'u GitHub'a gönder ve kilidin çalıştığını gör
+
+Mac Terminal:
+
+```
+cd ~/Desktop/pera-dijital-comtr/2
+git push
+```
+
+Sonra <https://github.com/peradijital360-tech/pera-dijital/actions>:
+- **Deploy to cPanel (FTP)** adlı bir çalışma görünür.
+- İçine girin: `deploy` işi **gri / Skipped** olmalı. Bu, push'un siteye
+  bir şey yüklemediğini gösterir.
+- Kırmızı hata varsa ya da iş gerçekten çalıştıysa **durun** ve bana yazın.
+
+Actions sekmesi hiç yoksa: *Settings → Actions → General → Allow all actions*
+→ Save.
+
+Bugünlük iş bitti. Eski site olduğu gibi yayında.
 
 ---
 
 ## B. Geçiş günü: tek seferde yayına alma
 
-Toplam ~15 dakika. Kesinti yalnızca B3 ile B4 arasındaki birkaç saniye; B4'ü B3'ün hemen ardından yapın.
+Toplam ~20 dakika. **Kesinti B1'den B3 bitene kadar, 2–5 dakika.** Trafiğin
+az olduğu bir saatte yapın; B1, B2, B3'ü ara vermeden art arda uygulayın.
 
 ### B0. Ön koşullar (hepsi evet olmadan başlamayın)
 
-- [ ] Gerçek hero görselleri commit'lendi ve GitHub'a push edildi.
+- [ ] Gerçek hero görselleri commit'lendi ve `git push` yapıldı.
 - [ ] Eski sitenin **dosya yedeği** ve **veritabanı yedeği** bilgisayarınızda.
-      (cPanel → *Backup* → *Download a MySQL Database Backup*, WordPress
+      (cPanel → *Backup* → *Download a MySQL Database Backup* → WordPress
       veritabanının adına tıklayın.)
 - [ ] cPanel → *Email Accounts*: `hello@peradijital.com.tr` ve
       `website@peradijital.com.tr` var.
-- [ ] cPanel → *SSL/TLS Status*: `peradijital.com.tr` **ve**
-      `www.peradijital.com.tr` yeşil (geçerli). Değilse *Run AutoSSL*,
-      bitmesini bekleyin.
-      (15 Eylül 2026 kontrolü: mevcut Let's Encrypt sertifikası
-      `*.peradijital.com.tr` ve `peradijital.com.tr` adlarını kapsıyor, www dahil;
-      bitiş 18 Kasım 2026. AutoSSL açıksa kendisi yeniler.)
+- [ ] cPanel → *SSL/TLS Status*: `peradijital.com.tr` ve
+      `www.peradijital.com.tr` geçerli. (15 Eylül 2026 kontrolü: sertifika
+      `*.peradijital.com.tr` ve `peradijital.com.tr` adlarını kapsıyor, www
+      dahil; bitiş 18 Kasım 2026.)
+- [ ] A1–A4 tamam, A4'teki çalışma *Skipped* görünüyordu.
 
-### B1. Bayrağı live yap (Mac Terminal)
+### B1. Eski dosyaları web kökünden taşı (silmeden)
 
-```
-cd ~/Desktop/pera-dijital-comtr/2
-sed -i '' "s/const SITE_ENV = 'staging';/const SITE_ENV = 'live';/" assets/inc/config.local.php
-grep "const SITE_ENV" assets/inc/config.local.php
-```
-
-Son satır tam olarak `const SITE_ENV = 'live';` yazmalı. Sonra:
-
-```
-git add assets/inc/config.local.php
-git commit -m "Go live: SITE_ENV live"
-git push
-```
-
-> Bayrak, eski dosyalar taşınmadan **önce** live yapılır. Böylece yeni site
-> ana alan adında bir an bile staging (noindex) olarak görünmez.
-
-### B2. cPanel'e son hâli çek
-
-**Git™ Version Control → pera-dijital → Manage → Pull or Deploy →
-Update from Remote**
-
-*HEAD Commit* mesajı `Go live: SITE_ENV live` olmalı. **Henüz Deploy'a
-basmayın.**
-
-### B3. Eski dosyaları web kökünden taşı (silmeden)
-
-**Terminal varsa** — tek blok, olduğu gibi yapıştırın:
+**cPanel Terminal varsa** (Advanced → Terminal) — tek blok, olduğu gibi
+yapıştırın:
 
 ```
 mkdir -p ~/eski-site-wordpress
@@ -147,36 +140,73 @@ ls -la ~/public_html
 
 **Terminal yoksa — File Manager:**
 1. Sağ üst **Settings → Show Hidden Files (dotfiles)** işaretle → Save.
-2. `/home/KULLANICI` içinde **+ Folder** → `eski-site-wordpress`.
+2. Ev klasöründe (`/home/KULLANICI`) **+ Folder** → `eski-site-wordpress`.
 3. `public_html` klasörüne gir → **Select All**.
 4. `.well-known` ve `cgi-bin` işaretini **kaldır**.
 5. **Move** → `/eski-site-wordpress` → Move Files.
 
-### B4. Deploy
+### B2. Ortam dosyasını sunucuda "live" olarak oluştur
 
-**Git™ Version Control → pera-dijital → Manage → Pull or Deploy →
-Deploy HEAD Commit**
+Bu dosya git'te yok, deploy onu hiç yüklemez ve hiç silmez. Deploy'dan
+**önce** oluşturulur ki yeni site bir an bile staging (noindex) görünmesin.
 
-Son deploy saati güncellenir. (Bu adım B3'ten hemen sonra, bekletmeden.)
+cPanel → **File Manager** → `public_html`:
+1. **+ Folder** → `assets` → içine gir → **+ Folder** → `inc` → içine gir.
+2. **+ File** → adı `config.local.php` → Create.
+3. Dosyayı seç → **Edit** → içindekileri silip **tam olarak** şunu yapıştır:
+
+```
+<?php
+const SITE_ENV = 'live';
+```
+
+4. **Save Changes.**
+
+### B3. Deploy'u elle başlat
+
+<https://github.com/peradijital360-tech/pera-dijital/actions> →
+soldan **Deploy to cPanel (FTP)** → sağda **Run workflow** → Branch: `main`
+→ yeşil **Run workflow**.
+
+Sayfayı yenileyin; yeni çalışma sarı (sürüyor) görünür. Yeşil tik olana kadar
+bekleyin (ilk yükleme 2–5 dakika). Kırmızı olursa → D2.
+
+### B4. Deploy'un gerçekten gittiğini doğrula
+
+D1'deki üç kontrolü yapın.
 
 ### B5. İlk bakış (tarayıcı, gizli pencere)
 
-- <https://www.peradijital.com.tr/> açılıyor, yeni site görünüyor.
+- <https://www.peradijital.com.tr/> → yeni site görünüyor.
 - <https://www.peradijital.com.tr/robots.txt> → `Allow: /` ve `Sitemap:`
-  satırı var, `Disallow: /` **yok**.
+  satırı var, `Disallow: /` **yok**. Varsa B2'deki dosyanın yolu veya
+  içeriği yanlış.
 
 ### B6. PHP sürümü
 
-cPanel → *MultiPHP Manager* → `peradijital.com.tr` → **PHP 8.1 veya üstü**
-seçili olsun (eski WordPress için farklı ayarlanmış olabilir).
+cPanel → *MultiPHP Manager* → `peradijital.com.tr` → **PHP 8.1 veya üstü**.
+(Eski WordPress için eski bir sürümde bırakılmış olabilir.)
 
-### B7. Tam kontrol
+### B7. Push ile otomatik deploy'u aç
 
-C1'e geçin.
+<https://github.com/peradijital360-tech/pera-dijital/settings/variables/actions>
+→ **Variables** sekmesi → **New repository variable**
+- Name: `DEPLOY_ON_PUSH`
+- Value: `true`
+- **Add variable**
+
+Bundan sonra her `git push` siteyi otomatik günceller.
+
+### B8. Tam kontrol
+
+C bölümüne geçin.
 
 ### Geri alma (bir şey ters giderse)
 
-Terminal'e yapıştırın — yeni siteyi kenara alır, WordPress'i geri koyar:
+1. **Önce kilidi kapat:** GitHub → Settings → Secrets and variables → Actions
+   → **Variables** → `DEPLOY_ON_PUSH` → sil.
+2. cPanel Terminal'e yapıştır — yeni siteyi kenara alır, WordPress'i geri
+   koyar:
 
 ```
 mkdir -p ~/yeni-site-geri-alinan
@@ -191,6 +221,8 @@ ls -la ~/public_html
 ```
 
 WordPress veritabanına dokunulmadığı için eski site olduğu gibi geri gelir.
+`.ftp-deploy-sync-state.json` da kenara alındığı için bir sonraki deploy
+sıfırdan tam yükleme yapar.
 
 ### 30 gün sonra
 
@@ -244,9 +276,10 @@ Ek olarak: sonda eğik çizgi olmadan (`/web-tasarim`), alt sayfalar
 **robots.txt / sitemap** — `Allow: /` + `Sitemap:` satırı, `Disallow: /`
 yok; `/sitemap.xml` 200.
 
-**Kapalı kalması gerekenler** — olmayan sayfa 404, `/wp-login.php` ve
-`/wp-admin/` 404, `/assets/inc/config.php` ve `config.local.php` 403,
-`/_tools/`, `README.md`, `.cpanel.yml` 404.
+**Kapalı kalması gerekenler** — olmayan sayfa 404; `/wp-login.php`,
+`/wp-admin/` 404; `/assets/inc/config.php`, `config.local.php`,
+`config.example.php` 403; `/.ftp-deploy-sync-state.json` 403;
+`/_tools/`, `README.md`, `YAYINA-ALMA.md`, `.github/` 404.
 
 ### C2. noindex'i elle de doğrula (1 dakika)
 
@@ -257,8 +290,10 @@ yok; `/sitemap.xml` 200.
    adresini yazın → **Canlı URL'yi test et** → *Dizine eklemeye izin verilir
    mi?* → **Evet**.
 
-Hâlâ `noindex` görüyorsanız: B2'deki commit mesajını kontrol edin, sonra
-cPanel'de önbellek varsa (LiteSpeed Cache / Cloudflare) temizleyin.
+Hâlâ `noindex` görüyorsanız: File Manager'da
+`public_html/assets/inc/config.local.php` dosyasını açın — yol ve içerik B2
+ile birebir aynı olmalı (`'live'`, küçük harf, tek tırnak). Sonra varsa
+önbelleği (LiteSpeed Cache / Cloudflare) temizleyin.
 
 ### C3. Form testi (her form ayrı kaynak, hepsini deneyin)
 
@@ -296,19 +331,18 @@ Mail spam'e düşüyorsa: cPanel → *Email Deliverability* → `peradijital.com
    ve `www` olmadan) → **Devam**.
 3. Açılan pencerede **TXT kaydı** değerini kopyalayın
    (`google-site-verification=...` ile başlar). Pencereyi kapatmayın.
-4. DNS kaydını ekleyin. 15 Eylül 2026 kontrolü: alan adının ad sunucuları
+4. DNS kaydını ekleyin. 15 Eylül 2026 kontrolü: ad sunucuları
    `ns1.peradijital360.net` / `ns2.peradijital360.net`, sitenin çalıştığı
    sunucuyla aynı yerde — yani büyük olasılıkla **cPanel Zone Editor**.
-   Zone Editor'da `peradijital.com.tr` görünmüyorsa DNS başka bir panelde
-   yönetiliyordur, ikinci seçeneği uygulayın.
-   - **cPanel'de ise:** cPanel → **Zone Editor** → `peradijital.com.tr`
-     satırında **Manage** → **Add Record** → **Add TXT Record**
+   - **cPanel:** **Zone Editor** → `peradijital.com.tr` satırında **Manage**
+     → **Add Record** → **Add TXT Record**
      - Name: `peradijital.com.tr.` (sonunda nokta; cPanel kendisi doldurur)
      - TTL: `14400`
      - Record: kopyaladığınız `google-site-verification=...` değeri
      - **Save Record**
-   - **Başka yerde ise** (Cloudflare, alan adı firması): o panelde
-     *DNS* → yeni **TXT** kaydı, Ad/Host: `@`, Değer: aynı metin.
+   - **Zone Editor'da alan adı yoksa** DNS başka bir panelde yönetiliyordur
+     (Cloudflare, alan adı firması): o panelde *DNS* → yeni **TXT** kaydı,
+     Ad/Host: `@`, Değer: aynı metin.
 5. 5–10 dakika bekleyin → Search Console penceresinde **Doğrula**.
    "Doğrulanamadı" derse bir saat sonra tekrar deneyin; DNS yayılması
    birkaç saati bulabilir. TXT kaydını **silmeyin**, doğrulama sürekli
@@ -326,3 +360,36 @@ Mail spam'e düşüyorsa: cPanel → *Email Deliverability* → `peradijital.com
 Search Console → **Sayfalar** raporu: eski adresler "Yönlendirmeli sayfa"
 altına geçer (bu doğru), yeni adresler "Dizine eklendi"ye gelir. Google
 robots.txt'yi günde ~1 kez okuduğu için ilk gün eski durum görünebilir.
+
+---
+
+## D. Deploy çalıştı mı?
+
+### D1. Üç kontrol (her deploy'dan sonra)
+
+1. **GitHub Actions:** <https://github.com/peradijital360-tech/pera-dijital/actions>
+   → en üstteki çalışma **yeşil tik**. İçine girin → `deploy` → **Deploy over
+   FTP** adımını açın → logun sonunda `Sync complete` benzeri bir satır ve
+   yüklenen dosya sayısı görünür.
+   - Push sonrası iş **gri / Skipped** ise: `DEPLOY_ON_PUSH` değişkeni yok
+     ya da `true` değil. Bu, B7'den önce beklenen durumdur.
+2. **Sunucu:** cPanel → File Manager → `public_html` (gizli dosyalar açık) →
+   `.ftp-deploy-sync-state.json` dosyasının **Last Modified** saati deploy
+   saatiyle aynı.
+3. **Site:** gizli pencerede değiştirdiğiniz sayfayı açın; değişiklik
+   görünüyor. Görünmüyorsa `Cmd+Shift+R` ile önbelleksiz yenileyin.
+
+### D2. Kırmızı hata olursa — logdaki mesaja göre
+
+| Logda | Sebep | Çözüm |
+|---|---|---|
+| `getaddrinfo ENOTFOUND` | `FTP_SERVER` yanlış | Yalnızca `ftp.peradijital.com.tr`; `ftp://` ve `/` olmadan |
+| `530` / `Login authentication failed` | kullanıcı adı veya şifre | `FTP_USERNAME` tam hâliyle `deploy@peradijital.com.tr`; şifreyi cPanel'de değiştirip secret'ı güncelleyin |
+| `server-dir should be a folder (must end with /)` | `FTP_SERVER_DIR` sonunda `/` yok | `./` ya da `public_html/` |
+| Dosyalar `public_html/public_html/` içine gitti | hem hesap kökü `public_html` hem `FTP_SERVER_DIR` = `public_html/` | `FTP_SERVER_DIR` = `./` yapın, yanlış klasörü File Manager'dan silin |
+| `ETIMEDOUT` / `ECONNREFUSED` | hosting güvenlik duvarı GitHub'ı engelliyor | Hosting firmasına "GitHub Actions'tan port 21 FTP erişimi açık mı" diye sorun |
+| Hata yok ama sunucuda eksik dosya | sunucudan elle silinmiş; action fark etmez | `.ftp-deploy-sync-state.json` dosyasını silin → **Run workflow** (tam yükleme) |
+
+Secret'ı güncellemek: *Settings → Secrets and variables → Actions → Secrets*
+→ ilgili secret → **Update** → yeni değer → **Update secret**. Sonra
+Actions'ta başarısız çalışmayı açıp **Re-run all jobs**.

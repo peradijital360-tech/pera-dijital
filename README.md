@@ -16,58 +16,65 @@ Then open <http://localhost:8080/>. It resolves `/cozumlerimiz/` to
 
 If `php` is not installed: `brew install php` (Homebrew), or use MAMP/Herd.
 
-## Deploying: GitHub → cPanel
+## Deploying: GitHub Actions → cPanel over FTP
 
 **Step-by-step go-live runbook (Turkish), rollback, post-launch checks and
 Search Console setup: [`YAYINA-ALMA.md`](YAYINA-ALMA.md).** Post-launch
 automated check: `bash _tools/yayin_kontrol.sh`.
 
 The site lives at **https://www.peradijital.com.tr**. The code is in a private
-GitHub repository; cPanel's **Git™ Version Control** pulls it and
-`.cpanel.yml` copies only the public site into the web root. `_tools/`,
-`_drafts/`, `README.md` and `.git` never reach the server.
+GitHub repository. `.github/workflows/deploy.yml` uploads it over FTP with
+`SamKirkland/FTP-Deploy-Action`. There is no build step: the repository is
+the site.
 
 Server requirement: **PHP 7.1 or newer** (8.1+ recommended), with `mbstring`.
 Set it in cPanel → *MultiPHP Manager* for the domain.
 
-### One-time setup
+### What gets uploaded
 
-1. **cPanel SSH key.** cPanel → *SSH Access* → *Manage SSH Keys* → *Generate a
-   New Key* (no passphrase — cPanel cannot enter one), then *Manage* →
-   *Authorize*. Open *View/Download* and copy the **public** key.
-2. **Deploy key on GitHub.** Repository → *Settings* → *Deploy keys* →
-   *Add deploy key*. Paste the public key. Leave *Allow write access* off.
-3. **Clone in cPanel.** cPanel → *Git™ Version Control* → *Create*.
-   Clone URL: the SSH form, `git@github.com:<account>/<repo>.git`.
-   Repository path: something outside the web root, e.g.
-   `/home/<cpanel-user>/repositories/pera-dijital`. Do **not** clone into
-   `public_html`.
-4. **Document root.** `.cpanel.yml` deploys to `$HOME/public_html/`, which is
-   the primary domain's root. If `peradijital.com.tr` is an addon domain with
-   its own folder (cPanel → *Domains* shows it), change `DEPLOYPATH` in
-   `.cpanel.yml` to that folder and push.
-5. **Mail.** Create `hello@peradijital.com.tr` and
-   `website@peradijital.com.tr` in cPanel → *Email Accounts* (or change
-   `FORM_TO` / `FORM_FROM` in `config.php`), and make sure SPF and DKIM are
-   valid in cPanel → *Email Deliverability*. `FORM_FROM` must be on this
-   domain or form mail lands in spam.
-6. **HTTPS.** cPanel → *SSL/TLS Status* → run AutoSSL for both
-   `peradijital.com.tr` and `www.peradijital.com.tr` **before** the first
-   deploy: `.htaccess` forces HTTPS and the www host, so without a certificate
-   the site redirects into a browser warning.
+Everything except the `exclude` list in the workflow: `.git*`, `.github/`,
+`_tools/`, `_drafts/`, `README.md`, `YAYINA-ALMA.md`, `.cpanel.yml`,
+`config.example.php`, `assets/inc/config.local.php`, `.DS_Store`, editor
+folders. Excluded paths are neither uploaded nor deleted on the server.
 
-### Every update
+`dangerous-clean-slate: false`: the action only ever deletes files it uploaded
+itself and that were later removed from the repository. Files it never
+uploaded (the old WordPress site, `config.local.php`) are never touched. Its
+bookkeeping file `.ftp-deploy-sync-state.json` sits in the web root and is
+blocked in `.htaccess`.
 
-1. Commit and `git push` to `main`.
-2. cPanel → *Git™ Version Control* → *Manage* → *Pull or Deploy* →
-   **Update from Remote**, then **Deploy HEAD Commit**.
+### The push gate
 
-Deploy copies over existing files but never deletes: a file removed from the
-repository stays on the server until you delete it in *File Manager*.
+A push to `main` deploys **only** when the repository variable
+`DEPLOY_ON_PUSH` is `true` (*Settings → Secrets and variables → Actions →
+Variables*). Before go-live it must not exist: otherwise the next push would
+upload `index.php` and `.htaccess` over the old WordPress site. Until then,
+deploy only from *Actions → Deploy to cPanel (FTP) → Run workflow*.
 
-### Staging and live — one flag
+### Secrets
 
-`assets/inc/config.local.php` holds the only switch:
+| Name | Value |
+|---|---|
+| `FTP_SERVER` | `ftp.peradijital.com.tr` (host only, no `ftp://`) |
+| `FTP_USERNAME` | the FTP account, e.g. `deploy@peradijital.com.tr` |
+| `FTP_PASSWORD` | that account's password |
+| `FTP_SERVER_DIR` | `./` when the FTP account's directory is `public_html`; `public_html/` when using the main cPanel login. Must end with `/`. |
+
+### Every update (after go-live)
+
+Commit and `git push` to `main`. With `DEPLOY_ON_PUSH=true` the workflow runs
+by itself; check the green tick under *Actions*.
+
+If a file was changed or deleted on the server by hand, the action will not
+notice (it compares against its state file, not the server). Delete
+`.ftp-deploy-sync-state.json` in File Manager and run the workflow manually:
+that forces a full upload.
+
+### Staging and live — one flag, server-only
+
+`assets/inc/config.local.php` is **not in git**. It exists only on the server
+(and, if you like, on your own machine), so no deploy can overwrite it. Copy
+`assets/inc/config.example.php` to create it:
 
 ```php
 const SITE_ENV = 'staging';   // or 'live'
@@ -79,21 +86,22 @@ const SITE_ENV = 'staging';   // or 'live'
 | `/robots.txt` | `User-agent: *` / `Disallow: /` | `User-agent: *` / `Allow: /` / `Sitemap: https://www.peradijital.com.tr/sitemap.xml` |
 
 `/robots.txt` is produced by `robots.php` (rewrite in `.htaccess`); there is
-no static `robots.txt`, and none should be uploaded — it would be ignored by
-the rewrite but would confuse anyone reading File Manager. A missing
-`config.local.php`, or any value other than exactly `'live'`, is staging.
+no static `robots.txt`, and none should be uploaded. **A missing
+`config.local.php`, or any value other than exactly `'live'`, is staging** —
+so a deploy to a server without the file is safe by default.
 
 ### Going live — checklist
 
 Do these in order, the day the real hero images are in.
 
-1. **Flip the flag.** In `assets/inc/config.local.php` change
-   `'staging'` to `'live'`. Commit, push, then in cPanel *Update from Remote*
-   and *Deploy HEAD Commit*.
+1. **Flip the flag on the server.** cPanel → *File Manager* →
+   `public_html/assets/inc/config.local.php` → *Edit* → `'live'` → Save.
+   No commit and no deploy needed; the change is instant.
 2. **Verify robots.txt.** Open `https://www.peradijital.com.tr/robots.txt`
    in a private window. It must read `Allow: /` and end with the `Sitemap:`
    line. If it still says `Disallow: /`, the deploy did not run or the flag is
-   misspelled (it must be lowercase `live`, in single quotes).
+   misspelled (it must be lowercase `live`, in single quotes), or the file is
+   in the wrong folder.
 3. **Verify noindex is really gone.** On the homepage and one service page:
    - *View source* and search for `robots`: there must be **no**
      `noindex` meta tag.

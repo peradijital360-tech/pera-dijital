@@ -5,6 +5,18 @@
 Options -Indexes
 DirectorySlash On
 
+# GitHub Actions FTP deploy keeps its sync state in the web root. It lists
+# every deployed file with a hash; never serve it.
+<Files ".ftp-deploy-sync-state.json">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</Files>
+
 # The pages are PHP now. index.html stays in the list only so a stray static
 # file would still be served if one is ever dropped in.
 DirectoryIndex index.php index.html

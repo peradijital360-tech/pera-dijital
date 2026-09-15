@@ -1,0 +1,62 @@
+name: Deploy to cPanel (FTP)
+
+# Pera Dijital is plain PHP: no build step, the repository is the site.
+#
+# SAFETY GATE — read before changing the trigger.
+# A push to main deploys ONLY when the repository variable DEPLOY_ON_PUSH is
+# "true" (Settings → Secrets and variables → Actions → Variables). Until the
+# go-live day that variable does not exist, so pushing can never upload
+# index.php / .htaccess over the old WordPress site. Until then the only way
+# to deploy is Actions → "Deploy to cPanel (FTP)" → Run workflow.
+#
+# The action never deletes files it did not upload itself
+# (dangerous-clean-slate: false), so anything else on the server — including
+# assets/inc/config.local.php, which is not in git — is left alone.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Two deploys must never upload at the same time.
+concurrency:
+  group: ftp-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || vars.DEPLOY_ON_PUSH == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          protocol: ftp
+          local-dir: ./
+          dangerous-clean-slate: false
+          # Setting exclude replaces the action's defaults, so the .git
+          # patterns are repeated here. Excluded paths are neither uploaded
+          # nor deleted on the server.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            **/.DS_Store
+            **/node_modules/**
+            _tools/**
+            _drafts/**
+            README.md
+            YAYINA-ALMA.md
+            .cpanel.yml
+            **/config.example.php
+            assets/inc/config.local.php
+            .vscode/**
+            .idea/**

@@ -1,6 +1,10 @@
 # macOS
 .DS_Store
 
+# Server-owned environment flag. Lives only on the server (and locally);
+# a deploy must never overwrite it. Template: assets/inc/config.example.php
+assets/inc/config.local.php
+
 # Editors
 .vscode/
 .idea/
