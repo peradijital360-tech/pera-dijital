@@ -41,9 +41,19 @@ $page['tw_desc']  = $page['tw_desc']  !== '' ? $page['tw_desc']  : $page['og_des
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The only inline script on the site: marks that JS is available so CSS can
-     reveal JS-dependent controls without a layout shift. Nothing else here. -->
+<!-- Marks that JS is available so CSS can reveal JS-dependent controls
+     without a layout shift. -->
 <script>document.documentElement.classList.add('js')</script>
+<?php if (SITE_ENV === 'live'): ?>
+<!-- Microsoft Clarity. Live only, so staging and local visits stay out of the data. -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yiudct6u8f");
+</script>
+<?php endif; ?>
 <?php if ($page['canonical']): ?>
 <link rel="canonical" href="<?= e(SITE_URL . $page['canonical']) ?>">
 <?php endif; ?>
