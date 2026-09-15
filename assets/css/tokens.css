@@ -1,0 +1,123 @@
+/* ============================================================
+   TOKENS — :root custom properties only.
+   Values are taken from the reference site's own declared
+   design tokens, not eye-matched from screenshots.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ---- Palette (reference --waves-library--*) ---- */
+  --ink:          #131313;  /* --black: headings, card borders, dark ground */
+  --surface:      #ffffff;  /* --white */
+  --ink-muted:    #333333;  /* reference body colour, 12.6:1 on white */
+  --accent:       #6f3bdd;  /* --dark-purple, 6.28:1 under white text */
+  --accent-light: #b282f5;  /* --light-purple */
+
+  /* On the dark card only. --accent-light under white text is 2.84:1, so it
+     is never a fill behind white type; on --ink it reads 6.61:1 as text. */
+  --surface-tint: #f4f0fc;  /* accent at ~6% over white, flattened */
+
+  --ink-invert:       #ffffff;
+  --ink-invert-muted: #d0d0d0;  /* reference .text-span, 12.3:1 on --ink */
+  --rule:             rgb(19 19 19 / 0.14);    /* hairlines inside a light component */
+  --rule-invert:      rgb(255 255 255 / 0.22);
+
+  --focus-ring:        var(--accent);
+  --focus-ring-invert: var(--surface);
+
+  /* Scene uniforms. The canvas borrows the page palette, nothing of its own. */
+  --scene-card-tint:  var(--surface);
+  --scene-card-edge:  var(--accent);
+  --scene-depth-sink: var(--ink);
+
+  /* ---- Type ---- */
+  --font-ui: "Figtree", ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+
+  --fs-display:        clamp(2rem, 1.571rem + 2.143vw, 3.5rem);     /* 32 → 56 */
+  --fs-display-invert: clamp(2.25rem, 1.679rem + 2.857vw, 4.25rem); /* 36 → 68 */
+  --fs-h2:             clamp(1.875rem, 1.554rem + 1.61vw, 3rem);    /* 30 → 48 */
+  --fs-h3:             clamp(1.25rem, 1.179rem + 0.36vw, 1.5rem);   /* 20 → 24 */
+  --fs-body-lg:        clamp(1.0625rem, 1.009rem + 0.27vw, 1.25rem);/* 17 → 20 */
+  --fs-body:           clamp(0.9375rem, 0.92rem + 0.09vw, 1rem);    /* 15 → 16 */
+  --fs-caption:        clamp(0.8125rem, 0.795rem + 0.09vw, 0.875rem);/* 13 → 14 */
+
+  /* The reference sets 100% leading on display sizes and +1px tracking on
+     h3 and wide buttons. Both are load-bearing to the look. */
+  --lh-display: 1;
+  --lh-h3:      1.2;
+  --lh-body:    1.3;
+  --lh-prose:   1.5;
+
+  --tracking-display: -0.01em;
+  --tracking-h3:      0.042em;  /* +1px at 24px */
+  --tracking-button:  0.0625em; /* +1px at 16px */
+
+  --wt-body:    400;
+  --wt-medium:  500;
+  --wt-bold:    700;
+  --wt-heavy:   800;
+
+  --measure:      58ch;
+  --measure-hero: 46ch;  /* ~52 characters, under the 60 cap */
+
+  /* ---- Rhythm ---- */
+  --sp-1: 0.5rem;   --sp-2: 1rem;    --sp-3: 1.5rem;  --sp-4: 2rem;
+  --sp-5: 2.5rem;   --sp-6: 3rem;    --sp-8: 4rem;    --sp-10: 5rem;
+  --sp-section: clamp(4rem, 7vw, 6.25rem);   /* reference: 100px */
+
+  /* ---- Layout ---- */
+  --content-max: 84.5rem;               /* 1352px, as the reference has it */
+  --gutter: clamp(1.25rem, 3vw, 2rem);
+  --header-h: 5rem;
+  --header-clearance: calc(var(--header-h) + var(--sp-3));
+  --hero-min: min(100svh, 900px);
+  --tap-min: 2.75rem;
+  --card-stack-max: 34.0625rem;         /* 545px, reference tile column */
+
+  /* ---- Geometry ---- */
+  --hairline: 1px;
+  --radius-button:      8px;
+  --radius-button-lg:  12px;
+  --radius-card:       12px;
+  --radius-panel:      24px;
+  --card-pad: clamp(1.75rem, 3vw, 2.75rem) clamp(1.5rem, 2.6vw, 2.5rem); /* 44px 40px */
+
+  /* Buttons carry an inset top highlight over a dark drop; hover deepens the
+     drop rather than moving the button. Cards invert it: dark inner top edge. */
+  --shadow-button:       inset 0 2px 1px rgb(255 255 255 / 0.5), 0 2px 3px rgb(0 0 0 / 0.3);
+  --shadow-button-hover: inset 0 2px 1px rgb(255 255 255 / 0.5), 0 7px 8px rgb(0 0 0 / 0.3);
+  --shadow-button-accent: inset 0 2px 1px rgb(255 255 255 / 0.5), 0 2px 3px var(--accent);
+  --shadow-card:         inset 0 2px 1px rgb(0 0 0 / 0.3), 0 2px 3px rgb(255 255 255 / 0.3);
+
+  /* ---- Motion ---- */
+  --dur-hover:  160ms;
+  --dur-state:  200ms;
+  --dur-reveal: 500ms;
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --stagger:    50ms;
+  --reveal-shift: 12px;
+
+  /* ---- Stacking ---- */
+  --z-canvas: 0;
+  --z-hero-text: 1;
+  /* WhatsApp brand green. The one colour on this site from outside the
+     palette, because a recognised channel mark reads as itself or not at all. */
+  --wa-green: #25D366;
+
+  --z-header: 10;
+  --z-overlay: 20;
+  --z-header-open: 25;
+  --z-float: 30;               /* above the sticky header and its open dropdown */
+  --z-skip: 30;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-hover: 0ms;
+    --dur-state: 0ms;
+    --dur-reveal: 0ms;
+    --stagger: 0ms;
+    --reveal-shift: 0px;
+  }
+}

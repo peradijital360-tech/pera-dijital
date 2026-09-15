@@ -1,0 +1,210 @@
+/* ============================================================
+   PERA DIJITAL — references.css
+   Loaded after page.css on referanslarimiz/ only. Holds the
+   sector filter and the client logo grid; every other component
+   on that page comes from main.css and page.css.
+   ============================================================ */
+
+/* ============================================================
+   INTRO
+   ============================================================ */
+
+.figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-6);
+  margin-top: var(--sp-5);
+  list-style: none;
+  padding: 0;
+}
+
+.figures__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+/* Plain text, never animated. */
+.figures__value {
+  color: var(--ink);
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-heavy);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.figures__label { font-size: var(--fs-body); }
+
+/* ============================================================
+   SECTOR FILTER
+   Ships with the hidden attribute and is unhidden by JS, so the
+   grid can never be filtered away from a crawler or a no-JS visitor.
+   ============================================================ */
+
+/* Hidden by default, revealed only when the inline head script has marked
+   JS as available. Because that runs before first paint there is no shift,
+   and with JS off the control never renders while the grid stays complete. */
+.filter { display: none; }
+
+.js .filter {
+  display: flex;
+  gap: var(--sp-1);
+  margin-top: var(--sp-5);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter::-webkit-scrollbar { display: none; }
+
+.filter__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding-inline: var(--sp-2);
+  white-space: nowrap;
+  color: var(--ink-muted);
+  font-size: var(--fs-body);
+  font-weight: var(--wt-medium);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-button);
+  background: var(--surface);
+  transition: background-color var(--dur-hover) var(--ease-out),
+              color var(--dur-hover) var(--ease-out);
+}
+
+.filter__btn:hover { background: var(--surface-tint); color: var(--ink); }
+
+/* State is carried by aria-pressed, never by colour alone: the active
+   button also gains the filled ground and the heavier weight. */
+.filter__btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: var(--wt-bold);
+}
+
+/* ============================================================
+   CLIENT GRID
+   ============================================================ */
+
+.band--grid { padding-block: 0 var(--sp-section); }
+
+/* .section-title caps at 16ch site-wide, which broke this 29-character
+   heading onto two lines. Released here only — not changed globally, and
+   not white-space: nowrap, which would overflow the viewport at 320px.
+   It now sets on one line wherever the line has room, and still wraps
+   normally on a phone. */
+.band--grid .section-title { max-width: none; }
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  list-style: none;
+  padding: 0;
+}
+
+.client-cell { display: block; }
+
+/* All cell chrome lives here, on an element-agnostic class, so swapping the
+   div for an <a href> later changes nothing visually. */
+.client-cell__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  /* Was 3/2, which left every logo floating in mostly empty space.
+     8/3 gives a band tall enough for the tallest mark with even air. */
+  aspect-ratio: 8 / 3;
+  padding: var(--sp-2);
+  background: var(--surface);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+.client-cell__inner:hover { border-color: var(--accent); }
+
+/* Optical sizing: height is set per cell with --logo-h in the markup, so a
+   wide wordmark and a square mark read at the same visual weight. The ladder
+   targets roughly equal ink area, not equal height:
+     ratio >= 3.5  -> 1.75rem      ratio 1.6-2.5 -> 2rem
+     ratio 2.5-3.5 -> 2rem         ratio <  1.6  -> 2.75rem
+   Editing a real logo in means changing that one number, not this rule. */
+.client-cell__logo {
+  height: var(--logo-h, 2rem);
+  width: auto;
+  /* 100%: the cell padding is the breathing room. Anything less caps the
+     wide-framed exports before their per-logo height can do its job. */
+  max-width: 100%;
+  object-fit: contain;
+  /* grayscale is the only general answer for third-party colour logos; if
+     single-colour SVGs arrive later this becomes fill: currentColor. */
+  filter: grayscale(1) opacity(0.72);
+}
+
+.client-cell:hover .client-cell__logo,
+.client-cell:focus-within .client-cell__logo { filter: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .client-cell__logo { transition: filter var(--dur-state) var(--ease-out); }
+}
+
+/* ============================================================
+   MEDIA QUERIES
+   Column counts land on the existing tiers: 2 / 3 / 4 / 5.
+   ============================================================ */
+
+@media (max-width: 59.99rem) {
+
+  .filter {
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
+  }
+
+  .filter__btn { scroll-snap-align: start; }
+}
+
+@media (min-width: 40rem) {
+
+  /* .section-title caps at 16ch site-wide, which broke this 29-character
+   heading onto two lines. Released here only — not changed globally, and
+   not white-space: nowrap, which would overflow the viewport at 320px.
+   It now sets on one line wherever the line has room, and still wraps
+   normally on a phone. */
+.band--grid .section-title { max-width: none; }
+
+.client-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sp-3);
+  }
+}
+
+@media (min-width: 60rem) {
+
+  /* .section-title caps at 16ch site-wide, which broke this 29-character
+   heading onto two lines. Released here only — not changed globally, and
+   not white-space: nowrap, which would overflow the viewport at 320px.
+   It now sets on one line wherever the line has room, and still wraps
+   normally on a phone. */
+.band--grid .section-title { max-width: none; }
+
+.client-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 90rem) {
+
+  /* .section-title caps at 16ch site-wide, which broke this 29-character
+   heading onto two lines. Released here only — not changed globally, and
+   not white-space: nowrap, which would overflow the viewport at 320px.
+   It now sets on one line wherever the line has room, and still wraps
+   normally on a phone. */
+.band--grid .section-title { max-width: none; }
+
+.client-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}

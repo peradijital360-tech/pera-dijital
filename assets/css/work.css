@@ -1,0 +1,202 @@
+/* ============================================================
+   PERA DIJITAL — work.css
+   Loaded after page.css on islerimiz/ only. Holds the work grid
+   and card; everything else comes from main.css and page.css.
+   No JavaScript on this page: the card state is CSS only.
+   ============================================================ */
+
+.band--work { padding-block: 0 var(--sp-section); }
+
+/* ============================================================
+   WORK GRID
+   Uniform. 1fr rows so every card in a row matches height.
+   ============================================================ */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  list-style: none;
+  padding: 0;
+}
+
+.portfolio-card { display: block; }
+
+/* All card chrome lives here, on an element-agnostic class, so swapping the
+   div for <a href="/islerimiz/marka-adi/"> is a one-element change. */
+.portfolio-card__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.portfolio-card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3) var(--sp-2);
+}
+
+/* One height for all sixteen because the placeholders share an aspect ratio.
+   Real logos will not: override --logo-h per card in the markup, exactly as
+   the referanslarimiz grid does. */
+.portfolio-card__logo {
+  height: var(--logo-h, 2rem);
+  width: auto;
+  max-width: 82%;
+  object-fit: contain;
+}
+
+.portfolio-card__brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-2) var(--sp-2);
+  color: var(--ink);
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tracking-h3);
+}
+
+/* The resting state is the complete one: logo, brand and service are all
+   legible with no interaction, which is what touch users get permanently.
+   The single active move fills this strip — the one thing this page has
+   that referanslarimiz does not. Nothing else changes. */
+.portfolio-card__service {
+  margin-top: auto;
+  padding: 0.75rem var(--sp-2);
+  background: var(--surface-tint);
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-medium);
+}
+
+.portfolio-card:hover .portfolio-card__service,
+.portfolio-card:focus-within .portfolio-card__service {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+/* The change still happens under reduced motion; only the easing is dropped. */
+@media (prefers-reduced-motion: no-preference) {
+
+  .portfolio-card__service {
+    transition: background-color var(--dur-state) var(--ease-out),
+                color var(--dur-state) var(--ease-out);
+  }
+}
+
+/* ============================================================
+   VIEW-CASE EYE
+   Sits at the right end of the brand row, not on the service strip:
+   the strip is already flooding with accent on the same interaction,
+   and stacking an animating icon on a colour-changing ground puts two
+   gestures in the same 40px. Here it is on plain surface, in the
+   reading path after the brand name, and it can never collide with a
+   wide client logo the way a top-right corner placement would.
+
+   The selector keys off the anchor itself, not a modifier class, so it
+   cannot fall out of step with the markup: swap the div for an <a> and
+   the eye switches on. The 24px slot is reserved on every card, linked
+   or not, so revealing it shifts nothing.
+
+   Inlined per card rather than referenced from sprite.svg because CSS
+   cannot reach inside a <use> shadow tree to move the pupil.
+
+   Decorative: aria-hidden, not focusable, no accessible name. The card
+   link text already says where it goes.
+   ============================================================ */
+
+/* The blink scales a <g> holding both shapes, not the outline alone.
+   Scaling the outline by itself flattens it to a line while the pupil
+   stays full size and floats outside it, which reads as broken rather
+   than as a blink. The pupil still scans independently inside the group.
+
+   At rest the lid is fully open, the pupil centred and nothing is
+   transformed. That is the drawing a reduced-motion user sees, and the
+   one a touch user sees permanently. */
+.portfolio-card__eye {
+  flex: none;
+  color: var(--accent);
+  opacity: 0;
+}
+
+.portfolio-card__lid,
+.portfolio-card__pupil {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+a.portfolio-card__inner:hover .portfolio-card__eye,
+a.portfolio-card__inner:focus-within .portfolio-card__eye {
+  opacity: 1;
+}
+
+/* No hover to reveal it with, so a touch user gets it permanently. */
+@media (hover: none) {
+
+  a.portfolio-card__inner .portfolio-card__eye { opacity: 1; }
+}
+
+/* Motion is opt-in. Under reduced motion the icon simply appears: no
+   blink, no scan, no transition, and never a partial state. */
+@media (prefers-reduced-motion: no-preference) {
+
+  .portfolio-card__eye { transition: opacity var(--dur-state) var(--ease-out); }
+
+  a.portfolio-card__inner:hover .portfolio-card__lid,
+  a.portfolio-card__inner:focus-within .portfolio-card__lid {
+    animation: eye-blink 250ms ease-in-out;
+  }
+
+  a.portfolio-card__inner:hover .portfolio-card__pupil,
+  a.portfolio-card__inner:focus-within .portfolio-card__pupil {
+    animation: eye-scan 1600ms ease-in-out;
+  }
+}
+
+/* Both end on the resting values, so the icon settles open and centred
+   instead of holding a mid-animation pose. */
+@keyframes eye-blink {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.1); }
+}
+
+@keyframes eye-scan {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-2px); }
+  45%  { transform: translateX(2px); }
+  65%  { transform: translateX(-1px); }
+  85%  { transform: translateX(1px); }
+  100% { transform: translateX(0); }
+}
+
+/* ============================================================
+   MEDIA QUERIES
+   2 columns to 959, 3 to 1199, 4 from 1200. Never one column.
+   ============================================================ */
+
+@media (min-width: 40rem) {
+
+  .portfolio-grid { gap: var(--sp-3); }
+}
+
+@media (min-width: 60rem) {
+
+  .portfolio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 75rem) {
+
+  .portfolio-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

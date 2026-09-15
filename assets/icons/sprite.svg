@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Thin line icons on a 24px grid, matching the reference's stroke weight.
+       Client marks sit on 32px. Everything inherits currentColor. -->
+
+  <symbol id="icon-strategy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="4" width="19" height="13" rx="1.5"/><path d="M7 21h10M12 17v4"/><path d="M6.5 13.5l3.5-4 3 2.5 4.5-5"/>
+  </symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 013 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/>
+  </symbol>
+  <symbol id="icon-media" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 3v3M11 16v3M3 11h3M16 11h3M5.4 5.4l2.1 2.1M14.5 14.5l2.1 2.1M16.6 5.4l-2.1 2.1M7.5 14.5l-2.1 2.1"/><path d="M11 11l8.5 3.2-3.4 1.3-1.3 3.4z"/>
+  </symbol>
+  <symbol id="icon-design" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="5.5" width="13" height="13" rx="2"/><path d="M15.5 10l6-3.2v10.4l-6-3.2z"/>
+  </symbol>
+  <symbol id="icon-data" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>
+  </symbol>
+
+  <symbol id="icon-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="5.5" width="19" height="13" rx="2"/><circle cx="12" cy="12" r="2.75"/><path d="M6 9.5v5M18 9.5v5"/>
+  </symbol>
+  <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M8 16v-3M12 16V8M16 16v-5"/>
+  </symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.2l2.6 5.7 6.2.7-4.6 4.2 1.3 6.1L12 16.8l-5.5 3.1 1.3-6.1L3.2 9.6l6.2-.7z"/>
+  </symbol>
+  <symbol id="icon-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 5.4a3.2 3.2 0 010 5.2M17.5 14.2a6.5 6.5 0 014 5.8"/>
+  </symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 6.5V12l3.5 2.2"/>
+  </symbol>
+  <symbol id="icon-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2.8l9 4.7-9 4.7-9-4.7z"/><path d="M3.2 12.2L12 16.8l8.8-4.6M3.2 16.6L12 21.2l8.8-4.6"/>
+  </symbol>
+  <symbol id="icon-gauge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 18a9 9 0 1117 0"/><path d="M12 18l4.2-5.6"/><circle cx="12" cy="18" r="1.3"/>
+  </symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2.5 2.5 0 01-2.5 2.5H8L3 21V5.5A2.5 2.5 0 015.5 3h13A2.5 2.5 0 0121 5.5z"/><path d="M8 8.5h8M8 12h5"/>
+  </symbol>
+  <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6"/><path d="M12 3a14 14 0 010 18 14 14 0 010-18z"/>
+  </symbol>
+
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+    <path d="M3 8h18M3 16h18"/>
+  </symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+    <path d="M5 5l14 14M19 5L5 19"/>
+  </symbol>
+
+  <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6c.6-1 1.9-1.9 3.8-1.9 3 0 4.4 1.9 4.4 5.2V21h-4v-5.9c0-1.6-.6-2.6-2-2.6-1.2 0-1.9.8-2.2 1.6-.1.3-.1.7-.1 1.1V21h-3.9z"/>
+  </symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.3 3h3.3l-7.2 8.2L21.8 21h-6.5l-4.6-6-5.3 6H2.1l7.7-8.8L2.4 3H9l4.1 5.4zm-1.2 16h1.8L8 4.9H6z"/>
+  </symbol>
+  <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+  </symbol>
+
+  <!-- Client marks: geometric devices, brand name set as text beside them. -->
+  <symbol id="mark-northbay" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 26V6l22 20V6"/></symbol>
+  <symbol id="mark-verity" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 7l12 19L28 7"/><path d="M11 7h10"/></symbol>
+  <symbol id="mark-kestrel" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="16" cy="16" r="11"/><path d="M16 5v22M5 16h22"/></symbol>
+  <symbol id="mark-optima" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="5" width="22" height="22"/><path d="M5 27L27 5"/></symbol>
+  <symbol id="mark-fielder" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 27V5h20M6 16h13"/></symbol>
+  <symbol id="mark-rune" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M16 4l11 8v13H5V12z"/><path d="M16 25V15"/></symbol>
+
+  <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9.5l6 6 6-6"/>
+  </symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8.2 3.5l2 4.2-1.9 1.9a13.5 13.5 0 006.1 6.1l1.9-1.9 4.2 2v3.1a1.7 1.7 0 01-1.9 1.7C10.2 19.9 4.1 13.8 3.5 5.4a1.7 1.7 0 011.7-1.9z"/>
+  </symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 2.5V7M16 2.5V7"/><path d="M7.5 14h3M13.5 14h3M7.5 17.5h3"/>
+  </symbol>
+  <symbol id="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 4h2.4l2.2 11.2a1.6 1.6 0 001.6 1.3h7.9a1.6 1.6 0 001.6-1.2L20.5 8H6.2"/><circle cx="10" cy="20.2" r="1.4"/><circle cx="17" cy="20.2" r="1.4"/>
+  </symbol>
+  <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 21V4.5A1.5 1.5 0 015.5 3h8A1.5 1.5 0 0115 4.5V21M15 9h4a1.5 1.5 0 011.5 1.5V21M2.5 21h19"/><path d="M7.5 7h1.5M10.5 7h1.5M7.5 10.5h1.5M10.5 10.5h1.5M7.5 14h1.5M10.5 14h1.5"/>
+  </symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20.5S3.5 15.6 3.5 9.6A4.6 4.6 0 0112 7a4.6 4.6 0 018.5 2.6c0 6-8.5 10.9-8.5 10.9z"/>
+  </symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6.5A5.5 5.5 0 004 5v13.5a7.6 7.6 0 018 1.5 7.6 7.6 0 018-1.5V5a5.5 5.5 0 00-8 1.5z"/><path d="M12 6.5V20"/>
+  </symbol>
+
+  <!-- Brand logo. Dark parts inherit currentColor so the lockup works on any
+       ground; the dot keeps the exact brand purple. Wordmark is outlined
+       Poppins Medium, so no font is required to render it. -->
+  <symbol id="logo-pera-dijital" viewBox="0 0 1175 226.6">
+    <path fill="currentColor" d="M195,174.3v-99.5c0,0,34.8,0,34.8,0v109.8c-.7,19.9-16.3,37.3-36.8,37.3H48c-18.4,0-36.3-15.8-36.3-34.6l-.3-144c0-20.3,16-35.9,35.8-37.8h112.5c0,0,0,35.4,0,35.4H62.8c-8.1-.4-17.7,5.3-17.8,14.1l-.5,115.6c0,8.3,5.2,17.4,14.7,17.4h120.7c8,0,13.4-6.6,15-13.8Z"/>
+    <path fill="#7947f9" d="M220.1,49.5c-11.1,6.8-24.1,4.5-32.6-4-8.5-8.5-9.5-22.4-3-32.5,6.8-10.4,19.8-14.4,31.7-9.7,9.2,3.6,15.4,12.2,16.3,21.1,1,10-3.5,19.6-12.4,25.1Z"/>
+    <path fill="currentColor" d="M330.9 57.4Q343 57.4 353 62.8Q363 68.2 368.8 78Q374.5 87.8 374.5 100.5Q374.5 113.2 368.8 123.3Q363 133.3 353 138.9Q343 144.5 330.9 144.5Q320.3 144.5 312 140.6Q303.8 136.7 298.5 130.9V183.2H279.3V58.7H298.5V71.1Q303.4 65.3 311.8 61.3Q320.3 57.4 330.9 57.4ZM326.7 72.5Q319.4 72.5 312.9 75.9Q306.4 79.3 302.5 85.7Q298.5 92.1 298.5 100.8Q298.5 109.6 302.5 116.1Q306.4 122.6 312.9 126Q319.4 129.3 326.7 129.3Q334.1 129.3 340.5 125.9Q347 122.4 351 115.8Q354.9 109.3 354.9 100.5Q354.9 91.8 351 85.5Q347 79.1 340.5 75.8Q334.1 72.5 326.7 72.5Z M477.9 107.4H407Q407.8 117.5 415.2 123.7Q422.6 129.8 433.4 129.8Q448.9 129.8 455.3 118H476Q471.8 129.6 460.8 137.1Q449.8 144.5 433.4 144.5Q420.1 144.5 409.6 139Q399.1 133.6 393.1 123.7Q387.1 113.9 387.1 100.8Q387.1 87.8 392.9 78Q398.7 68.1 409.3 62.7Q419.8 57.4 433.4 57.4Q446.6 57.4 456.8 62.6Q467.1 67.8 472.8 77.2Q478.6 86.6 478.6 98.9Q478.6 103.6 477.9 107.4ZM458.5 93.3Q458.4 83.7 450.9 77.9Q443.5 72.1 432.6 72.1Q422.6 72.1 415.6 77.8Q408.5 83.5 407.2 93.3Z M544.4 57.4V75.4H539.5Q528.2 75.4 522.4 80.6Q516.6 85.8 516.6 98.7V143.1H497.4V58.7H516.6V71Q520.8 64.6 527.8 61Q534.8 57.4 544.4 57.4Z M599.5 57.4Q610.4 57.4 618.6 61.3Q626.8 65.2 631.6 71V58.7H651V143.1H631.6V130.5Q626.8 136.5 618.3 140.5Q609.9 144.5 599.1 144.5Q587.2 144.5 577.2 138.9Q567.3 133.3 561.5 123.3Q555.7 113.2 555.7 100.5Q555.7 87.8 561.5 78Q567.3 68.2 577.3 62.8Q587.4 57.4 599.5 57.4ZM603.5 72.5Q596.1 72.5 589.7 75.8Q583.3 79.1 579.4 85.5Q575.4 91.8 575.4 100.5Q575.4 109.3 579.4 115.8Q583.3 122.4 589.8 125.9Q596.3 129.3 603.5 129.3Q610.9 129.3 617.3 126Q623.7 122.6 627.7 116.1Q631.6 109.6 631.6 100.8Q631.6 92.1 627.7 85.7Q623.7 79.3 617.3 75.9Q610.9 72.5 603.5 72.5Z M757.6 57.4Q766.7 57.4 775.6 61Q784.4 64.6 789.6 70.5V29.8H809V143.1H789.6V130.4Q784.9 136.5 776.6 140.5Q768.2 144.5 757.4 144.5Q745.3 144.5 735.3 138.9Q725.3 133.3 719.5 123.3Q713.7 113.2 713.7 100.5Q713.7 87.8 719.5 78Q725.3 68.2 735.3 62.8Q745.3 57.4 757.6 57.4ZM761.5 72.5Q754.1 72.5 747.7 75.8Q741.3 79.1 737.3 85.5Q733.4 91.8 733.4 100.5Q733.4 109.3 737.3 115.8Q741.3 122.4 747.8 125.9Q754.2 129.3 761.5 129.3Q768.9 129.3 775.3 126Q781.7 122.6 785.7 116.1Q789.6 109.6 789.6 100.8Q789.6 92.1 785.7 85.7Q781.7 79.3 775.3 75.9Q768.9 72.5 761.5 72.5Z M831.7 36.4Q831.7 31.6 835.3 28.4Q838.8 25.2 844 25.2Q849.1 25.2 852.6 28.4Q856.1 31.6 856.1 36.4Q856.1 41.1 852.6 44.4Q849.1 47.6 844 47.6Q838.8 47.6 835.3 44.4Q831.7 41.1 831.7 36.4ZM853.4 58.7V143.1H834.2V58.7Z M876.2 36.4Q876.2 31.6 879.7 28.4Q883.2 25.2 888.5 25.2Q893.5 25.2 897.1 28.4Q900.6 31.6 900.6 36.4Q900.6 41.1 897.1 44.4Q893.5 47.6 888.5 47.6Q883.2 47.6 879.7 44.4Q876.2 41.1 876.2 36.4ZM897.9 159.6Q897.9 172 891.1 177.6Q884.3 183.2 871.3 183.2H861.4V168.5H867.9Q873.8 168.5 876.3 166.4Q878.7 164.4 878.7 159.6V58.7H897.9Z M920.6 36.4Q920.6 31.6 924.2 28.4Q927.7 25.2 932.9 25.2Q938 25.2 941.5 28.4Q945.1 31.6 945.1 36.4Q945.1 41.1 941.5 44.4Q938 47.6 932.9 47.6Q927.7 47.6 924.2 44.4Q920.6 41.1 920.6 36.4ZM942.4 58.7V143.1H923.2V58.7Z M990 73V119.7Q990 124.4 992.5 126.5Q994.9 128.6 1000.8 128.6H1012.6V143.1H997.4Q984.5 143.1 977.6 137.6Q970.7 132.1 970.7 119.7V73H959.7V58.7H970.7V37.8H990V58.7H1012.6V73Z M1067.7 57.4Q1078.6 57.4 1086.8 61.3Q1094.9 65.2 1099.8 71V58.7H1119.2V143.1H1099.8V130.5Q1094.9 136.5 1086.5 140.5Q1078.1 144.5 1067.3 144.5Q1055.4 144.5 1045.4 138.9Q1035.5 133.3 1029.7 123.3Q1023.9 113.2 1023.9 100.5Q1023.9 87.8 1029.7 78Q1035.5 68.2 1045.5 62.8Q1055.5 57.4 1067.7 57.4ZM1071.7 72.5Q1064.3 72.5 1057.9 75.8Q1051.5 79.1 1047.5 85.5Q1043.6 91.8 1043.6 100.5Q1043.6 109.3 1047.5 115.8Q1051.5 122.4 1058 125.9Q1064.5 129.3 1071.7 129.3Q1079.1 129.3 1085.5 126Q1091.9 122.6 1095.9 116.1Q1099.8 109.6 1099.8 100.8Q1099.8 92.1 1095.9 85.7Q1091.9 79.3 1085.5 75.9Q1079.1 72.5 1071.7 72.5Z M1163.7 29.8V143.1H1144.5V29.8Z"/>
+  </symbol>
+  <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+  </symbol>
+  <!-- Text-link arrow. Same stroke weight and caps as icon-chevron. -->
+  <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14M13 6l6 6-6 6"/>
+  </symbol>
+</svg>

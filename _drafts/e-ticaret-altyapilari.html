@@ -1,0 +1,84 @@
+<!--
+  SAVED FROM /cozumlerimiz/web-tasarim/ ON THE NARROWING EDIT.
+  This is the platform comparison band lifted out whole: heading, the two
+  intro paragraphs, the full <table> and the WordPress note.
+  Destined for the e-commerce service page. The CSS it needs (.compare,
+  .compare__table, .compare__note) is already in assets/css/page.css and
+  was deliberately left there.
+  Not served: _drafts/.htaccess denies all.
+-->
+
+  <!-- ============================================================
+       BAND C — platform comparison. A real table element, not styled
+       divs: answer engines extract table markup and extract nothing
+       from a div grid.
+       ============================================================ -->
+  <section class="band" id="altyapilar" aria-labelledby="altyapilar-title">
+    <div class="band__inner">
+      <div class="prose">
+        <h2 class="section-title" id="altyapilar-title">Hangi altyapılarla çalışıyoruz?</h2>
+        <p class="section-lede">E-ticaret projelerinde ikas, Shopify, Ticimax ve T-Soft ile çalışıyoruz; kurumsal siteler ve landing page&rsquo;lerde kodu baştan yazıyoruz. Seçim markanın satış modeline göre yapılır, elimizdeki alışkanlığa göre değil.</p>
+        <p>Hazır altyapılar ödeme, kargo, stok ve faturalama gibi çözülmüş işleri hazır getirir; buna karşılık tasarım ve davranış, platformun izin verdiği sınırlar içinde kalır. Elde yazılmış bir site bu sınırı kaldırır, ama ödeme ve entegrasyon tarafını proje kapsamına ekler. Karar genellikle bu ikisi arasında veriliyor.</p>
+      </div>
+
+      <div class="compare" tabindex="0" role="region" aria-labelledby="altyapilar-tablo">
+        <table class="compare__table">
+          <caption id="altyapilar-tablo">E-ticaret altyapısı karşılaştırması. Platformların özellikleri ve paketleri değişebilir; tablo <strong>[REPLACE &mdash; son güncelleme tarihi]</strong> itibarıyla geçerlidir.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Altyapı</th>
+              <th scope="col">Tasarım özgürlüğü</th>
+              <th scope="col">Kod ve veri sahipliği</th>
+              <th scope="col">Türkiye entegrasyonları</th>
+              <th scope="col">Maliyet modeli</th>
+              <th scope="col">En uygun olduğu durum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">ikas</th>
+              <td>Tema sistemi içinde özelleştirme.</td>
+              <td>Ürün ve müşteri verisi dışa aktarılabilir; platform kodu sizde olmaz.</td>
+              <td>Yerel ödeme, kargo ve e-fatura bağlantıları hazır gelir.</td>
+              <td>Abonelik &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Türkiye pazarına satan, hızlı açılış isteyen mağazalar.</td>
+            </tr>
+            <tr>
+              <th scope="row">Shopify</th>
+              <td>Tema ve şablon diliyle geniş özelleştirme.</td>
+              <td>Veri dışa aktarılabilir; platform kodu sizde olmaz.</td>
+              <td>Yerel entegrasyonlar uygulama veya özel geliştirme ile kurulur.</td>
+              <td>Abonelik + işlem payı &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Yurt dışına da satan, geniş uygulama ekosistemi isteyen mağazalar.</td>
+            </tr>
+            <tr>
+              <th scope="row">Ticimax</th>
+              <td>Panel ve tema ayarlarıyla özelleştirme.</td>
+              <td>Veri dışa aktarılabilir; platform kodu sizde olmaz.</td>
+              <td>Yerel ödeme, kargo ve e-fatura bağlantıları hazır gelir.</td>
+              <td>Paket aboneliği &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Türkiye pazarına odaklı, paket çözüm tercih eden mağazalar.</td>
+            </tr>
+            <tr>
+              <th scope="row">T-Soft</th>
+              <td>Panel ve tema ayarlarıyla özelleştirme.</td>
+              <td>Veri dışa aktarılabilir; platform kodu sizde olmaz.</td>
+              <td>Yerel ödeme, kargo ve e-fatura bağlantıları hazır gelir.</td>
+              <td>Paket aboneliği &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Bayi ve B2B senaryosu olan mağazalar.</td>
+            </tr>
+            <tr>
+              <th scope="row">Elde yazılmış kod</th>
+              <td>Sınır yok; yerleşim markanın ihtiyacına göre kurulur.</td>
+              <td>Kodun tamamı sizde olur, depo devredilir.</td>
+              <td>Projeye göre yazılır veya mevcut servislere bağlanır.</td>
+              <td>Tek seferlik proje + hosting &mdash; <strong>[REPLACE &mdash; proje ücreti]</strong></td>
+              <td>Tasarımın ve hızın belirleyici olduğu kurumsal siteler, landing page&rsquo;ler.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compare__note">WordPress, içerik üretimi yoğun projelerde ve mevcut bir WordPress kurulumu devralındığında kullanılıyor. Bu durumda da tema satın almak yerine temayı projeye özel yazıyoruz.</p>
+    </div>
+  </section>
+

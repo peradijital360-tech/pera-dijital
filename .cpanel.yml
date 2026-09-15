@@ -1,0 +1,18 @@
+---
+# cPanel Git Version Control reads this file on "Deploy HEAD Commit".
+# Only the public site is copied. _tools/, _drafts/, README.md, .git and
+# this file stay in the repository and never reach the web root.
+#
+# DEPLOYPATH: public_html is the document root of the account's primary
+# domain. If www.peradijital.com.tr is an addon domain with its own
+# document root, change the path below to that folder (cPanel > Domains
+# shows it). Keep the trailing slash.
+#
+# cp -R copies over existing files but does not delete files that were
+# removed from the repository; delete those by hand in File Manager.
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R .htaccess 404.php index.php send.php robots.php sitemap.xml $DEPLOYPATH
+    - /bin/cp -R assets cozumlerimiz hakkimizda islerimiz referanslarimiz $DEPLOYPATH

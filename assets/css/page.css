@@ -1,0 +1,892 @@
+/* ============================================================
+   PERA DIJITAL — page.css
+   Shared inner-page chrome. Loaded after main.css on every page
+   below the root (cozumlerimiz/*, referanslarimiz/). Rules that
+   both page types render live in main.css; nothing is duplicated.
+   Order mirrors main.css: page scaffolding, components in DOM
+   order, media queries.
+   ============================================================ */
+
+/* ============================================================
+   PAGE SCAFFOLDING
+   ============================================================ */
+
+/* One sticky bar per page: the section nav owns the top edge, so the
+   shared header is static here and anchors clear the nav instead. */
+.page-service {
+  --section-nav-h: 3.5rem;
+  --header-clearance: calc(var(--section-nav-h) + var(--sp-3));
+}
+
+/* Not sticky here, but still positioned: without a stacking context above
+   the section nav, the solutions dropdown would paint underneath it. */
+.page-service .site-header {
+  position: relative;
+  z-index: var(--z-header-open);
+  background: var(--surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.service-hero__inner,
+.section-nav__inner,
+.band__inner {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.band {
+  padding-block: var(--sp-section);
+  /* Set directly, not only via :target, so smooth scrolls and the spy can
+     never race the pseudo-class. */
+  scroll-margin-top: var(--header-clearance);
+}
+
+.band--dark {
+  background: var(--ink);
+  color: var(--ink-invert);
+}
+
+.band--dark .section-title { color: var(--ink-invert); }
+.band--dark .section-lede { color: var(--ink-invert-muted); }
+.band--dark :focus-visible { outline-color: var(--focus-ring-invert); }
+
+/* ---- Eyebrow pill: the recurring section marker ---- */
+.eyebrow {
+  display: inline-block;
+  margin-bottom: var(--sp-3);
+  padding: 0.375rem 0.875rem;
+  background: #ece4fa;              /* accent at ~12% over white, flattened */
+  color: var(--accent);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-bold);
+  border-radius: var(--radius-button);
+}
+
+.eyebrow--invert {
+  background: rgb(178 130 245 / 0.16);
+  color: var(--accent-light);
+}
+
+/* ---- Two-column band layout, columns set per modifier ---- */
+.split {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+.split--wide-right { --split-cols: 1fr 1.4fr; }
+.split--narrow-left { --split-cols: 0.9fr 1.1fr; }
+
+.split__media img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+
+.prose { max-width: 58ch; }
+
+.prose p:not(:first-child) { margin-top: var(--sp-3); }
+
+/* Text-led pages: long body copy under a full-width image. The heading
+   block and the body share one centred column at a reading measure (~70
+   characters of Turkish per line), so the page has a single axis and only
+   the image runs wide. Both set the reading size on the wrapper so their
+   ch widths resolve identically. Text stays left-aligned inside. */
+.intro--centered,
+.prose--centered {
+  max-width: 56ch;
+  margin-inline: auto;
+  font-size: var(--fs-body-lg);
+}
+
+.intro--centered .intro__lede { max-width: none; }
+
+/* Text-only service heroes (no image slot): no grid, so the grid's top
+   margin moves onto the content block. Left-aligned like every other hero. */
+.service-hero__inner > .service-hero__content { margin-top: var(--sp-4); }
+
+/* ---- Text band + summary panel ----
+   Body copy on the left at its normal measure, a quiet reference panel on
+   the right. Side by side only from the nav tier (64rem) up; below that the
+   panel is an ordinary block under the text. Sticky only when the viewport
+   is tall enough to show the whole panel under the section nav (see the
+   media query at the end of MEDIA QUERIES). Content comes from the page's
+   $summaries data via assets/inc/summary.php. */
+.with-summary {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+.summary {
+  padding: var(--sp-4);
+  background: var(--surface-tint);
+  border: var(--hairline) solid var(--rule);
+  border-radius: var(--radius-card);
+}
+
+.summary__block + .summary__block {
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: var(--hairline) solid var(--rule);
+}
+
+.summary__title {
+  color: var(--ink);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-bold);
+}
+
+.summary__list {
+  margin-top: var(--sp-1);
+  padding-left: 1.125rem;
+  list-style: disc;
+  color: var(--ink);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.summary__list li + li { margin-top: 0.375rem; }
+
+.summary__list li::marker { color: var(--accent); }
+
+@media (min-width: 64rem) {
+
+  .with-summary {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--sp-10);
+  }
+}
+
+/* Height floor: tallest panel on the site plus the section nav and its
+   offset. Shorter viewports keep the panel in flow rather than pin a box
+   whose bottom would sit off-screen. Re-measure when a panel grows. */
+@media (min-width: 64rem) and (min-height: 46rem) {
+
+  .summary {
+    position: sticky;
+    top: calc(var(--section-nav-h) + var(--sp-4));
+  }
+}
+
+/* Under a centred section head, the body starts a band's worth of air below
+   the lede, matching what .pillars and .faq-grid do in the same position. */
+.centered-head + .prose--centered { margin-top: var(--sp-8); }
+
+.prose--centered { line-height: var(--lh-prose); }
+
+.prose--centered p:not(:first-child) { margin-top: var(--sp-4); }
+
+.centered-head {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.centered-head .section-lede { max-width: 52ch; }
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--accent);
+  font-weight: var(--wt-bold);
+  text-underline-offset: 0.25em;
+}
+
+.text-link:hover { color: var(--accent-pressed, var(--ink)); }
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  list-style: none;
+  padding: 0;
+  font-size: var(--fs-caption);
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.breadcrumb__sep {
+  color: var(--ink-muted);
+  transform: rotate(-90deg);
+}
+
+.breadcrumb__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.breadcrumb__link:hover { color: var(--accent); }
+
+.breadcrumb__current {
+  color: var(--ink);
+  font-weight: var(--wt-medium);
+}
+
+/* ============================================================
+   SERVICE HERO
+   ============================================================ */
+
+.service-hero {
+  background: var(--surface-tint);
+  padding-block: 0 var(--sp-8);
+}
+
+.service-hero__grid {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: center;
+  margin-top: var(--sp-4);
+}
+
+.service-hero__title {
+  color: var(--ink);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+}
+
+/* The reference's signature: a short heavy line over a longer medium one. */
+.service-hero__title-main {
+  display: block;
+  font-size: var(--fs-display);
+  font-weight: var(--wt-heavy);
+}
+
+.service-hero__title-sub {
+  display: block;
+  margin-top: 0.3em;
+  font-size: var(--fs-h2);
+  font-weight: var(--wt-medium);
+}
+
+.service-hero__lede {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-h3);
+  max-width: var(--measure-hero);
+}
+
+.service-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) var(--sp-4);
+  margin-top: var(--sp-5);
+}
+
+.service-hero__media img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.avatar-row__stack { display: flex; }
+
+.avatar-row__img {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 3px solid var(--surface-tint);
+}
+
+.avatar-row__img + .avatar-row__img { margin-left: -0.75rem; }
+
+.avatar-row__note {
+  color: var(--ink);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-medium);
+}
+
+/* ============================================================
+   CLIENT STRIP — divided variant
+   ============================================================ */
+
+.clients--divided {
+  padding-block: var(--sp-2) var(--sp-6);
+  border-block: 0;
+}
+
+.clients--divided .clients__list { gap: 0; }
+
+.clients--divided .client { padding-inline: clamp(var(--sp-3), 3vw, var(--sp-6)); }
+
+.clients--divided .client:not(:first-child) {
+  border-left: var(--hairline) solid rgb(19 19 19 / 0.16);
+}
+
+/* ============================================================
+   SECTION NAV (sticky)
+   ============================================================ */
+
+.section-nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--ink);
+}
+
+.section-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.section-nav__inner::-webkit-scrollbar { display: none; }
+
+.section-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--section-nav-h);
+  padding-inline: var(--sp-2);
+  color: var(--ink-invert-muted);
+  font-size: var(--fs-body);
+  font-weight: var(--wt-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur-hover) var(--ease-out),
+              border-color var(--dur-hover) var(--ease-out);
+}
+
+.section-nav__link:hover { color: var(--ink-invert); }
+
+/* Set by the scroll spy; colour change plus underline, never colour alone. */
+.section-nav__link.is-active {
+  color: var(--ink-invert);
+  border-bottom-color: var(--accent-light);
+}
+
+.section-nav__link--accent {
+  margin-left: auto;
+  color: var(--accent-light);
+  font-weight: var(--wt-bold);
+}
+
+.section-nav__link--accent:hover { color: var(--ink-invert); }
+
+/* ============================================================
+   BAND B — BENEFITS
+   ============================================================ */
+
+.band__aside > .btn { margin-top: var(--sp-5); }
+
+.card-grid-2 {
+  display: grid;
+  gap: var(--sp-3);
+  list-style: none;
+  padding: 0;
+}
+
+/* ============================================================
+   BAND C — INDUSTRIES
+   ============================================================ */
+
+.industry-list {
+  display: grid;
+  gap: var(--sp-2);
+  list-style: none;
+  padding: 0;
+}
+
+.industry {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--tap-min);
+}
+
+.industry__tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  background: var(--ink);
+  color: var(--surface);
+  border-radius: var(--radius-button);
+}
+
+.industry__label {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+/* ============================================================
+   BAND D — WORK CARDS (light cards inside the dark band)
+   ============================================================ */
+
+.work-grid {
+  display: grid;
+  gap: var(--sp-3);
+  list-style: none;
+  padding: 0;
+}
+
+.work-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.work-card__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.work-card__body { padding: var(--sp-3) var(--sp-3) var(--sp-4); }
+
+/* Image-free work card: a small sprite icon leads the title. A tint tile in
+   the accent, the same footprint as .industry__tile; nothing decorative. */
+.work-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: var(--sp-2);
+  background: var(--surface-tint);
+  color: var(--accent);
+  border-radius: var(--radius-button);
+}
+
+/* ============================================================
+   BAND E — WHY US
+   ============================================================ */
+
+.pillars { margin-top: var(--sp-8); }
+
+.pillars__grid {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.duo {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-3);
+}
+
+.tool-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) var(--sp-4);
+  margin-top: var(--sp-4);
+}
+
+.tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   BAND F — FAQ (native details/summary)
+   ============================================================ */
+
+.faq-grid {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+  align-items: start;
+}
+
+.faq { padding: 0; }
+
+.faq__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  min-height: var(--tap-min);
+  padding: var(--sp-3) var(--sp-4);
+  color: var(--ink);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq__summary::marker { content: none; }
+.faq__summary::-webkit-details-marker { display: none; }
+
+.faq__chevron { flex: 0 0 auto; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__chevron { transition: transform var(--dur-state) var(--ease-out); }
+}
+
+.faq[open] .faq__chevron { transform: rotate(180deg); }
+
+.faq__answer { padding: 0 var(--sp-4) var(--sp-4); }
+
+/* ============================================================
+   BAND G — CONTACT
+   ============================================================ */
+
+.contact-blocks {
+  display: grid;
+  gap: var(--sp-5);
+  margin-top: var(--sp-5);
+}
+
+.contact-block {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+
+.contact-block__tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+  background: var(--accent);
+  color: var(--surface);
+  border-radius: var(--radius-button);
+}
+
+.contact-block__title {
+  color: var(--ink-invert);
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tracking-h3);
+}
+
+.contact-block__note {
+  margin-top: 0.375rem;
+  color: var(--ink-invert-muted);
+  max-width: 44ch;
+}
+
+/* Inline link in flowing text: the hit area is grown to 44px with
+   cancelling padding/margin so the line itself never moves. */
+.contact-block__note a {
+  display: inline-block;
+  color: var(--ink-invert);
+  padding-block: 0.8125rem;
+  margin-block: -0.8125rem;
+}
+
+.form-card {
+  background: var(--surface);
+  color: var(--ink-muted);
+  border-radius: var(--radius-card);
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.form-card .form__title { color: var(--ink); }
+.form-card :focus-visible { outline-color: var(--focus-ring); }
+
+/* The homepage form sits on the dark panel; this one sits on a white card. */
+.form--light .field__label { color: var(--ink-muted); }
+
+.form--light .field__input {
+  color: var(--ink);
+  border-bottom-color: rgb(19 19 19 / 0.35);
+}
+
+.form--light .field__input:hover { border-bottom-color: var(--ink-muted); }
+.form--light .field__input:focus { border-bottom-color: var(--ink); }
+
+.form--light .field__input--select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23131313' stroke-width='1.5'%3E%3Cpath d='M1 1.5L6 6.5l5-5'/%3E%3C/svg%3E");
+}
+
+.form--light .field__error { color: var(--ink); }
+.form--light .form__status { border-left-color: var(--accent); }
+.form--light .form__legal { color: var(--ink-muted); }
+
+/* ---- Service interest: real radios styled as tiles ---- */
+.tile-options {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.tile-options__legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-medium);
+  color: var(--ink-muted);
+}
+
+.tile-options__grid {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.tile-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding: 0.625rem var(--sp-2);
+  color: var(--ink);
+  font-weight: var(--wt-medium);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: background-color var(--dur-hover) var(--ease-out),
+              box-shadow var(--dur-hover) var(--ease-out);
+}
+
+/* The real input covers the tile, so the whole tile is the hit area and
+   the input itself keeps focus, checkedness and form semantics. */
+.tile-option__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.tile-option:has(:checked) {
+  background: var(--surface-tint);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  border-color: var(--accent);
+}
+
+.tile-option:has(:focus-visible) {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   MEDIA QUERIES
+   ============================================================ */
+
+@media (max-width: 59.99rem) {
+
+  .section-nav__inner {
+    scroll-snap-type: x mandatory;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
+  }
+
+  .section-nav__link { scroll-snap-align: start; }
+
+  .section-nav__link--accent { margin-left: var(--sp-2); }
+}
+
+@media (min-width: 40rem) {
+
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .industry-list { grid-template-columns: repeat(2, 1fr); }
+
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .tile-options__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 60rem) {
+
+  .service-hero__grid {
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    gap: var(--sp-10);
+  }
+
+  .split {
+    grid-template-columns: var(--split-cols, 1fr 1fr);
+    gap: var(--sp-10);
+  }
+
+  .band__aside--sticky {
+    position: sticky;
+    top: calc(var(--section-nav-h) + var(--sp-4));
+  }
+
+  .pillars__grid { grid-template-columns: repeat(3, 1fr); }
+
+  .duo { grid-template-columns: 1.5fr 1fr; }
+
+  .faq-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   INNER LIST PAGES — shared by referanslarimiz/ and islerimiz/
+   ============================================================ */
+
+.band--intro { padding-block: var(--sp-6) var(--sp-8); }
+
+/* The page's extractable summary. */
+.intro__lede {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-h3);
+  max-width: 62ch;
+}
+
+/* Inline link in flowing prose: the hit area is grown to 44px with
+   cancelling padding and margin so the line itself never moves. */
+.intro__lede a {
+  display: inline-block;
+  padding-block: 0.8125rem;
+  margin-block: -0.8125rem;
+  color: var(--accent);
+  text-underline-offset: 0.25em;
+}
+
+.intro__lede a:hover { color: var(--ink); }
+
+.cta-band__action { margin-top: var(--sp-5); }
+
+/* 404 only. */
+.form-errors {
+  margin-top: var(--sp-4);
+  padding-left: var(--sp-4);
+  color: var(--ink-muted);
+  list-style: disc;
+}
+
+.form-errors li + li {
+  margin-top: var(--sp-1);
+}
+
+.nf-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  list-style: none;
+  padding: 0;
+}
+
+/* ============================================================
+   TESTIMONIAL — shared by referanslarimiz/ and case studies
+   ============================================================ */
+
+.testimonial {
+  max-width: 46rem;
+  margin: var(--sp-6) auto 0;
+  padding: var(--card-pad);
+  background: var(--surface);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.testimonial__quote {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-h3);
+}
+
+.testimonial__by {
+  display: grid;
+  gap: 0.125rem;
+  margin-top: var(--sp-4);
+}
+
+.testimonial__name {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+.testimonial__role { font-size: var(--fs-body); }
+
+/* ============================================================
+   CTA BAND
+   ============================================================ */
+
+/* ============================================================
+   COMPARISON TABLE
+   A real <table>, not styled divs: the markup is what gets extracted
+   by search and answer engines, and a div grid extracts as nothing.
+   The wrapper scrolls on its own so a wide table never makes the page
+   scroll sideways, and is focusable so the scroll is reachable by
+   keyboard. Row headers are <th scope="row">.
+   ============================================================ */
+
+.compare {
+  margin-top: var(--sp-4);
+  overflow-x: auto;
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+}
+
+.compare__table {
+  width: 100%;
+  min-width: 52rem;
+  border-collapse: collapse;
+  font-size: var(--fs-caption);
+  text-align: left;
+}
+
+.compare__table caption {
+  padding: var(--sp-2);
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+  text-align: left;
+}
+
+.compare__table th,
+.compare__table td {
+  padding: 0.75rem var(--sp-2);
+  border-top: var(--hairline) solid var(--rule);
+  vertical-align: top;
+}
+
+.compare__table thead th {
+  background: var(--surface-tint);
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+  border-top: 0;
+}
+
+.compare__table tbody th {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+  white-space: nowrap;
+}
+
+.compare__table td { color: var(--ink-muted); }
+
+.compare__note {
+  margin-top: var(--sp-2);
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+}
+
+/* Hakkımızda: the photo sits between the lede and the body copy inside one
+   band, with even space above and below instead of two stacked band paddings. */
+.about__photo { margin-block: var(--sp-6); }

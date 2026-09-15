@@ -1,0 +1,12 @@
+# These files are library code, never pages. Requesting one directly would run
+# a template with no $page set. Refuse the request outright.
+# Both syntaxes are present so this works on Apache 2.2 and 2.4 alike.
+
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

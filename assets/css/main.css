@@ -1,0 +1,1473 @@
+/* ============================================================
+   PERA DIJITAL — main.css
+   Order: fonts, base, layout primitives, components,
+          sections in DOM order, utilities, media queries.
+   Flat specificity: single class selectors, no IDs,
+   no !important, nesting never deeper than two.
+   ============================================================ */
+
+/* ============================================================
+   FONTS
+   ============================================================ */
+
+/* One family, weight axis 400-800 live. Figtree has no lira glyph, so the
+   copy uses the "50.000 TL" form and U+20BA never appears on the page. */
+@font-face {
+  font-family: "Figtree";
+  src: url("../fonts/figtree-var.woff2") format("woff2-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+011E-011F, U+0130,
+                 U+015E-015F, U+2013-2014, U+2018-2019, U+201C-201D,
+                 U+2022, U+2026, U+2122;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+body {
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  font-weight: var(--wt-body);
+  line-height: var(--lh-prose);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-button);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+   ============================================================ */
+
+.site-header__inner,
+.hero__inner,
+.clients__inner,
+.capabilities__inner,
+.benefits__inner,
+.process__inner,
+.proof__inner,
+.offer__inner,
+.site-footer__inner,
+.mega__inner {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.capabilities,
+.benefits,
+.process,
+.proof,
+.offer {
+  padding-block: var(--sp-section);
+}
+
+.section-title {
+  color: var(--ink);
+  font-size: var(--fs-h2);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  max-width: 16ch;
+}
+
+.section-title--centre {
+  margin-inline: auto;
+  max-width: 24ch;
+  text-align: center;
+}
+
+.section-lede {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-h3);
+  max-width: var(--measure);
+}
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  top: var(--sp-1);
+  left: var(--sp-1);
+  z-index: var(--z-skip);
+  padding: 0.75rem var(--sp-2);
+  background: var(--ink);
+  color: var(--surface);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-bold);
+  text-decoration: none;
+  border-radius: var(--radius-button);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* ---- Wordmark ---- */
+/* The lockup is one outlined SVG: dark parts inherit this colour, the dot
+   keeps the brand purple. Height drives the size; width follows the ratio. */
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.wordmark__logo {
+  display: block;
+  height: 2.25rem;
+  width: auto;
+}
+
+.wordmark__logo--sm { height: 1.875rem; }
+
+/* ---- Buttons ---- */
+
+/* The inset top highlight over a dark drop is what gives the reference its
+   buttons their weight. Hover deepens the drop; the button never moves. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  padding: 0.8125rem 1.5rem;
+  font-size: 1rem;
+  font-weight: var(--wt-bold);
+  letter-spacing: var(--tracking-button);
+  text-decoration: none;
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-button);
+  transition: box-shadow var(--dur-state) var(--ease-out),
+              background-color var(--dur-hover) var(--ease-out);
+}
+
+.btn--dark {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.btn--dark:hover {
+  background: rgb(19 19 19 / 0.9);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.btn--accent {
+  background: var(--accent);
+  color: var(--surface);
+  box-shadow: var(--shadow-button-accent);
+}
+
+.btn--accent:hover { box-shadow: var(--shadow-button-hover); }
+
+.btn--lg {
+  padding: 1rem 1.75rem;
+  font-size: 1.125rem;
+  border-radius: var(--radius-button-lg);
+}
+
+/* ---- Card: the page's one repeated object ---- */
+/* The card sets its own text colour. Without it, a light card inside a dark
+   band inherited the band's white text, and every .card__note there was
+   white on white (contrast 1.00) while the titles, which set a colour,
+   still showed. */
+.card {
+  background: var(--surface);
+  color: var(--ink);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+  padding: var(--card-pad);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+/* One property changes on hover, and only one. */
+.card:hover { border-color: var(--accent); }
+
+.card__icon {
+  display: block;
+  color: var(--ink);
+  margin-bottom: var(--sp-4);
+}
+
+.card__title {
+  color: var(--ink);
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tracking-h3);
+}
+
+.card__note {
+  margin-top: 0.75rem;
+  font-size: var(--fs-body);
+  line-height: var(--lh-prose);
+}
+
+/* ============================================================
+   SECTION — HEADER
+   ============================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: rgb(255 255 255 / 0.78);
+  border-bottom: var(--hairline) solid transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color var(--dur-state) var(--ease-out),
+              border-color var(--dur-state) var(--ease-out);
+}
+
+/* Toggled from a throttled scroll listener in Phase 8, past 80px. */
+.site-header.is-scrolled {
+  background: var(--surface);
+  border-bottom-color: rgb(19 19 19 / 0.12);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  min-height: var(--header-h);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-5);
+}
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-5);
+  list-style: none;
+  padding: 0;
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: var(--wt-medium);
+  text-decoration: none;
+  transition: color var(--dur-hover) var(--ease-out);
+}
+
+.site-nav__link:hover { color: var(--accent); }
+
+/* ---- Solutions dropdown -------------------------------------------------
+   Closed at every width. Desktop is an absolutely positioned panel, so the
+   header bar is exactly the same height open or closed. Below 60rem the same
+   panel becomes an inline expanding section for the overlay menu, with no
+   hover behaviour at all. aria-expanded on the toggle is the single source
+   of truth for the open state; the hover rule is presentational only.
+   The panel content is the mega menu (see MEGA MENU below); adding a service
+   is one row in SERVICES in config.php. ---- */
+
+.site-nav__item--has-menu { position: relative; }
+
+.site-nav__toggle { gap: 0.375rem; }
+
+.site-nav__chevron { flex: 0 0 auto; }
+
+.site-nav__toggle[aria-expanded="true"] .site-nav__chevron { transform: rotate(180deg); }
+
+.site-nav__panel { display: none; }
+
+.site-nav__toggle[aria-expanded="true"] + .site-nav__panel { display: block; }
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--tap-min);
+  min-width: var(--tap-min);
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+/* ============================================================
+   SECTION — HERO
+   ============================================================ */
+
+.hero {
+  padding-block: var(--sp-section);
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--sp-8);
+  align-items: center;
+  min-height: calc(var(--hero-min) - var(--header-h));
+}
+
+.hero__content { position: relative; z-index: var(--z-hero-text); }
+
+.hero__title {
+  color: var(--ink);
+  font-size: var(--fs-display);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  max-width: 13ch;
+}
+
+.hero__lede {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-h3);
+  max-width: var(--measure-hero);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+}
+
+/* Provisional arrangement only — Phase 4 replaces the inner composition with
+   the seeded collage and its reserved void. Load-bearing here is the crop:
+   the columns overflow the hero and are clipped top and bottom. */
+.hero-collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  max-height: 34rem;
+  overflow: hidden;
+}
+
+.hero-collage__col {
+  display: grid;
+  gap: var(--sp-2);
+  align-content: start;
+}
+
+.hero-collage__col:nth-child(2) { margin-top: -3.5rem; }
+
+.hero-collage__card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+
+.hero-collage__card:nth-child(2n) { aspect-ratio: 1 / 1; }
+.hero-collage__card:nth-child(3n) { aspect-ratio: 4 / 5; }
+
+/* ============================================================
+   SECTION — CLIENT STRIP
+   ============================================================ */
+
+/* No top padding: the strip reads as the foot of the hero, as in the
+   reference, while staying its own labelled landmark. */
+.clients { padding-block: 0 var(--sp-section); }
+
+.clients__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) clamp(var(--sp-4), 4vw, var(--sp-8));
+}
+
+.clients__label {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: var(--wt-medium);
+}
+
+.clients__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(var(--sp-4), 3.5vw, var(--sp-6));
+  list-style: none;
+  padding: 0;
+}
+
+.client {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink);
+}
+
+/* Matched by eye, not by bounding box: the circular and tall marks step down
+   so every logo reads at the same visual weight. */
+.client__mark {
+  height: var(--logo-h, 1.25rem);
+  width: auto;
+  flex: 0 0 auto;
+}
+
+.client:nth-child(1) { --logo-h: 1.125rem; }
+.client:nth-child(3) { --logo-h: 1.375rem; }
+.client:nth-child(4) { --logo-h: 1.1875rem; }
+.client:nth-child(6) { --logo-h: 1.3125rem; }
+
+.client__name {
+  font-size: 1.125rem;
+  font-weight: var(--wt-heavy);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   SECTION — CAPABILITIES
+   ============================================================ */
+
+.capabilities__inner {
+  display: grid;
+  gap: var(--sp-8);
+  align-items: start;
+}
+
+.capabilities__aside > .btn { margin-top: var(--sp-5); }
+
+.card-stack {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: var(--card-stack-max);
+  list-style: none;
+  padding: 0;
+}
+
+/* ============================================================
+   SECTION — VALUE PROPOSITIONS
+   ============================================================ */
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+  list-style: none;
+  padding: 0;
+}
+
+/* ============================================================
+   SECTION — PROCESS
+   ============================================================ */
+
+.process__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+  list-style: none;
+  padding: 0;
+}
+
+.step-card__number {
+  display: block;
+  margin-bottom: var(--sp-3);
+  color: var(--accent);
+  font-size: var(--fs-h2);
+  font-weight: var(--wt-heavy);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   SECTION — PROOF
+   ============================================================ */
+
+.proof__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+}
+
+.metric-card__figure {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  color: var(--ink);
+  font-size: var(--fs-h2);
+  font-weight: var(--wt-heavy);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-card__unit {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--wt-bold);
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+.metric-card__note {
+  margin-top: 0.875rem;
+  font-size: var(--fs-body);
+  line-height: var(--lh-prose);
+}
+
+/* ============================================================
+   SECTION — OFFER + CONTACT
+   ============================================================ */
+
+.offer__panel {
+  display: grid;
+  gap: var(--sp-8);
+  padding: clamp(1.75rem, 4vw, 4rem);
+  background: var(--ink);
+  color: var(--ink-invert);
+  border-radius: var(--radius-panel);
+}
+
+.offer__eyebrow {
+  color: var(--ink-invert-muted);
+  font-size: var(--fs-h2);
+  font-weight: var(--wt-medium);
+  line-height: 1.1;
+}
+
+.offer__title {
+  margin-top: 0.25rem;
+  font-size: var(--fs-display-invert);
+  font-weight: var(--wt-heavy);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.offer__lede {
+  margin-top: var(--sp-3);
+  color: var(--ink-invert-muted);
+  font-size: var(--fs-body-lg);
+  line-height: 1.4;
+  max-width: 44ch;
+}
+
+.offer__subtitle {
+  margin-top: var(--sp-6);
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-bold);
+  letter-spacing: var(--tracking-h3);
+}
+
+.offer :focus-visible { outline-color: var(--focus-ring-invert); }
+
+.checklist {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  list-style: none;
+  padding: 0;
+}
+
+.checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: var(--fs-body);
+  line-height: var(--lh-prose);
+}
+
+/* Light purple is unusable behind white text (2.84:1) but reads 6.61:1 as a
+   mark on --ink, which is the only place it appears. */
+.checklist__icon {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  color: var(--accent-light);
+}
+
+.form__title {
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-bold);
+  letter-spacing: var(--tracking-h3);
+  margin-bottom: var(--sp-3);
+}
+
+.form {
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 30rem;
+}
+
+.field { display: grid; }
+
+.field__label {
+  margin-bottom: 0.25rem;
+  color: var(--ink-invert-muted);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-medium);
+}
+
+.field__required,
+.field__optional {
+  font-weight: var(--wt-body);
+  opacity: 0.75;
+}
+
+.field__input {
+  min-height: var(--tap-min);
+  padding: 0.375rem 0;
+  background: transparent;
+  color: var(--ink-invert);
+  border: 0;
+  border-bottom: var(--hairline) solid var(--rule-invert);
+  border-radius: 0;
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+.field__input:hover { border-bottom-color: var(--ink-invert-muted); }
+.field__input:focus { border-bottom-color: var(--ink-invert); outline: none; }
+.field__input:focus-visible { border-bottom-color: var(--ink-invert); }
+
+.field__input--select {
+  appearance: none;
+  padding-right: var(--sp-4);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23ffffff' stroke-width='1.5'%3E%3Cpath d='M1 1.5L6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.25rem center;
+  background-size: 0.75rem;
+}
+
+.field__input--textarea {
+  min-height: 6rem;
+  line-height: var(--lh-prose);
+}
+
+/* Empty until Phase 8 writes into them; collapsed so they cost no rhythm. */
+.field__error:empty,
+.form__status:empty { display: none; }
+
+.field__error {
+  margin-top: 0.5rem;
+  color: var(--ink-invert);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-bold);
+}
+
+.form__status {
+  padding: 0.75rem var(--sp-2);
+  border-left: 2px solid var(--surface);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-medium);
+}
+
+.form__submit { justify-self: start; margin-top: var(--sp-1); }
+
+.form__legal {
+  color: var(--ink-invert-muted);
+  font-size: var(--fs-caption);
+}
+
+/* ============================================================
+   SECTION — FOOTER (shared markup: see the comment in each HTML copy)
+   ============================================================ */
+
+.site-footer {
+  border-top: var(--hairline) solid rgb(19 19 19 / 0.12);
+  padding-block: var(--sp-8) var(--sp-4);
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+.site-footer__line {
+  margin-top: var(--sp-2);
+  max-width: 32ch;
+}
+
+.site-footer__address {
+  margin-top: var(--sp-3);
+  font-style: normal;
+}
+
+.site-footer__contact {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer__contact a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  text-underline-offset: 0.25em;
+  transition: color var(--dur-hover) var(--ease-out);
+}
+
+.site-footer__contact a:hover { color: var(--accent); }
+
+.site-footer__social ul {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  transition: color var(--dur-hover) var(--ease-out);
+}
+
+.site-footer__social a:hover { color: var(--accent); }
+
+/* Pull the first icon back so it optically aligns with the column above. */
+.site-footer__social { margin-inline-start: -0.6875rem; }
+
+.site-footer__heading {
+  margin-bottom: var(--sp-2);
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+.site-footer__col ul {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer__col a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  min-width: var(--tap-min);
+  text-decoration: none;
+  transition: color var(--dur-hover) var(--ease-out);
+}
+
+.site-footer__col a:hover { color: var(--accent); }
+
+.site-footer__bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2) var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: var(--hairline) solid rgb(19 19 19 / 0.12);
+}
+
+.site-footer__copyright {
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-footer__legal-list {
+  display: flex;
+  gap: var(--sp-2);
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer__legal-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  min-width: var(--tap-min);
+  font-size: var(--fs-caption);
+  text-underline-offset: 0.25em;
+  transition: color var(--dur-hover) var(--ease-out);
+}
+
+.site-footer__legal-list a:hover { color: var(--accent); }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+.u-visually-hidden,
+.field--trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   MEDIA QUERIES
+   Mobile-first. Base cascade above is the 320px tier.
+   ============================================================ */
+
+/* ---- Below 60rem ------------------------------------------------------ */
+
+@media (max-width: 59.99rem) {
+
+  /* The collage drops behind the copy at low opacity. At 12% the darkest
+     card still leaves body text at 9.9:1, so nothing is traded away. */
+  .hero__inner { position: relative; }
+
+  .hero-collage {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-canvas);
+    max-height: none;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .hero-collage__col:nth-child(2) { margin-top: 0; }
+
+  .hero__title { max-width: 15ch; }
+
+  .offer__panel { padding: var(--sp-4) var(--sp-3); }
+}
+
+/* ---- Below 40rem: the un-collapsed (no-JS) nav has to fit 320px --------- */
+
+@media (max-width: 39.99rem) {
+
+  .wordmark__logo { height: 1.75rem; }
+
+  .site-nav { gap: var(--sp-2); }
+
+  .site-nav__list { gap: var(--sp-3); }
+}
+
+/* ---- Below 45rem (720px): the logo strip becomes a snap-scrolling row.
+        It never auto-scrolls. ---------------------------------------- */
+
+@media (max-width: 44.99rem) {
+
+  .clients__inner { display: block; }
+
+  .clients__label { margin-bottom: var(--sp-2); }
+
+  .clients__list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
+  }
+
+  .clients__list::-webkit-scrollbar { display: none; }
+
+  .client { scroll-snap-align: center; }
+}
+
+/* ---- 40rem (640px): two-column grids appear ---------------------------- */
+
+@media (min-width: 40rem) {
+
+  .benefits__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .process__list { grid-template-columns: repeat(2, 1fr); }
+
+  .proof__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .site-footer__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---- 60rem (960px): full desktop grid, hero splits ---------------------- */
+
+@media (min-width: 60rem) {
+
+  /* Anchored to the item's right edge, so a longer service name grows the
+     panel inward instead of past the viewport. Adding services stays a
+     markup-only change. */
+  .hero__inner {
+    grid-template-columns: 1.1fr 1fr;   /* reference .waves-grid-hero-1 */
+    gap: var(--sp-10);
+  }
+
+  .hero-collage { max-height: 40rem; }
+
+  .capabilities__inner {
+    grid-template-columns: 1fr 1fr;     /* reference grid-halves-sticky */
+    gap: var(--sp-10);
+  }
+
+  .capabilities__aside {
+    position: sticky;
+    top: var(--header-clearance);
+  }
+
+  .benefits__grid { grid-template-columns: repeat(3, 1fr); }
+
+  .process__list { grid-template-columns: repeat(4, 1fr); }
+
+  .proof__grid { grid-template-columns: repeat(4, 1fr); }
+
+  .offer__panel {
+    grid-template-columns: 0.75fr 1fr;  /* reference .waves---grid-cta-3 */
+    gap: var(--sp-10);
+  }
+
+  .site-footer__inner {
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    gap: var(--sp-6);
+  }
+}
+
+/* ---- 90rem (1440px): gutters grow ------------------------------------- */
+
+@media (min-width: 90rem) {
+  :root { --gutter: 3rem; }
+}
+
+/* Hover is an enhancement for real pointers only, never on touch, and never
+   in the mobile overlay. Click alone is always sufficient. */
+@media (min-width: 64rem) and (hover: hover) {
+
+  .site-nav__item--has-menu:hover .site-nav__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .site-nav__item--has-menu:hover .site-nav__chevron { transform: rotate(180deg); }
+}
+
+/* visibility is never interpolated on the way IN: focusability is decided at
+   the keypress, so a transitioning visibility makes Tab skip the panel links.
+   It flips instantly on open and is delayed by the fade on close. */
+@media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+
+  .site-nav__panel {
+    transition: opacity var(--dur-hover) var(--ease-out),
+                transform var(--dur-hover) var(--ease-out),
+                visibility 0s linear var(--dur-hover);
+  }
+
+  .site-nav__toggle[aria-expanded="true"] + .site-nav__panel,
+  .site-nav__item--has-menu:hover .site-nav__panel {
+    transition: opacity var(--dur-hover) var(--ease-out),
+                transform var(--dur-hover) var(--ease-out),
+                visibility 0s linear 0s;
+  }
+
+  .site-nav__chevron { transition: transform var(--dur-hover) var(--ease-out); }
+}
+
+/* ============================================================
+   NAV TIER — 64rem, deliberately not 60rem
+   A fifth nav item no longer fits beside the logo and CTA at 960px, so the
+   overlay takes over below 1024 instead. Only the nav moves: every layout
+   breakpoint stays at 60rem.
+   ============================================================ */
+
+@media (max-width: 63.99rem) {
+
+
+  /* The expanding section takes its own row, otherwise its siblings get
+     centred against a much taller item and the nav reads as broken. */
+  .site-nav__item--has-menu { flex-basis: 100%; }
+
+  /* Without JS the nav simply wraps under the logo and stays usable, so
+     every collapse rule below is gated on .js (set by main.js in Phase 8).
+     A toggle button that does nothing is worse than a visible menu. */
+  .site-header__inner {
+    flex-wrap: wrap;
+    row-gap: var(--sp-2);
+  }
+
+  /* backdrop-filter makes an element a containing block for fixed-position
+     descendants, which pins the overlay to the header instead of the
+     viewport. Dropping it here fixes that and spares mobile GPUs the blur. */
+  .site-header {
+    background: var(--surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* The overlay is a child of the header, so it paints over its own
+     siblings. The wordmark and the toggle are lifted back above it, which
+     is what keeps the close control reachable while the menu is open. */
+  .js .site-header { z-index: var(--z-header-open); }
+
+  .js .wordmark,
+  .js .menu-toggle {
+    position: relative;
+    z-index: var(--z-header-open);
+  }
+
+  .js .menu-toggle { display: inline-flex; }
+
+  .js .site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--sp-5);
+    padding: calc(var(--header-h) + var(--sp-5)) var(--gutter) var(--sp-8);
+    background: var(--surface);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .js .site-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .js .site-nav__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+
+  .js .site-nav__link {
+    font-size: var(--fs-h2);
+    font-weight: var(--wt-bold);
+    letter-spacing: var(--tracking-display);
+  }
+}
+
+/* Five nav items plus the CTA need ~37px more than 1024 allows at the default
+   gap, which drops the CTA to a second row. Tighten the gaps only in the narrow
+   band where that happens; from 70rem up the bar is unchanged. */
+@media (min-width: 64rem) and (max-width: 69.99rem) {
+
+  .site-nav,
+  .site-nav__list { column-gap: var(--sp-3); }
+}
+
+@media (min-width: 64rem) {
+
+  .site-nav__panel {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    z-index: var(--z-header-open);
+    min-width: 17rem;
+    padding: 0.375rem;
+    background: var(--surface);
+    border: var(--hairline) solid var(--ink);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.25rem);
+  }
+
+  .site-nav__toggle[aria-expanded="true"] + .site-nav__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+/* visibility must never be interpolated on the way IN: focus is moved into the
+   overlay the instant it opens, and a transitioning visibility means the first
+   link is still unfocusable at that moment. It flips instantly on open and is
+   delayed by the fade on close, so only the exit animates. */
+@media (max-width: 63.99rem) and (prefers-reduced-motion: no-preference) {
+
+  .js .site-nav {
+    transition: opacity var(--dur-state) var(--ease-out),
+                visibility 0s linear var(--dur-state);
+  }
+
+  .js .site-nav.is-open {
+    transition: opacity var(--dur-state) var(--ease-out),
+                visibility 0s linear 0s;
+  }
+}
+
+/* ============================================================
+   WHATSAPP TAB
+   One <a>, two shapes. Above 60rem a vertical tab on the right edge;
+   below it a circular button bottom-right, because a vertical strip on a
+   narrow screen covers content and gets caught by a scrolling thumb.
+
+   The accessible name lives on the <a> (aria-label). Everything inside is
+   aria-hidden, so the name is identical in both states and never doubled
+   up with the visible label.
+
+   Colour: WhatsApp green is the background, but the content on it is --ink,
+   not white. White on #25D366 measures 1.98:1 and fails AA outright; --ink
+   on the same green is 9.37:1. The green is what carries the recognition,
+   so the green is what we keep.
+   ============================================================ */
+
+.wa-tab {
+  position: fixed;
+  z-index: var(--z-float);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Circular button is the base state: mobile-first, like the rest of the CSS. */
+  right: calc(var(--sp-2) + env(safe-area-inset-right));
+  bottom: calc(var(--sp-2) + env(safe-area-inset-bottom));
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--wa-green);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.22);
+}
+
+.wa-tab__label,
+.wa-tab__dot { display: none; }
+
+@media (min-width: 60rem) {
+
+  .wa-tab {
+    /* Centred with auto margins rather than translateY(-50%), which leaves
+       transform free for the hover slide and keeps the hit area on the box. */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: fit-content;
+    margin-block: auto;
+    flex-direction: column;
+    gap: var(--sp-1);
+    width: auto;
+    padding: var(--sp-2) 0.6875rem;
+    border-radius: var(--radius-card) 0 0 var(--radius-card);
+    box-shadow: 0 2px 14px rgb(0 0 0 / 0.16);
+  }
+
+  /* vertical-rl runs the text top-to-bottom; the 180deg flip turns it to
+     read bottom-to-top. Only the label rotates — never the tab itself. */
+  .wa-tab__label {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: var(--fs-caption);
+    font-weight: var(--wt-medium);
+    letter-spacing: 0.01em;
+  }
+
+  .wa-tab__dot {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--surface);
+  }
+
+  .wa-tab:hover,
+  .wa-tab:focus-visible { transform: translateX(-0.25rem); }
+}
+
+@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
+
+  .wa-tab { transition: transform var(--dur-hover) var(--ease-out); }
+}
+
+/* The circular button sits bottom-right, which is exactly where the footer's
+   last row of links ends up at the page bottom. Measured overlap was 40px at
+   640 and 768. Reserve a landing strip under the footer so the button can
+   never sit on a link. Only below 60rem, where the button is a circle. */
+@media (max-width: 59.99rem) {
+
+  .site-footer { padding-bottom: calc(3.5rem + var(--sp-4) + env(safe-area-inset-bottom)); }
+}
+
+/* ============================================================
+   MEGA MENU — Çözümlerimiz
+   Every rule is scoped to the .site-nav__item--mega modifier or to .mega__*
+   classes, so the plain dropdown keeps working until the header markup is
+   swapped. Open, hover and reduced-motion state is NOT redefined here: the
+   existing dropdown rules above already drive .site-nav__panel.
+
+   The panel stays a DOM descendant of [data-menu-item] on purpose. nav.js
+   closes on focusout and on outside clicks measured against that element, so
+   a panel moved elsewhere in the DOM would close the moment it was used.
+   Full-width anchoring comes from CSS instead: the <li> stops being a
+   containing block, and the sticky header takes over.
+   ============================================================ */
+
+/* Base, every width: the desktop-only parts are absent, so the mobile overlay
+   gets a plain list of service names and nothing else. */
+.mega__index,
+.mega__desc,
+.mega__promo { display: none; }
+
+.mega__list {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+/* A <button> keeps the browser's own inline padding, which set the
+   Çözümlerimiz label a few pixels right of the <a> links around it. */
+.site-nav__item--mega .site-nav__toggle { padding-inline: 0; }
+
+.mega__link {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--ink-muted);
+  font-size: var(--fs-body);
+  font-weight: var(--wt-medium);
+  text-decoration: none;
+}
+
+/* Inside the overlay the list sits under the toggle like the old submenu did:
+   no gutter of its own, a small indent, the current page tinted. */
+@media (max-width: 63.99rem) {
+
+  .mega__inner { padding-inline: 0; }
+
+  .mega__link { padding-inline: 0.75rem; }
+
+  .mega__row--current .mega__link {
+    background: var(--surface-tint);
+    color: var(--ink);
+    border-radius: var(--radius-button);
+  }
+}
+
+@media (min-width: 64rem) {
+
+  /* The <li> stops being the containing block, so the absolute panel anchors
+     to the sticky header: full width under the bar, not under the button. */
+  .site-nav__item--mega { position: static; }
+
+  .site-nav__item--mega .site-nav__panel {
+    left: 0;
+    right: 0;
+    min-width: 0;
+    padding: var(--sp-5) 0;
+    background: var(--surface);
+    border: 0;
+    border-bottom: var(--hairline) solid var(--rule);
+    border-radius: 0;
+    box-shadow: 0 18px 32px -24px rgb(19 19 19 / 0.28);
+  }
+
+  /* The toggle is --tap-min tall inside a --header-h bar, which leaves a dead
+     band between the button and the panel. Crossing it would drop :hover and
+     close the panel mid-move, instantly under reduced motion. This strip is
+     part of the panel, so it only exists while the panel is visible. */
+  .site-nav__item--mega .site-nav__panel::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    height: calc((var(--header-h) - var(--tap-min)) / 2);
+  }
+
+  .site-nav__item--mega .mega__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--sp-6);
+    align-items: start;
+  }
+
+  .mega__list { border-top: var(--hairline) solid var(--rule); }
+
+  .mega__row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: var(--sp-2);
+    align-items: baseline;
+    padding: 0.875rem var(--sp-2);
+    border-bottom: var(--hairline) solid var(--rule);
+  }
+
+  .mega__index {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    color: var(--ink-muted);
+    font-size: var(--fs-caption);
+    font-weight: var(--wt-medium);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mega__link {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    color: var(--ink);
+    font-weight: var(--wt-bold);
+  }
+
+  /* Stretched link: the whole row is the click target, while the link text,
+     the service name, stays the accessible name. */
+  .mega__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .mega__desc {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    overflow: hidden;
+    color: var(--ink-muted);
+    font-size: var(--fs-caption);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .mega__row:focus-within,
+  .mega__row--current { background: var(--surface-tint); }
+
+  .mega__row:focus-within .mega__index,
+  .mega__row--current .mega__index { color: var(--accent); }
+
+  /* The existing dark band treatment, rebuilt here because page.css (where
+     .band--dark and .eyebrow--invert live) does not load on the homepage. */
+  .mega__promo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-2);
+    padding: var(--sp-5);
+    background: var(--ink);
+    color: var(--ink-invert);
+    border-radius: var(--radius-card);
+  }
+
+  .mega__eyebrow {
+    padding: 0.375rem 0.875rem;
+    background: rgb(178 130 245 / 0.16);
+    color: var(--accent-light);
+    font-size: var(--fs-caption);
+    font-weight: var(--wt-bold);
+    border-radius: var(--radius-button);
+  }
+
+  .mega__promo-title {
+    max-width: 24ch;
+    color: var(--ink-invert);
+    font-size: var(--fs-h3);
+    font-weight: var(--wt-bold);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--tracking-h3);
+    text-wrap: balance;
+  }
+
+  .mega__promo-body {
+    max-width: 44ch;
+    color: var(--ink-invert-muted);
+    font-size: var(--fs-body);
+    text-wrap: pretty;
+  }
+
+  .mega__promo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: var(--tap-min);
+    color: var(--accent-light);
+    font-weight: var(--wt-bold);
+    text-decoration: none;
+  }
+
+  .mega__promo-link:focus-visible { outline-color: var(--focus-ring-invert); }
+}
+
+/* Mobile overlay fixes, scoped with :has(.site-nav__item--mega) so the live
+   header is untouched until the mega markup is swapped in.
+
+   Pre-existing bug, not caused by the mega menu (the plain dropdown measures
+   identically): .site-nav__list is flex-wrap: wrap and the has-menu item is
+   flex-basis: 100%. In the overlay the list runs as a column, so that 100%
+   became a HEIGHT: Çözümlerimiz claimed a whole column and the list wrapped
+   sideways, pushing Referanslarımız off the right edge. The overlay also
+   centred its content with overflow visible, so on a landscape phone the top
+   items were clipped and unreachable. .site-nav itself wraps too: whenever
+   the content outgrew the screen, the Teklif Alın button jumped into a second
+   column beside the list and off the right edge. */
+@media (max-width: 63.99rem) {
+
+  /* The scroll area starts BELOW the header bar, not behind it. The wordmark
+     and menu toggle are lifted above the overlay, so a full-height scroller
+     slid scrolled items underneath them; hiding that with a mask would leave
+     invisible links tappable in the header band. */
+  .js .site-nav:has(.site-nav__item--mega) {
+    top: var(--header-h);
+    flex-wrap: nowrap;
+    padding-top: var(--sp-5);
+    overflow-y: auto;
+    justify-content: safe center;
+  }
+
+  .js .site-nav__list:has(.site-nav__item--mega) { flex-wrap: nowrap; }
+
+  .js .site-nav__item--mega { flex-basis: auto; }
+}
+
+@media (min-width: 64rem) and (hover: hover) {
+
+  .mega__row:hover { background: var(--surface-tint); }
+
+  .mega__row:hover .mega__index { color: var(--accent); }
+}
+
+@media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+
+  .mega__row { transition: background-color var(--dur-hover) var(--ease-out); }
+
+  .mega__index { transition: color var(--dur-hover) var(--ease-out); }
+}
+
+/* The vertical WhatsApp tab sits on the right edge at mid-height, which is
+   exactly where the mega menu's promo card ends up at 1024 and 1280. While
+   the menu is open (clicked or hovered) the tab steps out of the way instead
+   of overlapping it; visibility also takes it out of the tab order. Closed,
+   it is untouched. */
+@media (min-width: 64rem) {
+
+  body:has(.site-nav__item--mega [aria-expanded="true"]) .wa-tab {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@media (min-width: 64rem) and (hover: hover) {
+
+  body:has(.site-nav__item--mega:hover) .wa-tab {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

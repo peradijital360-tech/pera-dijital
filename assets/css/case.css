@@ -1,0 +1,214 @@
+/* ============================================================
+   PERA DIJITAL — case.css
+   Loaded after page.css on islerimiz/<slug>/ only. The results
+   block deliberately has no rules here: it reuses .proof__grid
+   and .metric-card from main.css, unchanged.
+   ============================================================ */
+
+/* ============================================================
+   META STRIP
+   ============================================================ */
+
+.case-meta {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: var(--hairline) solid rgb(19 19 19 / 0.16);
+}
+
+.case-meta__row {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.case-meta__term {
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-medium);
+}
+
+.case-meta__value {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+.case-meta__value a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--accent);
+  text-underline-offset: 0.25em;
+}
+
+.case-meta__value a:hover { color: var(--ink); }
+
+/* ============================================================
+   HERO IMAGE
+   ============================================================ */
+
+.band--hero { padding-block: 0; }
+
+/* Hero figure. The caption carries the "this is a mockup" framing, so it
+   must sit with the image rather than float in the prose. */
+.case-figure { margin: 0; }
+
+.case-figure__caption {
+  margin-top: 0.625rem;
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+}
+
+.case-hero {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+
+/* ============================================================
+   NARRATIVE
+   ============================================================ */
+
+.band--prose { padding-block: var(--sp-8) 0; }
+
+/* THREE QUESTIONS, SIDE BY SIDE
+   One column below 60rem: three columns of prose at phone width would be
+   a few words per line. Grid rather than flex so the three columns share
+   a baseline row height and the headings line up. */
+.case-questions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+.case-question__title {
+  font-size: var(--fs-h3);
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tracking-h3);
+}
+
+/* Body size, not the single-column reading size: the measure is now about
+   a third as wide, so the larger prose size would break too short. */
+.case-question p {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-body);
+  line-height: var(--lh-prose);
+}
+
+.case-prose { max-width: 68ch; }
+
+.case-prose p {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-prose);
+}
+
+.band--results { padding-block: var(--sp-section) 0; }
+
+/* ============================================================
+   GALLERY — uniform grid, no lightbox, no carousel
+   ============================================================ */
+
+.band--gallery { padding-block: var(--sp-section) 0; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+.gallery__item { margin: 0; }
+
+.gallery__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+
+.gallery__caption {
+  margin-top: 0.625rem;
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+}
+
+.band--quote { padding-block: var(--sp-section) 0; }
+
+/* ============================================================
+   CASE NAVIGATION
+   Prev/next are absent from the DOM until a sibling exists; there is no
+   build step, so nothing can derive them. Uncomment the block in the
+   markup and point its href at the sibling folder.
+   ============================================================ */
+
+.band--casenav { padding-block: var(--sp-section); }
+
+.case-nav__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: var(--hairline) solid rgb(19 19 19 / 0.16);
+}
+
+.case-nav__link {
+  display: grid;
+  gap: 0.125rem;
+  min-height: var(--tap-min);
+  text-decoration: none;
+}
+
+.case-nav__link--next { text-align: right; }
+
+.case-nav__label {
+  color: var(--ink-muted);
+  font-size: var(--fs-caption);
+}
+
+.case-nav__title {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+.case-nav__link:hover .case-nav__title { color: var(--accent); }
+
+/* With no siblings this is the only control, so it centres itself. */
+.case-nav__all {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  margin-inline: auto;
+  color: var(--accent);
+  font-weight: var(--wt-bold);
+  text-underline-offset: 0.25em;
+}
+
+.case-nav__all:hover { color: var(--ink); }
+
+/* ============================================================
+   MEDIA QUERIES
+   ============================================================ */
+
+@media (min-width: 40rem) {
+
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3) var(--sp-6);
+  }
+
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Three columns from 60rem. Below that the grid stays single-column:
+   three columns of prose at phone width would be a few words per line. */
+@media (min-width: 60rem) {
+
+  .case-questions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sp-5);
+  }
+}
