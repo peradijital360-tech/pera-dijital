@@ -14,11 +14,22 @@ ErrorDocument 404 /404.php
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 0. The old site's blog is not carried over. /category/yapay-zeka and
-  #    everything under it goes to the homepage, straight to the canonical
-  #    https://www host in one hop, with any query string dropped.
-  #    Case-insensitive; /category/yapay-zeka-something is NOT matched.
+  # 0. OLD WORDPRESS URLS -> NEW PAGES.
+  #    Every old address goes straight to the canonical https://www URL in
+  #    one hop (these run before the HTTPS and www rules), query string
+  #    dropped, case-insensitive, trailing slash optional. Patterns are
+  #    anchored, so e.g. /referanslar/ does not catch /referanslarimiz/.
+  #    /hakkimizda/ exists on both sites and needs no rule.
+  #    The blog is not carried over: its category, index and single post
+  #    all go to the homepage.
   RewriteRule ^category/yapay-zeka(/.*)?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
+  RewriteRule ^blog(/.*)?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
+  RewriteRule ^yapay-zeka-ve-dijital-pazarlamanin-gelecegi-2025-ve-sonrasi/?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
+  RewriteRule ^teklif-al/?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
+  RewriteRule ^web-tasarim/?$ https://www.peradijital.com.tr/cozumlerimiz/kurumsal-web-tasarim/ [R=301,L,NC,QSD]
+  RewriteRule ^(e-ticaret|e-ticaret-sitesi|e-ticaret-web-sitesi-demo-talep-formu)/?$ https://www.peradijital.com.tr/cozumlerimiz/e-ticaret-site-kurulumu/ [R=301,L,NC,QSD]
+  RewriteRule ^(google-reklamlari|sosyal-medya-reklamlari)/?$ https://www.peradijital.com.tr/cozumlerimiz/performans-reklam-yonetimi/ [R=301,L,NC,QSD]
+  RewriteRule ^(referanslar|case-studies)/?$ https://www.peradijital.com.tr/referanslarimiz/ [R=301,L,NC,QSD]
 
   # 1. Force HTTPS.
   RewriteCond %{HTTPS} !=on

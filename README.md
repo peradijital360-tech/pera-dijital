@@ -18,6 +18,10 @@ If `php` is not installed: `brew install php` (Homebrew), or use MAMP/Herd.
 
 ## Deploying: GitHub → cPanel
 
+**Step-by-step go-live runbook (Turkish), rollback, post-launch checks and
+Search Console setup: [`YAYINA-ALMA.md`](YAYINA-ALMA.md).** Post-launch
+automated check: `bash _tools/yayin_kontrol.sh`.
+
 The site lives at **https://www.peradijital.com.tr**. The code is in a private
 GitHub repository; cPanel's **Git™ Version Control** pulls it and
 `.cpanel.yml` copies only the public site into the web root. `_tools/`,
