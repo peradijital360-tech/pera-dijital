@@ -33,6 +33,14 @@ status() {
   if [ "$got" = "$want" ]; then ok "$url → $want"; else bad "$url" "$want" "$got"; fi
 }
 
+# hiç yüklenmeyen yol: sunucu 404 ya da 403 verebilir (nokta ile başlayan
+# klasörleri bazı sunucular 403 ile reddeder); ikisi de "erişilemez" demek
+absent() {
+  local url="$1" got
+  got=$(curl -s -o /dev/null -m 20 -w "%{http_code}" "$url")
+  if [ "$got" = "404" ] || [ "$got" = "403" ]; then ok "$url → $got (erişilemez)"; else bad "$url" "404 veya 403" "$got"; fi
+}
+
 # sayfa 200 dönmeli ve noindex taşımamalı (ne meta etiketi ne başlık)
 indexable() {
   local url="$1" code hdr body
@@ -94,10 +102,10 @@ status "$SITE/wp-login.php" 404
 status "$SITE/wp-admin/" 404
 status "$SITE/assets/inc/config.php" 403
 status "$SITE/assets/inc/config.local.php" 403
-status "$SITE/_tools/render.py" 404
-status "$SITE/README.md" 404
-status "$SITE/YAYINA-ALMA.md" 404
-status "$SITE/.github/workflows/deploy.yml" 404
+absent "$SITE/_tools/render.py"
+absent "$SITE/README.md"
+absent "$SITE/YAYINA-ALMA.md"
+absent "$SITE/.github/workflows/deploy.yml"
 status "$SITE/assets/inc/config.example.php" 403
 status "$SITE/.ftp-deploy-sync-state.json" 403
 
