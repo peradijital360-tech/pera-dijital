@@ -104,15 +104,24 @@
   padding: 0;
 }
 
-.client-cell { display: block; }
+/* min-width: 0 so a grid cell can never be widened by its logo's intrinsic
+   size (600px exports). */
+.client-cell {
+  display: block;
+  min-width: 0;
+}
 
 /* All cell chrome lives here, on an element-agnostic class, so swapping the
-   div for an <a href> later changes nothing visually. */
+   div for an <a href> later changes nothing visually.
+   width: 100% and NO percentage height: with height: 100% plus
+   aspect-ratio, Safari derived the width from the height, so cells with a
+   tall logo grew wider than their column and overlapped the next one on
+   phones. Width is now always the column; height follows the ratio. */
 .client-cell__inner {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  width: 100%;
   /* Was 3/2, which left every logo floating in mostly empty space.
      8/3 gives a band tall enough for the tallest mark with even air. */
   aspect-ratio: 8 / 3;
