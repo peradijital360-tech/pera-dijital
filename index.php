@@ -5,7 +5,7 @@ $page = [
     'canonical'   => '/',
     'nav'         => 'home',
     'css'         => [],
-    'js'          => [],
+    'js'          => ['form.js'],
     'og_type'     => 'website',
     'home'        => '#top',
     'cta'         => '#contact',
@@ -233,12 +233,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 
           <h3 class="offer__subtitle">Neler dahil:</h3>
           <ul class="checklist" role="list">
-            <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Hesabınızda isimleriyle yer alan beş kıdemli uzman</span></li>
             <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Her ay kurulan ve test edilen iki yeni landing page</span></li>
-            <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Yayındaki tüm kanallarda haftalık kreatif yenileme</span></li>
             <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Kurulan ve sürekli bakımı yapılan ölçümleme ve atıf</span></li>
-            <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>İşi yapan kişilerle ortak bir Slack kanalı</span></li>
-            <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Reklam harcamasından pay alınmayan tek bir sabit fatura</span></li>
           </ul>
         </div>
 
@@ -291,7 +287,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
               <label class="field__label" for="f-reference">Referans kodu — bu alanı boş bırakın</label>
               <input class="field__input" id="f-reference" name="reference_code" type="text" tabindex="-1" autocomplete="off">
             </div>
-            <!-- Written by main.js on first interaction. Empty means JS is off,
+            <!-- Written by form.js on first interaction. Empty means JS is off,
                  and send.php then skips the timing check rather than rejecting. -->
             <input type="hidden" name="submitted_at" value="" data-timestamp>
             <input type="hidden" name="form_source" value="anasayfa">

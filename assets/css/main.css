@@ -663,7 +663,7 @@ body {
   line-height: var(--lh-prose);
 }
 
-/* Empty until Phase 8 writes into them; collapsed so they cost no rhythm. */
+/* Written by form.js; collapsed while empty so they cost no rhythm. */
 .field__error:empty,
 .form__status:empty { display: none; }
 
@@ -674,12 +674,20 @@ body {
   font-weight: var(--wt-bold);
 }
 
+/* A marked field keeps its own underline red until the value is fixed, so
+   the message below it is not the only thing pointing at the problem. */
+.field__input[aria-invalid="true"],
+.field__input[aria-invalid="true"]:hover { border-bottom-color: var(--danger-invert); }
+
 .form__status {
   padding: 0.75rem var(--sp-2);
   border-left: 2px solid var(--surface);
   font-size: var(--fs-caption);
   font-weight: var(--wt-medium);
 }
+
+.form__status.is-error { border-left-color: var(--danger-invert); }
+.form__status.is-ok { border-left-color: var(--accent-light); }
 
 .form__submit { justify-self: start; margin-top: var(--sp-1); }
 

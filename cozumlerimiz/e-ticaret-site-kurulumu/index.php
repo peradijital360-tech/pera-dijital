@@ -5,7 +5,7 @@ $page = [
     'canonical'   => '/cozumlerimiz/e-ticaret-site-kurulumu/',
     'nav'         => 'svc:e-ticaret-site-kurulumu',
     'css'         => ['page.css'],
-    'js'          => ['section-nav.js'],
+    'js'          => ['section-nav.js', 'form.js'],
     'og_type'     => 'article',
     'home'        => '/',
     'cta'         => '#iletisim',
@@ -504,7 +504,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
             <label class="field__label" for="f-reference">Referans kodu — bu alanı boş bırakın</label>
             <input class="field__input" id="f-reference" name="reference_code" type="text" tabindex="-1" autocomplete="off">
           </div>
-          <!-- Written by main.js on first interaction. Empty means JS is off,
+          <!-- Written by form.js on first interaction. Empty means JS is off,
                and send.php then skips the timing check rather than rejecting. -->
           <input type="hidden" name="submitted_at" value="" data-timestamp>
           <input type="hidden" name="form_source" value="e-ticaret-site-kurulumu">

@@ -26,6 +26,12 @@
   --focus-ring:        var(--accent);
   --focus-ring-invert: var(--surface);
 
+  /* Form validation. Only ever a rule or an underline, never a fill behind
+     type: the message itself carries the meaning for anyone who cannot
+     separate the two colours. */
+  --danger:        #b3261e;  /* 6.2:1 on white */
+  --danger-invert: #ff8a80;  /* 9.4:1 on --ink */
+
   /* Scene uniforms. The canvas borrows the page palette, nothing of its own. */
   --scene-card-tint:  var(--surface);
   --scene-card-edge:  var(--accent);
