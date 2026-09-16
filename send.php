@@ -363,9 +363,14 @@ if ($fatal === '' && !$errors) {
 
         if (!$sent) {
             /* The lead is worth more than a tidy error. Tell them exactly where
-               to send it instead of swallowing the failure. */
+               to send it instead of swallowing the failure.
+
+               The status stays 200 on purpose: this host replaces the body of
+               any 5xx with its own empty error document, so a truthful 500
+               reaches the visitor as a blank page and the address below is
+               lost. The failure is carried by ok:false in the JSON and by the
+               page itself, both of which survive. */
             $fatal = 'Mesajınızı gönderemedik. Lütfen doğrudan ' . CONTACT_EMAIL . ' adresine yazın, hemen dönüş yapalım.';
-            http_response_code(500);
         }
     }
 }
