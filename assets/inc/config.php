@@ -53,6 +53,10 @@ const WHATSAPP_NUMBER = '905015592419';
 /* Prefilled first message. Keep it short; the visitor can edit it. */
 const WHATSAPP_TEXT = 'Merhaba, Pera Dijital ile görüşmek istiyorum.';
 
+/* The question the footer's "AI'da Pera Dijital'i Araştırın" buttons carry.
+   Pera Dijital's own wording, written for this site; keep it that way. */
+const AI_PROMPT = 'Pera Dijital Performans Pazarlama Ajansı hakkında araştırma yapıyorum. Google Ads, Meta Ads, web tasarım, e-ticaret danışmanlığı ve lead generation alanlarındaki yaklaşımını; hizmet modelini, uzmanlıklarını ve markalara sunduğu büyüme çözümlerini web sitesindeki bilgilere göre özetler misin? https://peradijital.com.tr';
+
 /* ▸ THE İŞLERİMİZ SWITCH.
    false takes the portfolio and case studies out of the live site without
    deleting anything: no header link, no footer link, and both pages send
@@ -187,6 +191,23 @@ function map_directions_url(): string
 {
     $destination = has_map() ? MAP_LAT . ',' . MAP_LNG : address_line();
     return 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode($destination);
+}
+
+/* Where each AI button goes. ChatGPT, Claude and Perplexity all take the
+   question in a q parameter and open with it already asked or typed in.
+   Gemini has no such parameter — anything appended is silently dropped — so
+   its link opens Gemini itself, and main.js copies AI_PROMPT to the
+   clipboard on the same click so the visitor only has to paste. */
+function ai_url(string $platform): string
+{
+    $q = rawurlencode(AI_PROMPT);
+    switch ($platform) {
+        case 'chatgpt':    return 'https://chatgpt.com/?q=' . $q;
+        case 'claude':     return 'https://claude.ai/new?q=' . $q;
+        case 'perplexity': return 'https://www.perplexity.ai/search?q=' . $q;
+        case 'gemini':     return 'https://gemini.google.com/app';
+    }
+    return '';
 }
 
 function whatsapp_url(): string

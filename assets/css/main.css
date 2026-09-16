@@ -712,11 +712,6 @@ body {
   align-items: start;
 }
 
-.site-footer__line {
-  margin-top: var(--sp-2);
-  max-width: 32ch;
-}
-
 .site-footer__address {
   margin-top: var(--sp-3);
   font-style: normal;
@@ -782,6 +777,81 @@ body {
 
 .site-footer__col a:hover { color: var(--accent); }
 
+/* A page that does not exist yet: the label keeps its place in the list,
+   lined up with the links, but reads as unavailable and is not a link. */
+.site-footer__soon {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: rgb(19 19 19 / 0.45);
+  cursor: default;
+}
+
+.site-footer__legal-list .site-footer__soon { font-size: var(--fs-caption); }
+
+/* ---- AI'da Pera Dijital'i Araştırın ---- */
+.site-footer__ai {
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: var(--hairline) solid rgb(19 19 19 / 0.12);
+  max-width: 26rem;
+}
+
+.site-footer__ai-title {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+.site-footer__ai-note {
+  margin-top: 0.25rem;
+  font-size: var(--fs-caption);
+}
+
+/* Two by two on a phone, where a free wrap breaks the four into an uneven
+   three-and-one; one row from 40rem, where they fit. */
+.site-footer__ai-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: var(--sp-2);
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 40rem) {
+  .site-footer__ai-list { display: flex; flex-wrap: wrap; }
+}
+
+/* Quieter than .btn on purpose: four of them side by side must not outweigh
+   the header's one call to action. Same radius and border, no shadow. */
+.site-footer__ai-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  padding-inline: 0.875rem;
+  color: var(--ink);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-bold);
+  text-decoration: none;
+  border: var(--hairline) solid rgb(19 19 19 / 0.25);
+  border-radius: var(--radius-button);
+  transition: border-color var(--dur-hover) var(--ease-out),
+              color var(--dur-hover) var(--ease-out);
+}
+
+.site-footer__ai-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.site-footer__ai-status:empty { display: none; }
+
+.site-footer__ai-status {
+  margin-top: 0.5rem;
+  font-size: var(--fs-caption);
+}
+
 .site-footer__bottom {
   grid-column: 1 / -1;
   display: flex;
@@ -800,7 +870,8 @@ body {
 
 .site-footer__legal-list {
   display: flex;
-  gap: var(--sp-2);
+  flex-wrap: wrap;
+  column-gap: var(--sp-2);
   list-style: none;
   padding: 0;
 }
@@ -816,6 +887,67 @@ body {
 }
 
 .site-footer__legal-list a:hover { color: var(--accent); }
+
+/* ============================================================
+   COOKIE NOTICE
+   Bottom-left, small, above the page but not over the WhatsApp control:
+   below 60rem that control is a circle bottom-right, so on a phone the
+   notice spans the width and sits just above it instead.
+   ============================================================ */
+
+.consent {
+  position: fixed;
+  z-index: var(--z-float);
+  left: calc(var(--sp-2) + env(safe-area-inset-left));
+  right: calc(var(--sp-2) + env(safe-area-inset-right));
+  bottom: calc(var(--sp-2) + 3.5rem + var(--sp-1) + env(safe-area-inset-bottom));
+  display: grid;
+  gap: 0.5rem;
+  padding: var(--sp-3);
+  background: var(--surface);
+  color: var(--ink-muted);
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+  box-shadow: 0 10px 30px rgb(19 19 19 / 0.18);
+}
+
+.consent[hidden] { display: none; }
+
+.consent__title {
+  color: var(--ink);
+  font-weight: var(--wt-bold);
+}
+
+.consent__text { font-size: var(--fs-caption); }
+
+/* Two buttons of the same size, side by side: saying no is exactly as easy
+   as saying yes. */
+.consent__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.consent__btn { padding-inline: var(--sp-2); font-size: var(--fs-caption); }
+
+.consent__btn--reject {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.consent :focus-visible { outline-color: var(--focus-ring); }
+
+@media (min-width: 40rem) {
+  .consent {
+    right: auto;
+    width: 22rem;
+  }
+}
+
+@media (min-width: 60rem) {
+  .consent { bottom: calc(var(--sp-3) + env(safe-area-inset-bottom)); }
+}
 
 /* ============================================================
    UTILITIES
@@ -910,6 +1042,10 @@ body {
   .proof__grid { grid-template-columns: repeat(2, 1fr); }
 
   .site-footer__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* The brand column carries the AI block now; at two columns it gets a row
+     to itself and the two link lists share the row beneath. */
+  .site-footer__brand { grid-column: 1 / -1; }
 }
 
 /* ---- 60rem (960px): full desktop grid, hero splits ---------------------- */
@@ -948,9 +1084,11 @@ body {
   }
 
   .site-footer__inner {
-    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
-    gap: var(--sp-6);
+    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+    gap: var(--sp-6) var(--sp-4);
   }
+
+  .site-footer__brand { grid-column: auto; }
 }
 
 /* ---- 90rem (1440px): gutters grow ------------------------------------- */

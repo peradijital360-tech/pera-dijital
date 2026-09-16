@@ -11,6 +11,7 @@ CONTACT_EMAIL=_c('CONTACT_EMAIL'); CONTACT_PHONE=_c('CONTACT_PHONE')
 CONTACT_PHONE_HREF=_c('CONTACT_PHONE_HREF'); CONTACT_ADDRESS=_c('CONTACT_ADDRESS')
 WHATSAPP_NUMBER=_c('WHATSAPP_NUMBER'); WHATSAPP_TEXT=_c('WHATSAPP_TEXT')
 MAP_LAT=_c('MAP_LAT',''); MAP_LNG=_c('MAP_LNG','')
+AI_PROMPT=_c('AI_PROMPT','')
 MAP_ZOOM=(re.search(r'const MAP_ZOOM\s*=\s*(\d+)',_cfg) or [None,'17'])[1]
 SHOW_WORK=_b('SHOW_WORK'); SHOW_SECTOR_FILTER=_b('SHOW_SECTOR_FILTER')
 _loc=pathlib.Path('assets/inc/config.local.php')
@@ -34,6 +35,10 @@ def service_url_by_slug(slug):
         if x['slug']==slug: return service_url(x)
     return u('cozumlerimiz/')
 def whatsapp_url(): return 'https://wa.me/'+WHATSAPP_NUMBER+'?text='+urllib.parse.quote(WHATSAPP_TEXT,safe='')
+def ai_url(p):
+    q=urllib.parse.quote(AI_PROMPT,safe='')
+    return {'chatgpt':'https://chatgpt.com/?q='+q,'claude':'https://claude.ai/new?q='+q,
+            'perplexity':'https://www.perplexity.ai/search?q='+q,'gemini':'https://gemini.google.com/app'}.get(p,'')
 def address_line(): return re.sub(r'\s+',' ',re.sub(r'<br\s*/?>',', ',CONTACT_ADDRESS)).strip()
 def has_map(): return MAP_LAT!='' and MAP_LNG!=''
 def map_embed_url(): return 'https://maps.google.com/maps?ll=%s,%s&z=%s&hl=tr&output=embed'%(MAP_LAT,MAP_LNG,MAP_ZOOM)
@@ -52,7 +57,7 @@ DEFAULTS={'title':SITE_NAME,'description':'','canonical':'/','nav':'','css':[],'
  'og_type':'website','body_class':'page-inner','home':u(''),'cta':u('#contact'),'robots':'',
  'og_title':'','og_desc':'','tw_title':'','tw_desc':''}
 ENV=dict(sprintf=lambda fmt,*args: fmt % args,e=e,u=u,service_url=service_url,service_url_by_slug=service_url_by_slug,whatsapp_url=whatsapp_url,
- address_line=address_line,has_map=has_map,map_embed_url=map_embed_url,map_directions_url=map_directions_url,
+ ai_url=ai_url,AI_PROMPT=AI_PROMPT,address_line=address_line,has_map=has_map,map_embed_url=map_embed_url,map_directions_url=map_directions_url,
  MAP_LAT=MAP_LAT,MAP_LNG=MAP_LNG,MAP_ZOOM=MAP_ZOOM,
  SITE_URL=SITE_URL,BASE=BASE,SITE_NAME=SITE_NAME,SERVICES=SERVICES,CONTACT_EMAIL=CONTACT_EMAIL,
  CONTACT_PHONE=CONTACT_PHONE,CONTACT_PHONE_HREF=CONTACT_PHONE_HREF,CONTACT_ADDRESS=CONTACT_ADDRESS,
@@ -169,7 +174,12 @@ def render_page(path, header_text=None):
     sm=re.search(r'\$summaries\s*=\s*(\[.*?\n\]);',src,re.S)
     if sm: ctx['summaries']=php_array(sm.group(1))
     ctx['built']=[s for s in SERVICES if s['built']]
-    ctx['social']=[{'icon':'linkedin','label':'LinkedIn&rsquo;de'},{'icon':'x','label':'X&rsquo;te'},{'icon':'instagram','label':'Instagram&rsquo;da'}]
+    # The footer's link lists are data at the top of footer.php; read them
+    # from there so this copy can never drift from the real one.
+    _ft=open('assets/inc/footer.php',encoding='utf-8').read()
+    for _name in ('social','footerNav','legalLinks','aiLinks'):
+        _m=re.search(r'\$%s\s*=\s*(\[.*?\n\]);'%_name,_ft,re.S)
+        if _m: ctx[_name]=php_array(_m.group(1))
     ctx['sectors']=client_filter_sectors()
     ctx['showFilter']=SHOW_SECTOR_FILTER and client_filter_is_useful(ctx['sectors'])
     head=strip_lead(open('assets/inc/head.php',encoding='utf-8').read())

@@ -112,7 +112,32 @@ export function initWhatsApp(doc = document) {
   });
 }
 
+/* The footer's AI buttons. Three platforms take the question in the link
+   itself. Gemini does not, so its click also puts the question on the
+   clipboard and says so; the link still opens Gemini whether or not the copy
+   succeeds, so the button never becomes a dead end. */
+export function initAiLinks(doc = document) {
+  const box = doc.querySelector('[data-ai-prompt]');
+  if (!box) return;
+  const prompt = box.getAttribute('data-ai-prompt');
+  const status = box.querySelector('[data-ai-status]');
+
+  box.addEventListener('click', (event) => {
+    const link = event.target.closest('[data-ai]');
+    if (!link) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'ai_research_click', ai_platform: link.getAttribute('data-ai') });
+
+    if (link.getAttribute('data-ai') !== 'gemini' || !navigator.clipboard) return;
+    navigator.clipboard.writeText(prompt).then(() => {
+      if (status) status.textContent = 'Sorgu panoya kopyalandı. Gemini’de yapıştırmanız yeterli.';
+    }).catch(() => {});
+  });
+}
+
 initYear();
 initHeader();
 initMenu();
 initWhatsApp();
+initAiLinks();
