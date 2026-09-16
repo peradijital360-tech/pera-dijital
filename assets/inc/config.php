@@ -30,17 +30,16 @@ const CONTACT_PHONE      = '+90 501 559 24 19';
 const CONTACT_PHONE_HREF = '+905015592419';
 const CONTACT_ADDRESS    = 'Bahçeşehir 2. Kısım Mah. Mercedes Bulv. No:30Bag<br>Başakşehir / İstanbul';
 
-/* ▸ REPLACE — THE MAP PIN ON /iletisim/.
-   Paste the office's own coordinates here, from Google Maps: right-click the
-   building, and the first row of the menu is the pair — click it to copy.
-   Searching the written address is not good enough: "Mercedes Bulvarı"
-   resolves to a different district, so the pin would sit on the wrong street.
+/* The map pin on /iletisim/. Taken from the office's own Google Maps entry
+   (Pera Dijital Pazarlama Ajansı) on 16 Sep 2026, not from a search of the
+   written address — searching "Mercedes Bulvarı" lands in another district
+   altogether, which would put the pin on the wrong street.
 
-   While these are empty the contact page leaves the map out and keeps the
-   address, the phone and the directions link. A missing map is a gap; a map
-   pointing at the wrong building is a visitor lost on the way. */
-const MAP_LAT = '';
-const MAP_LNG = '';
+   Empty these and the contact page drops the map but keeps the address, the
+   phone and the directions link: a missing map is a gap, while a map on the
+   wrong building is a visitor lost on the way. */
+const MAP_LAT = '41.0929061';
+const MAP_LNG = '28.6456059';
 /* How close the map sits: 17 shows the building and the streets around it. */
 const MAP_ZOOM = 17;
 

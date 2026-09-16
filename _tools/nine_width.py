@@ -15,7 +15,10 @@ for f in pages:
     dst.write_text(render.render_page(f), encoding='utf-8'); urls.append('/' + f.replace('index.php', ''))
 (out / 'probe.html').write_text('''<meta charset="utf-8"><pre id="out">pending</pre><script>
 const URLS=%s, W=[320,375,414,640,768,960,1024,1280,1440], out=[], sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const frame=(u,w,h)=>new Promise(r=>{const f=document.createElement('iframe');f.width=w;f.height=h;f.src=u;f.onload=()=>r(f);document.body.appendChild(f);});
+// A page carrying a third-party frame (the map on /iletisim/) never fires
+// load here, so the wait is a race: whichever comes first, layout is
+// measured. The chrome being measured is ours and is ready long before.
+const frame=(u,w,h)=>new Promise(r=>{const f=document.createElement('iframe');f.width=w;f.height=h;f.src=u;f.onload=()=>r(f);setTimeout(()=>r(f),3000);document.body.appendChild(f);});
 const past=(root,w)=>[...root.querySelectorAll('*')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&r.right>w+0.5;}).length;
 (async()=>{let fails=0;
  for(const u of URLS)for(const w of W){
