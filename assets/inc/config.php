@@ -64,6 +64,34 @@ const FORM_TO = 'hello@peradijital.com.tr';
    actually uses. */
 const FORM_FROM = 'website@peradijital.com.tr';
 
+/* ▸ SMTP — HOW THE FORM ACTUALLY SENDS.
+   This host disables PHP's mail() outright (it is in disable_functions), so
+   the form logs in to the mailbox over SMTP and sends as itself. Everything
+   here can be overridden from the server-only config.local.php, and the
+   PASSWORD MUST LIVE THERE AND NOWHERE ELSE — config.local.php is not in git
+   and is never uploaded by a deploy.
+
+   Put this in assets/inc/config.local.php on the server:
+     const SMTP_PASS = 'the mailbox password';
+   With SMTP_PASS empty the form sends nothing and tells the visitor to write
+   to CONTACT_EMAIL instead, which is the honest failure. */
+if (!defined('SMTP_HOST')) {
+    define('SMTP_HOST', 'mail.peradijital.com.tr');
+}
+if (!defined('SMTP_PORT')) {
+    define('SMTP_PORT', 465);
+}
+/* 'ssl' for port 465, 'tls' for 587, '' for an unencrypted local relay. */
+if (!defined('SMTP_SECURE')) {
+    define('SMTP_SECURE', 'ssl');
+}
+if (!defined('SMTP_USER')) {
+    define('SMTP_USER', FORM_FROM);
+}
+if (!defined('SMTP_PASS')) {
+    define('SMTP_PASS', '');
+}
+
 /* ADDING A SERVICE IS ONE ROW HERE.
    'desc' is the one-line description shown under the name in the header mega
    menu; the index number beside it is generated from the row's position.

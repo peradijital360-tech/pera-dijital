@@ -121,5 +121,13 @@ ErrorDocument 404 /404.php
   Header always set X-Content-Type-Options "nosniff"
 </IfModule>
 
+# ============================================================
+# The mail library is included by send.php, never requested by a browser.
+# Nothing there prints on its own, but a library is not a page either.
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteRule ^assets/lib/ - [F]
+</IfModule>
+
 AddType font/woff2 .woff2
 AddType image/webp .webp

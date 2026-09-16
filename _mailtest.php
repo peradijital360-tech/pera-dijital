@@ -1,5 +1,5 @@
 <?php
-/* TEMPORARY — mail() diagnosis, 16 Sep 2026. Delete once the form sends.
+/* TEMPORARY — SMTP diagnosis, 16 Sep 2026. Delete once the form sends.
    Reachable only with the key below; anything else gets a plain 404. */
 
 declare(strict_types=1);
@@ -13,39 +13,59 @@ if (($_GET['key'] ?? '') !== '2c3084246409cad9') {
 header('Content-Type: text/plain; charset=UTF-8');
 
 echo 'PHP: ' . PHP_VERSION . "\n";
-echo 'mail() var mı: ' . (function_exists('mail') ? 'evet' : 'HAYIR') . "\n";
-echo 'sendmail_path: ' . (ini_get('sendmail_path') ?: '(boş)') . "\n";
-echo 'disable_functions: ' . (ini_get('disable_functions') ?: '(boş)') . "\n";
-echo 'SMTP ini: ' . (ini_get('SMTP') ?: '(boş)') . "\n\n";
+echo 'mail(): ' . (function_exists('mail') ? 'açık' : 'KAPALI (disable_functions)') . "\n";
+echo 'SMTP_HOST: ' . SMTP_HOST . ' | port ' . SMTP_PORT . ' | ' . (SMTP_SECURE ?: 'şifresiz') . "\n";
+echo 'SMTP_USER: ' . SMTP_USER . "\n";
+echo 'SMTP_PASS: ' . (SMTP_PASS === '' ? 'YOK — config.local.php içine eklenmeli' : 'tanımlı (' . strlen(SMTP_PASS) . ' karakter)') . "\n\n";
 
-$body   = "Bu bir test mesajıdır. Form teşhisi için gönderildi.\n" . date('d.m.Y H:i');
-$common = "Content-Type: text/plain; charset=UTF-8\r\nMIME-Version: 1.0";
-
-$tries = [
-    'A: From website@, -f website@' => [
-        'From: ' . FORM_FROM,
-        '-f' . FORM_FROM,
-    ],
-    'B: From website@, -f yok' => [
-        'From: ' . FORM_FROM,
-        null,
-    ],
-    'C: From hello@, -f yok' => [
-        'From: ' . CONTACT_EMAIL,
-        null,
-    ],
-];
-
-foreach ($tries as $label => [$from, $params]) {
-    error_clear_last();
-    $ok = $params === null
-        ? @mail(FORM_TO, 'MAILTEST ' . $label, $body, $from . "\r\n" . $common)
-        : @mail(FORM_TO, 'MAILTEST ' . $label, $body, $from . "\r\n" . $common, $params);
-    $err = error_get_last();
-    echo $label . ' => ' . ($ok ? 'TRUE (kabul edildi)' : 'FALSE') . "\n";
-    if ($err) {
-        echo '    hata: ' . $err['message'] . "\n";
+/* Which ports this server can actually reach. A blocked port looks exactly
+   like a wrong password from the outside, so it is worth ruling out first. */
+echo "--- Bağlantı denemeleri ---\n";
+foreach ([[SMTP_HOST, 465], [SMTP_HOST, 587], [SMTP_HOST, 25], ['localhost', 25]] as [$host, $port]) {
+    $err = 0;
+    $msg = '';
+    $fp  = @fsockopen(($port === 465 ? 'ssl://' : '') . $host, $port, $err, $msg, 6);
+    if ($fp) {
+        $greeting = trim((string) fgets($fp, 512));
+        fclose($fp);
+        echo sprintf("%-32s AÇIK  %s\n", $host . ':' . $port, $greeting);
+    } else {
+        echo sprintf("%-32s kapalı (%s)\n", $host . ':' . $port, $msg ?: 'yanıt yok');
     }
 }
 
-echo "\nTRUE demek 'sunucu kuyruğa aldı' demek; kutuya düşmesi ayrı bir konu.\n";
+if (SMTP_PASS === '') {
+    echo "\nŞifre olmadan gerçek gönderim denenemez.\n";
+    exit;
+}
+
+echo "\n--- Gerçek gönderim denemesi ---\n";
+require_once __DIR__ . '/assets/lib/phpmailer/Exception.php';
+require_once __DIR__ . '/assets/lib/phpmailer/PHPMailer.php';
+require_once __DIR__ . '/assets/lib/phpmailer/SMTP.php';
+
+$mail = new PHPMailer\PHPMailer\PHPMailer(true);
+$mail->SMTPDebug   = 2;
+$mail->Debugoutput = static function ($str) { echo '  ' . rtrim($str) . "\n"; };
+
+try {
+    $mail->isSMTP();
+    $mail->Host     = SMTP_HOST;
+    $mail->Port     = SMTP_PORT;
+    $mail->SMTPAuth = true;
+    $mail->Username = SMTP_USER;
+    $mail->Password = SMTP_PASS;
+    if (SMTP_SECURE !== '') {
+        $mail->SMTPSecure = SMTP_SECURE;
+    }
+    $mail->Timeout = 12;
+    $mail->CharSet = 'UTF-8';
+    $mail->setFrom(FORM_FROM, SITE_NAME);
+    $mail->addAddress(FORM_TO);
+    $mail->Subject = 'MAILTEST — form teşhisi';
+    $mail->Body    = "Bu bir testtir. Form teşhisi için gönderildi.\n" . date('d.m.Y H:i');
+    $mail->send();
+    echo "\nSONUÇ: GÖNDERİLDİ. " . FORM_TO . " kutusuna bakın.\n";
+} catch (Throwable $e) {
+    echo "\nSONUÇ: BAŞARISIZ — " . $e->getMessage() . "\n";
+}

@@ -212,13 +212,60 @@ function text_length(string $value): int
     return function_exists('mb_strlen') ? mb_strlen($value, 'UTF-8') : strlen($value);
 }
 
-/* RFC 2047 so Turkish characters survive the subject line. */
-function encode_subject(string $subject): string
+/* SMTP, not mail(). This host has mail() in disable_functions, so calling it
+   is a fatal error, not a false return — the form died silently for exactly
+   that reason until 16 Sep 2026. The mailbox in SMTP_USER sends on the site's
+   behalf; see the SMTP block in config.php for where the password lives.
+
+   Returns true only when the server accepted the message for delivery. */
+function send_mail(string $subject, string $body, string $replyTo, string $replyName): bool
 {
-    if (function_exists('mb_encode_mimeheader')) {
-        return mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n");
+    if (SMTP_PASS === '') {
+        /* No password on this server yet. Nothing to do but fail honestly. */
+        return false;
     }
-    return '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+    require_once __DIR__ . '/assets/lib/phpmailer/Exception.php';
+    require_once __DIR__ . '/assets/lib/phpmailer/PHPMailer.php';
+    require_once __DIR__ . '/assets/lib/phpmailer/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+        $mail->Port       = SMTP_PORT;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = SMTP_USER;
+        $mail->Password   = SMTP_PASS;
+        if (SMTP_SECURE !== '') {
+            $mail->SMTPSecure = SMTP_SECURE;
+        }
+        /* A visitor waiting on a form is not waiting on a mail server: fail
+           fast enough that the page still answers. */
+        $mail->Timeout  = 12;
+        $mail->CharSet  = 'UTF-8';
+        $mail->Encoding = 'base64';
+        $mail->XMailer  = 'peradijital-form';
+
+        $mail->setFrom(FORM_FROM, SITE_NAME);
+        $mail->addAddress(FORM_TO);
+        /* The visitor's own address, so hitting Reply in the mailbox goes to
+           them. Never the From: that would fail SPF and land in spam. */
+        if ($replyTo !== '' && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+            $mail->addReplyTo($replyTo, $replyName);
+        }
+
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+
+        return $mail->send();
+    } catch (Throwable $e) {
+        /* Never let a mail-server problem surface as a blank 500. The caller
+           turns this into the "write to us directly" message. */
+        error_log('send.php SMTP: ' . $e->getMessage());
+        return false;
+    }
 }
 
 function wants_json(): bool
@@ -348,18 +395,7 @@ if ($fatal === '' && !$errors) {
         $body = implode("\r\n", $lines);
         $name = $values['name'] ?? '';
 
-        $subject = encode_subject($spec['subject'] . ' — ' . $name);
-
-        $headers = [
-            'From: ' . encode_subject(SITE_NAME) . ' <' . FORM_FROM . '>',
-            'Reply-To: ' . $values['email'],
-            'Content-Type: text/plain; charset=UTF-8',
-            'Content-Transfer-Encoding: 8bit',
-            'MIME-Version: 1.0',
-            'X-Mailer: peradijital-form',
-        ];
-
-        $sent = @mail(FORM_TO, $subject, $body, implode("\r\n", $headers), '-f' . FORM_FROM);
+        $sent = send_mail($spec['subject'] . ' — ' . $name, $body, $values['email'] ?? '', $name);
 
         if (!$sent) {
             /* The lead is worth more than a tidy error. Tell them exactly where
