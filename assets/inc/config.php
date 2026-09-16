@@ -58,33 +58,44 @@ const SHOW_SECTOR_FILTER = false;
 /* Where form submissions are delivered. */
 const FORM_TO = 'hello@peradijital.com.tr';
 
-/* The envelope sender. This MUST be an address at your own domain or the mail
-   fails SPF/DKIM and lands in spam. Never put the visitor's address here —
-   their address goes in Reply-To, which is what "Reply" in your mail client
-   actually uses. */
-const FORM_FROM = 'website@peradijital.com.tr';
+/* The sender. On Google Workspace this MUST be the account the form logs in
+   as (SMTP_USER) or an alias Gmail has been told to "send mail as" — anything
+   else is rejected outright, and the SPF and DMARC records that make the mail
+   deliverable are written for this domain, not the visitor's. The visitor's
+   own address goes in Reply-To, which is what "Reply" actually uses. */
+const FORM_FROM = 'hello@peradijital.com.tr';
 
 /* ▸ SMTP — HOW THE FORM ACTUALLY SENDS.
    This host disables PHP's mail() outright (it is in disable_functions), so
-   the form logs in to the mailbox over SMTP and sends as itself. Everything
-   here can be overridden from the server-only config.local.php, and the
-   PASSWORD MUST LIVE THERE AND NOWHERE ELSE — config.local.php is not in git
-   and is never uploaded by a deploy.
+   calling it is a fatal error rather than a failed send. The form logs in to
+   the Google Workspace mailbox instead and sends as itself.
 
-   Put this in assets/inc/config.local.php on the server:
-     const SMTP_PASS = 'the mailbox password';
+   THE PASSWORD LIVES ONLY IN assets/inc/config.local.php ON THE SERVER. That
+   file is not in git and no deploy uploads or overwrites it, which is the
+   whole reason the secret is read from there and not from a constant here:
+
+     const SMTP_PASS = '<16-character app password>';
+
+   Google Workspace refuses the account's ordinary password over SMTP. The
+   value has to be an App Password, generated at myaccount.google.com with
+   2-Step Verification already on.
+
    With SMTP_PASS empty the form sends nothing and tells the visitor to write
-   to CONTACT_EMAIL instead, which is the honest failure. */
+   to CONTACT_EMAIL instead, which is the honest failure. Everything below can
+   also be overridden from config.local.php if the mailbox ever moves. */
 if (!defined('SMTP_HOST')) {
-    define('SMTP_HOST', 'mail.peradijital.com.tr');
+    define('SMTP_HOST', 'smtp.gmail.com');
 }
 if (!defined('SMTP_PORT')) {
-    define('SMTP_PORT', 465);
+    define('SMTP_PORT', 587);
 }
-/* 'ssl' for port 465, 'tls' for 587, '' for an unencrypted local relay. */
+/* 'tls' is STARTTLS on 587: the connection opens in the clear and is upgraded
+   before the login. 'ssl' is the implicit-TLS form on 465. */
 if (!defined('SMTP_SECURE')) {
-    define('SMTP_SECURE', 'ssl');
+    define('SMTP_SECURE', 'tls');
 }
+/* The account the form authenticates as. Kept equal to FORM_FROM so Gmail
+   never has to be asked to send as somebody else. */
 if (!defined('SMTP_USER')) {
     define('SMTP_USER', FORM_FROM);
 }

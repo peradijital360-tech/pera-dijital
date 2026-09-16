@@ -18,10 +18,11 @@ echo 'SMTP_HOST: ' . SMTP_HOST . ' | port ' . SMTP_PORT . ' | ' . (SMTP_SECURE ?
 echo 'SMTP_USER: ' . SMTP_USER . "\n";
 echo 'SMTP_PASS: ' . (SMTP_PASS === '' ? 'YOK — config.local.php içine eklenmeli' : 'tanımlı (' . strlen(SMTP_PASS) . ' karakter)') . "\n\n";
 
-/* Which ports this server can actually reach. A blocked port looks exactly
-   like a wrong password from the outside, so it is worth ruling out first. */
+/* Which ports this server can actually reach. Plenty of shared hosts block
+   outbound SMTP, and from the outside that looks exactly like a wrong
+   password, so it is worth ruling out first. */
 echo "--- Bağlantı denemeleri ---\n";
-foreach ([[SMTP_HOST, 465], [SMTP_HOST, 587], [SMTP_HOST, 25], ['localhost', 25]] as [$host, $port]) {
+foreach ([[SMTP_HOST, 587], [SMTP_HOST, 465]] as [$host, $port]) {
     $err = 0;
     $msg = '';
     $fp  = @fsockopen(($port === 465 ? 'ssl://' : '') . $host, $port, $err, $msg, 6);
