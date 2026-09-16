@@ -13,7 +13,7 @@ require_once __DIR__ . '/assets/inc/config.php';
 
 header('Content-Type: text/plain; charset=utf-8');
 
-$address = trim(preg_replace('/\s+/', ' ', str_replace(['<br>', '<br/>', '<br />'], ', ', CONTACT_ADDRESS)));
+$address = address_line();
 
 $lines = [];
 $lines[] = '# ' . SITE_NAME;
@@ -35,6 +35,7 @@ $lines[] = '## Kurumsal';
 $lines[] = '';
 $lines[] = '- [Hakkımızda](' . SITE_URL . '/hakkimizda/): Pera Dijital’in nasıl çalıştığı ve hangi işleri aynı ekipte yürüttüğü';
 $lines[] = '- [Referanslarımız](' . SITE_URL . '/referanslarimiz/): Birlikte çalışılan markalar';
+$lines[] = '- [İletişim](' . SITE_URL . '/iletisim/): Adres, telefon, harita ve iletişim formu';
 $lines[] = '';
 $lines[] = '## İletişim';
 $lines[] = '';
@@ -42,7 +43,7 @@ $lines[] = '- Telefon: ' . CONTACT_PHONE;
 $lines[] = '- WhatsApp: ' . whatsapp_url();
 $lines[] = '- E-posta: ' . CONTACT_EMAIL;
 $lines[] = '- Adres: ' . $address;
-$lines[] = '- İletişim formu: ' . SITE_URL . '/#contact';
+$lines[] = '- İletişim formu: ' . SITE_URL . '/iletisim/#form';
 $lines[] = '';
 $lines[] = '## Optional';
 $lines[] = '';

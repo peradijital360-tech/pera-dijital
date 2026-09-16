@@ -57,6 +57,7 @@ $built = array_values(array_filter(SERVICES, static function (array $s): bool { 
 <?php endif; ?>
         <li><a class="site-nav__link" href="<?= u('referanslarimiz/') ?>"<?= $nav === 'ref' ? ' aria-current="page"' : '' ?>>Referanslarımız</a></li>
         <li><a class="site-nav__link" href="<?= u('hakkimizda/') ?>"<?= $nav === 'about' ? ' aria-current="page"' : '' ?>>Hakkımızda</a></li>
+        <li><a class="site-nav__link" href="<?= u('iletisim/') ?>"<?= $nav === 'contact' ? ' aria-current="page"' : '' ?>>İletişim</a></li>
       </ul>
       <a class="btn btn--dark site-nav__cta" href="<?= e($page['cta']) ?>" data-nav-cta>Teklif Alın</a>
     </nav>

@@ -56,7 +56,7 @@ $social = [
         <!-- ▸ REPLACE: blog and stories pages do not exist yet. -->
         <li><a href="#">Blog</a></li>
         <li><a href="#">Başarı Hikâyeleri</a></li>
-        <li><a href="<?= e($page['cta']) ?>">İletişim</a></li>
+        <li><a href="<?= u('iletisim/') ?>">İletişim</a></li>
       </ul>
     </nav>
 

@@ -794,6 +794,92 @@
 }
 
 /* ============================================================
+   MAP — /iletisim/
+   The embedded frame carries no marker of its own, so the pin here is
+   the logo's mark. The frame is inert: a drag would slide the map out
+   from under a pin that cannot follow it, so the cover link takes every
+   click to directions instead.
+   ============================================================ */
+
+.map {
+  position: relative;
+  margin-top: var(--sp-5);
+  aspect-ratio: 16 / 9;
+  border: var(--hairline) solid var(--ink);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: var(--surface-tint);
+}
+
+/* Taller than it is wide on a phone, where a 16:9 slot leaves the streets
+   around the pin too small to read. */
+@media (max-width: 40rem) {
+  .map { aspect-ratio: 4 / 5; }
+}
+
+.map__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--sp-3);
+  /* No background: the map shows through, and only the button reads as
+     something to press. */
+  text-decoration: none;
+}
+
+.map__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem var(--sp-3);
+  background: var(--ink);
+  color: var(--ink-invert);
+  border-radius: var(--radius-button);
+  font-size: var(--fs-caption);
+  font-weight: var(--wt-bold);
+  box-shadow: var(--shadow-card);
+  transition: background var(--dur-hover) var(--ease-out);
+}
+
+.map__cover:hover .map__cta,
+.map__cover:focus-visible .map__cta { background: var(--accent); }
+
+/* The pin itself: a rounded plate with a point, anchored so the tip sits on
+   the coordinates rather than the plate's middle. */
+.map__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  transform: translate(-50%, -100%);
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 50% 50% 50% 4px;
+  rotate: -45deg;
+  box-shadow: 0 6px 14px rgb(19 19 19 / 0.35);
+  pointer-events: none;
+}
+
+/* The mark stays upright inside the rotated plate. */
+.map__mark { rotate: 45deg; }
+
+/* ============================================================
    TESTIMONIAL — shared by referanslarimiz/ and case studies
    ============================================================ */
 

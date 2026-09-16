@@ -30,6 +30,20 @@ const CONTACT_PHONE      = '+90 501 559 24 19';
 const CONTACT_PHONE_HREF = '+905015592419';
 const CONTACT_ADDRESS    = 'Bahçeşehir 2. Kısım Mah. Mercedes Bulv. No:30Bag<br>Başakşehir / İstanbul';
 
+/* ▸ REPLACE — THE MAP PIN ON /iletisim/.
+   Paste the office's own coordinates here, from Google Maps: right-click the
+   building, and the first row of the menu is the pair — click it to copy.
+   Searching the written address is not good enough: "Mercedes Bulvarı"
+   resolves to a different district, so the pin would sit on the wrong street.
+
+   While these are empty the contact page leaves the map out and keeps the
+   address, the phone and the directions link. A missing map is a gap; a map
+   pointing at the wrong building is a visitor lost on the way. */
+const MAP_LAT = '';
+const MAP_LNG = '';
+/* How close the map sits: 17 shows the building and the streets around it. */
+const MAP_ZOOM = 17;
+
 /* ▸ REPLACE — THE WHATSAPP NUMBER.
    International format, digits only: no +, no spaces, no leading 00.
    This is currently the same line as CONTACT_PHONE. Confirm it is actually
@@ -146,6 +160,36 @@ function service_url_by_slug(string $slug): string
 }
 
 /* wa.me deep link. rawurlencode so Turkish characters survive the query. */
+/* The address as one line, for a maps query or a JSON-LD value: the constant
+   itself carries a <br> because the footer prints it as two lines. */
+function address_line(): string
+{
+    $flat = str_replace(['<br>', '<br/>', '<br />'], ', ', CONTACT_ADDRESS);
+    return trim(preg_replace('/\s+/', ' ', $flat) ?? '');
+}
+
+/* Whether /iletisim/ has a pin to show. */
+function has_map(): bool
+{
+    return MAP_LAT !== '' && MAP_LNG !== '';
+}
+
+/* The embedded map, centred on the office with no marker of its own — the
+   page draws the pin itself, in the brand's mark. */
+function map_embed_url(): string
+{
+    return 'https://maps.google.com/maps?ll=' . MAP_LAT . ',' . MAP_LNG
+        . '&z=' . MAP_ZOOM . '&hl=tr&output=embed';
+}
+
+/* Directions, which is what a visitor actually wants from a map. Falls back
+   to the written address when there are no coordinates yet. */
+function map_directions_url(): string
+{
+    $destination = has_map() ? MAP_LAT . ',' . MAP_LNG : address_line();
+    return 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode($destination);
+}
+
 function whatsapp_url(): string
 {
     return 'https://wa.me/' . WHATSAPP_NUMBER . '?text=' . rawurlencode(WHATSAPP_TEXT);

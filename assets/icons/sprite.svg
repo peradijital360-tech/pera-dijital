@@ -2,6 +2,14 @@
   <!-- Thin line icons on a 24px grid, matching the reference's stroke weight.
        Client marks sit on 32px. Everything inherits currentColor. -->
 
+  <!-- The logo's mark alone, without the wordmark, on its own tight box
+       (measured from the master file, not eyeballed). Used as the map pin on
+       the contact page; the colours are the brand's, so it does not inherit
+       currentColor the way the icons above do. -->
+  <symbol id="mark-pera" viewBox="11 1 222 221">
+    <path fill="#28292d" d="M195,174.3v-99.5c0,0,34.8,0,34.8,0v109.8c-.7,19.9-16.3,37.3-36.8,37.3H48c-18.4,0-36.3-15.8-36.3-34.6l-.3-144c0-20.3,16-35.9,35.8-37.8h112.5c0,0,0,35.4,0,35.4H62.8c-8.1-.4-17.7,5.3-17.8,14.1l-.5,115.6c0,8.3,5.2,17.4,14.7,17.4h120.7c8,0,13.4-6.6,15-13.8Z"/>
+    <path fill="#7947f9" d="M220.1,49.5c-11.1,6.8-24.1,4.5-32.6-4-8.5-8.5-9.5-22.4-3-32.5,6.8-10.4,19.8-14.4,31.7-9.7,9.2,3.6,15.4,12.2,16.3,21.1,1,10-3.5,19.6-12.4,25.1Z"/>
+  </symbol>
   <symbol id="icon-strategy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <rect x="2.5" y="4" width="19" height="13" rx="1.5"/><path d="M7 21h10M12 17v4"/><path d="M6.5 13.5l3.5-4 3 2.5 4.5-5"/>
   </symbol>

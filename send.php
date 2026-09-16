@@ -106,6 +106,17 @@ $SOURCES = [
             'message' => ['label' => 'Mesaj',                 'type' => 'long',   'required' => true,  'max' => 4000],
         ],
     ],
+    'iletisim' => [
+        'subject' => 'İletişim sayfası formu',
+        'back'    => '/iletisim/#form',
+        'fields'  => [
+            'name'    => ['label' => 'Ad Soyad',              'type' => 'text',   'required' => true,  'max' => 120],
+            'email'   => ['label' => 'E-posta',               'type' => 'email',  'required' => true,  'max' => 190],
+            'website' => ['label' => 'Web sitesi',            'type' => 'url',    'required' => false, 'max' => 190],
+            'budget'  => ['label' => 'Aylık reklam bütçesi',  'type' => 'choice', 'required' => true,  'options' => $BUDGETS],
+            'message' => ['label' => 'Mesaj',                 'type' => 'long',   'required' => true,  'max' => 4000],
+        ],
+    ],
     'lead-generation' => [
         'subject' => 'Lead Generation',
         'back'    => '/cozumlerimiz/lead-generation/#iletisim',
