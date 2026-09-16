@@ -157,7 +157,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 
       <div class="compare" tabindex="0" role="region" aria-labelledby="altyapilar-tablo">
         <table class="compare__table">
-          <caption id="altyapilar-tablo">E-ticaret altyapısı karşılaştırması. Platformların özellikleri ve paketleri değişebilir; tablo <strong>[REPLACE &mdash; son güncelleme tarihi]</strong> itibarıyla geçerlidir.</caption>
+          <caption id="altyapilar-tablo">E-ticaret altyapısı karşılaştırması. Platformların özellikleri ve paketleri değişebilir.</caption>
           <thead>
             <tr>
               <th scope="col">Altyapı</th>
@@ -174,7 +174,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
               <td>Tema sistemi içinde özelleştirme.</td>
               <td>Ürün ve müşteri verisi dışa aktarılabilir; platform kodu sizde olmaz.</td>
               <td>Yerel ödeme, kargo ve e-fatura bağlantıları hazır gelir.</td>
-              <td>Abonelik &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Abonelik</td>
               <td>Türkiye pazarına satan, hızlı açılış isteyen mağazalar.</td>
             </tr>
             <tr>
@@ -182,7 +182,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
               <td>Tema ve şablon diliyle geniş özelleştirme.</td>
               <td>Veri dışa aktarılabilir; platform kodu sizde olmaz.</td>
               <td>Yerel entegrasyonlar uygulama veya özel geliştirme ile kurulur.</td>
-              <td>Abonelik + işlem payı &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Abonelik + işlem payı</td>
               <td>Yurt dışına da satan, geniş uygulama ekosistemi isteyen mağazalar.</td>
             </tr>
             <tr>
@@ -190,7 +190,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
               <td>Panel ve tema ayarlarıyla özelleştirme.</td>
               <td>Veri dışa aktarılabilir; platform kodu sizde olmaz.</td>
               <td>Yerel ödeme, kargo ve e-fatura bağlantıları hazır gelir.</td>
-              <td>Paket aboneliği &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Paket aboneliği</td>
               <td>Türkiye pazarına odaklı, paket çözüm tercih eden mağazalar.</td>
             </tr>
             <tr>
@@ -198,7 +198,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
               <td>Panel ve tema ayarlarıyla özelleştirme.</td>
               <td>Veri dışa aktarılabilir; platform kodu sizde olmaz.</td>
               <td>Yerel ödeme, kargo ve e-fatura bağlantıları hazır gelir.</td>
-              <td>Paket aboneliği &mdash; <strong>[REPLACE &mdash; güncel paket ücreti]</strong></td>
+              <td>Paket aboneliği</td>
               <td>Bayi ve B2B senaryosu olan mağazalar.</td>
             </tr>
             <tr>
@@ -206,7 +206,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
               <td>Sınır yok; yerleşim markanın ihtiyacına göre kurulur.</td>
               <td>Kodun tamamı sizde olur, depo devredilir.</td>
               <td>Projeye göre yazılır veya mevcut servislere bağlanır.</td>
-              <td>Tek seferlik proje + hosting &mdash; <strong>[REPLACE &mdash; proje ücreti]</strong></td>
+              <td>Tek seferlik proje + hosting</td>
               <td>Tasarımın ve hızın belirleyici olduğu kurumsal siteler, landing page&rsquo;ler.</td>
             </tr>
           </tbody>
@@ -356,11 +356,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         </details>
         <details class="card faq">
           <summary class="faq__summary">Platformun aylık ücreti ile kurulum ücreti aynı şey mi?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
-          <p class="faq__answer">Hayır, iki ayrı kalem. Platform ücreti doğrudan platforma ödediğiniz abonelik; paket ve işlem payına göre değişir ve bize uğramaz. Kurulum ücreti bizim işimiz: tema ve arayüz özelleştirme, ürün ve kategori yapısı, entegrasyonlar, içerik hazırlığı ve canlıya alma. Platform ücreti mağaza yaşadığı sürece devam eder, kurulum ücreti tek seferliktir. Güncel kurulum aralığı: <strong>[REPLACE &mdash; kurulum ücreti aralığı]</strong>.</p>
+          <p class="faq__answer">Hayır, iki ayrı kalem. Platform ücreti doğrudan platforma ödediğiniz abonelik; paket ve işlem payına göre değişir ve bize uğramaz. Kurulum ücreti bizim işimiz: tema ve arayüz özelleştirme, ürün ve kategori yapısı, entegrasyonlar, içerik hazırlığı ve canlıya alma. Platform ücreti mağaza yaşadığı sürece devam eder, kurulum ücreti tek seferliktir.</p>
         </details>
         <details class="card faq">
           <summary class="faq__summary">Mağaza ne kadar sürede yayına girer?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
-          <p class="faq__answer">Süreyi kodlama değil, ürün verisi belirliyor. Ürün görselleri, açıklamaları, varyantları ve fiyatları hazırsa kurulum tahmin edilebilir ilerler. Hazır değilse en uzun aşama içerik hazırlığıdır ve bunu birlikte yaparız. Entegrasyon sayısı da etkiler: ödeme ve kargo standarttır, ERP veya muhasebe bağlantısı süreyi uzatır. Kapsam netleştiğinde takvimi tarih vererek yazarız. Tipik süre: <strong>[REPLACE &mdash; süre aralığı]</strong>.</p>
+          <p class="faq__answer">Süreyi kodlama değil, ürün verisi belirliyor. Ürün görselleri, açıklamaları, varyantları ve fiyatları hazırsa kurulum tahmin edilebilir ilerler. Hazır değilse en uzun aşama içerik hazırlığıdır ve bunu birlikte yaparız. Entegrasyon sayısı da etkiler: ödeme ve kargo standarttır, ERP veya muhasebe bağlantısı süreyi uzatır. Kapsam netleştiğinde takvimi tarih vererek yazarız.</p>
         </details>
         <details class="card faq">
           <summary class="faq__summary">Mevcut mağazamdaki ürünleri taşıyabilir miyiz?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
@@ -372,7 +372,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         </details>
         <details class="card faq">
           <summary class="faq__summary">Mağaza yayına alındıktan sonra ne oluyor?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
-          <p class="faq__answer">Yayına almadan sonra bir garanti dönemi var; bu süre içinde çıkan hatalar ücretsiz düzeltiliyor. Garanti, yeni özellik eklemeyi değil, teslim edilen kurulumun düzgün çalışmasını kapsıyor. Sonrasında mağazayı kendi ekibiyle yürüten müşteriler de var, aylık bakım alanlar da. Panel eğitimi teslimin parçası: ürün eklemek, kampanya tanımlamak ve sipariş yönetmek için bize dönmeniz gerekmiyor. Garanti süresi: <strong>[REPLACE &mdash; garanti süresi]</strong>.</p>
+          <p class="faq__answer">Yayına almadan sonra bir garanti dönemi var; bu süre içinde çıkan hatalar ücretsiz düzeltiliyor. Garanti, yeni özellik eklemeyi değil, teslim edilen kurulumun düzgün çalışmasını kapsıyor. Sonrasında mağazayı kendi ekibiyle yürüten müşteriler de var, aylık bakım alanlar da. Panel eğitimi teslimin parçası: ürün eklemek, kampanya tanımlamak ve sipariş yönetmek için bize dönmeniz gerekmiyor.</p>
         </details>
       </div>
 
@@ -385,11 +385,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         "inLanguage": "tr-TR",
         "mainEntity": [
           { "@type": "Question", "name": "Hangi platform hangi işletmeye uygun?", "acceptedAnswer": { "@type": "Answer", "text": "Kararı üç şey belirliyor: nereye sattığınız, ürün sayınız ve ekibinizin mağazayı ne kadar kendi yönetmek istediği. Yalnızca Türkiye’ye satıyorsanız yerel ödeme, kargo ve e-fatura bağlantılarının hazır geldiği altyapılar kurulumu kısaltır. Yurt dışına da satıyorsanız çok para birimi ve geniş uygulama ekosistemi öne çıkar. Bayi veya B2B fiyatlandırması varsa bunu modülle çözen altyapılar avantajlı. Yukarıdaki tablo bu dört seçeneği aynı kriterlerle karşılaştırıyor." } },
-          { "@type": "Question", "name": "Platformun aylık ücreti ile kurulum ücreti aynı şey mi?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, iki ayrı kalem. Platform ücreti doğrudan platforma ödediğiniz abonelik; paket ve işlem payına göre değişir ve bize uğramaz. Kurulum ücreti bizim işimiz: tema ve arayüz özelleştirme, ürün ve kategori yapısı, entegrasyonlar, içerik hazırlığı ve canlıya alma. Platform ücreti mağaza yaşadığı sürece devam eder, kurulum ücreti tek seferliktir. Güncel kurulum aralığı: [REPLACE — kurulum ücreti aralığı]." } },
-          { "@type": "Question", "name": "Mağaza ne kadar sürede yayına girer?", "acceptedAnswer": { "@type": "Answer", "text": "Süreyi kodlama değil, ürün verisi belirliyor. Ürün görselleri, açıklamaları, varyantları ve fiyatları hazırsa kurulum tahmin edilebilir ilerler. Hazır değilse en uzun aşama içerik hazırlığıdır ve bunu birlikte yaparız. Entegrasyon sayısı da etkiler: ödeme ve kargo standarttır, ERP veya muhasebe bağlantısı süreyi uzatır. Kapsam netleştiğinde takvimi tarih vererek yazarız. Tipik süre: [REPLACE — süre aralığı]." } },
+          { "@type": "Question", "name": "Platformun aylık ücreti ile kurulum ücreti aynı şey mi?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, iki ayrı kalem. Platform ücreti doğrudan platforma ödediğiniz abonelik; paket ve işlem payına göre değişir ve bize uğramaz. Kurulum ücreti bizim işimiz: tema ve arayüz özelleştirme, ürün ve kategori yapısı, entegrasyonlar, içerik hazırlığı ve canlıya alma. Platform ücreti mağaza yaşadığı sürece devam eder, kurulum ücreti tek seferliktir." } },
+          { "@type": "Question", "name": "Mağaza ne kadar sürede yayına girer?", "acceptedAnswer": { "@type": "Answer", "text": "Süreyi kodlama değil, ürün verisi belirliyor. Ürün görselleri, açıklamaları, varyantları ve fiyatları hazırsa kurulum tahmin edilebilir ilerler. Hazır değilse en uzun aşama içerik hazırlığıdır ve bunu birlikte yaparız. Entegrasyon sayısı da etkiler: ödeme ve kargo standarttır, ERP veya muhasebe bağlantısı süreyi uzatır. Kapsam netleştiğinde takvimi tarih vererek yazarız." } },
           { "@type": "Question", "name": "Mevcut mağazamdaki ürünleri taşıyabilir miyiz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Ürünler, kategoriler, varyantlar, fiyatlar ve müşteri kayıtları çoğu platformdan dışa aktarılıp yenisine aktarılabiliyor. Taşımada asıl iş veriyi almak değil, eşleştirmek: eski kategori yapısı yenisine birebir oturmaz ve varyant mantığı platformdan platforma değişir. Sipariş geçmişi genellikle arşiv olarak taşınır. Eski adreslerin yeni ürün sayfalarına 301 ile yönlendirilmesi de kapsamda; bu yapılmazsa arama sonuçlarındaki mevcut konum kaybedilir." } },
           { "@type": "Question", "name": "Mağazadaki verilerin sahibi kim olur?", "acceptedAnswer": { "@type": "Answer", "text": "Ürün, müşteri ve sipariş verisi size ait ve platformdan dışa aktarılabilir; ileride başka bir altyapıya geçmek isterseniz veriniz sizinle gelir. Platformun kendi yazılımı platformun lisansında kalır, sizin için yazdığımız tema ve özel geliştirmeler ise sizin. Platform hesabı, alan adı, ödeme ve kargo sözleşmeleri en baştan sizin adınıza açılır, bizim adımıza değil." } },
-          { "@type": "Question", "name": "Mağaza yayına alındıktan sonra ne oluyor?", "acceptedAnswer": { "@type": "Answer", "text": "Yayına almadan sonra bir garanti dönemi var; bu süre içinde çıkan hatalar ücretsiz düzeltiliyor. Garanti, yeni özellik eklemeyi değil, teslim edilen kurulumun düzgün çalışmasını kapsıyor. Sonrasında mağazayı kendi ekibiyle yürüten müşteriler de var, aylık bakım alanlar da. Panel eğitimi teslimin parçası: ürün eklemek, kampanya tanımlamak ve sipariş yönetmek için bize dönmeniz gerekmiyor. Garanti süresi: [REPLACE — garanti süresi]." } }
+          { "@type": "Question", "name": "Mağaza yayına alındıktan sonra ne oluyor?", "acceptedAnswer": { "@type": "Answer", "text": "Yayına almadan sonra bir garanti dönemi var; bu süre içinde çıkan hatalar ücretsiz düzeltiliyor. Garanti, yeni özellik eklemeyi değil, teslim edilen kurulumun düzgün çalışmasını kapsıyor. Sonrasında mağazayı kendi ekibiyle yürüten müşteriler de var, aylık bakım alanlar da. Panel eğitimi teslimin parçası: ürün eklemek, kampanya tanımlamak ve sipariş yönetmek için bize dönmeniz gerekmiyor." } }
         ]
       }
       </script>

@@ -199,7 +199,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
           </tbody>
         </table>
       </div>
-      <p class="compare__note">Gözlemlenen süre aralıkları proje türüne göre değişiyor: <strong>[REPLACE &mdash; kaynaklı süre aralığı]</strong>. Bu alanı kendi projelerinizden çıkan gerçek verilerle doldurun; sektör ortalaması olarak dolaşan rakamların çoğunun kaynağı yok.</p>
     </div>
   </section>
 

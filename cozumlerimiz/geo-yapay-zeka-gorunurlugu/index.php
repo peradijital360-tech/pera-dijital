@@ -28,9 +28,6 @@ $summaries = [
                 'Üçüncü taraf kaynaklarda marka varlığı',
                 'Görünürlük ölçümü ve raporlama',
             ]],
-            ['title' => 'Kimler için', 'items' => [
-                '[REPLACE — hizmetin uygun olduğu marka ve sektörler]',
-            ]],
             ['title' => 'Nasıl ölçülür', 'items' => [
                 'Gerçek sorularda yanıtlarda anılma sıklığı ve bağlamı',
                 'Başlangıç ölçümüne göre dönemsel eğilim',
@@ -51,7 +48,6 @@ $summaries = [
             ]],
             ['title' => 'Kapsamdaki araçlar', 'items' => [
                 'ChatGPT, Perplexity, Google AI Overviews, Gemini',
-                '[REPLACE — ölçüm aracı, sıklık ve soru adedi]',
             ]],
         ],
     ],
@@ -147,7 +143,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 
       <div class="compare" tabindex="0" role="region" aria-labelledby="seo-geo-tablo">
         <table class="compare__table">
-          <caption id="seo-geo-tablo">SEO ve GEO karşılaştırması. Yapay zeka araçlarının davranışı ve ölçüm yöntemleri hızla değişiyor; tablo <strong>[REPLACE &mdash; son güncelleme tarihi]</strong> itibarıyla geçerlidir.</caption>
+          <caption id="seo-geo-tablo">SEO ve GEO karşılaştırması. Yapay zeka araçlarının davranışı ve ölçüm yöntemleri hızla değişiyor.</caption>
           <thead>
             <tr>
               <th scope="col">Kriter</th>
@@ -260,7 +256,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         <p class="section-lede">Markayla ilgili gerçek soruların listesi çıkarılır, bu sorular kapsamdaki araçlara düzenli aralıklarla sorulur ve yanıtlarda markanın anılıp anılmadığı, hangi bağlamda ve hangi kaynağa atıfla anıldığı kaydedilir. Ölçüm bir başlangıç fotoğrafıyla açılır; sonraki her dönem ona göre okunur.</p>
         <p>Bu alanın sıralama takibine denk bir standart aracı henüz yok. Dolayısıyla ölçüm, tek bir panelden okunan bir sayı değil, dönemsel olarak tekrarlanan bir gözlem. Aynı soruya verilen yanıtlar her seferinde birebir aynı gelmiyor; bu yüzden tek bir ölçümden sonuç çıkarmıyor, eğilime bakıyoruz.</p>
         <p>Raporda üç şey bulunuyor: dönem içinde yapılan işler, ölçüm tablosunun önceki dönemle karşılaştırması ve bir sonraki dönemde ne yapılacağı. Ölçümün gösterdiği şey olumsuzsa bu da raporda yazıyor; ölçüm yöntemimizin amacı iyi görünmek değil, karar verebilmek.</p>
-        <p>Kullanılan araçlar, ölçüm sıklığı ve takip edilen soru sayısı teklifte yazılı olarak belirlenir: <strong>[REPLACE &mdash; ölçüm aracı, sıklık ve soru adedi]</strong>.</p>
+        <p>Kullanılan araçlar, ölçüm sıklığı ve takip edilen soru sayısı teklifte yazılı olarak belirlenir.</p>
       </div>
       <?php $summary = $summaries['olcum']; require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/summary.php'; ?>
     </div>
@@ -329,11 +325,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       <div class="faq-grid">
         <details class="card faq">
           <summary class="faq__summary">Ne kadar sürede sonuç alınır?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
-          <p class="faq__answer">Dürüst yanıt: bunu taahhüt edebilecek bir veri setimiz yok. Yapay zeka araçlarının kaynak seçimi, modelin eğitim ve tarama döngüsüne bağlı ve bu döngüler platformdan platforma değişiyor; bir içerik bazı araçlarda günler içinde alıntılanırken bazılarında hiç görünmeyebiliyor. Yaptığımız iş, alıntılanma olasılığını artıran yapısal koşulları kurmak: net tanımlar, yapılandırılmış veri, erişilebilir sayfalar ve üçüncü taraf kaynaklarda tutarlı bilgi. Süre taahhüdü veren bir ajans varsa, ölçemediği bir şeyi taahhüt ediyordur. Gözlemlediğimiz aralık: <strong>[REPLACE &mdash; kaynaklı süre aralığı]</strong>.</p>
+          <p class="faq__answer">Dürüst yanıt: bunu taahhüt edebilecek bir veri setimiz yok. Yapay zeka araçlarının kaynak seçimi, modelin eğitim ve tarama döngüsüne bağlı ve bu döngüler platformdan platforma değişiyor; bir içerik bazı araçlarda günler içinde alıntılanırken bazılarında hiç görünmeyebiliyor. Yaptığımız iş, alıntılanma olasılığını artıran yapısal koşulları kurmak: net tanımlar, yapılandırılmış veri, erişilebilir sayfalar ve üçüncü taraf kaynaklarda tutarlı bilgi. Süre taahhüdü veren bir ajans varsa, ölçemediği bir şeyi taahhüt ediyordur.</p>
         </details>
         <details class="card faq">
           <summary class="faq__summary">Sonuç nasıl ölçülür?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
-          <p class="faq__answer">Bu alanın standartlaşmış bir ölçüm aracı henüz yok; sıralama takibinin SEO&rsquo;daki karşılığı GEO&rsquo;da mevcut değil. Bizim yöntemimiz şu: markanızla ilgili gerçek soruların listesini çıkarıyoruz, bu soruları kapsamdaki araçlara düzenli aralıklarla soruyoruz ve yanıtlarda markanın anılıp anılmadığını, hangi bağlamda ve hangi kaynağa atıfla anıldığını kaydediyoruz. Çıktı, dönem dönem karşılaştırılabilir bir tablo. Yanıtlar aynı soruya her seferinde birebir aynı gelmediği için tek bir ölçüm değil, eğilim okunuyor. Ölçüm sıklığı ve kullanılan araçlar: <strong>[REPLACE &mdash; ölçüm aracı ve sıklığı]</strong>.</p>
+          <p class="faq__answer">Bu alanın standartlaşmış bir ölçüm aracı henüz yok; sıralama takibinin SEO&rsquo;daki karşılığı GEO&rsquo;da mevcut değil. Bizim yöntemimiz şu: markanızla ilgili gerçek soruların listesini çıkarıyoruz, bu soruları kapsamdaki araçlara düzenli aralıklarla soruyoruz ve yanıtlarda markanın anılıp anılmadığını, hangi bağlamda ve hangi kaynağa atıfla anıldığını kaydediyoruz. Çıktı, dönem dönem karşılaştırılabilir bir tablo. Yanıtlar aynı soruya her seferinde birebir aynı gelmediği için tek bir ölçüm değil, eğilim okunuyor.</p>
         </details>
         <details class="card faq">
           <summary class="faq__summary">SEO yaptırıyorum, buna ayrıca gerek var mı?<svg class="faq__chevron" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-chevron"></use></svg></summary>
@@ -357,8 +353,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         "@type": "FAQPage",
         "inLanguage": "tr-TR",
         "mainEntity": [
-          { "@type": "Question", "name": "Ne kadar sürede sonuç alınır?", "acceptedAnswer": { "@type": "Answer", "text": "Dürüst yanıt: bunu taahhüt edebilecek bir veri setimiz yok. Yapay zeka araçlarının kaynak seçimi, modelin eğitim ve tarama döngüsüne bağlı ve bu döngüler platformdan platforma değişiyor; bir içerik bazı araçlarda günler içinde alıntılanırken bazılarında hiç görünmeyebiliyor. Yaptığımız iş, alıntılanma olasılığını artıran yapısal koşulları kurmak: net tanımlar, yapılandırılmış veri, erişilebilir sayfalar ve üçüncü taraf kaynaklarda tutarlı bilgi. Süre taahhüdü veren bir ajans varsa, ölçemediği bir şeyi taahhüt ediyordur. Gözlemlediğimiz aralık: [REPLACE — kaynaklı süre aralığı]." } },
-          { "@type": "Question", "name": "Sonuç nasıl ölçülür?", "acceptedAnswer": { "@type": "Answer", "text": "Bu alanın standartlaşmış bir ölçüm aracı henüz yok; sıralama takibinin SEO’daki karşılığı GEO’da mevcut değil. Bizim yöntemimiz şu: markanızla ilgili gerçek soruların listesini çıkarıyoruz, bu soruları kapsamdaki araçlara düzenli aralıklarla soruyoruz ve yanıtlarda markanın anılıp anılmadığını, hangi bağlamda ve hangi kaynağa atıfla anıldığını kaydediyoruz. Çıktı, dönem dönem karşılaştırılabilir bir tablo. Yanıtlar aynı soruya her seferinde birebir aynı gelmediği için tek bir ölçüm değil, eğilim okunuyor. Ölçüm sıklığı ve kullanılan araçlar: [REPLACE — ölçüm aracı ve sıklığı]." } },
+          { "@type": "Question", "name": "Ne kadar sürede sonuç alınır?", "acceptedAnswer": { "@type": "Answer", "text": "Dürüst yanıt: bunu taahhüt edebilecek bir veri setimiz yok. Yapay zeka araçlarının kaynak seçimi, modelin eğitim ve tarama döngüsüne bağlı ve bu döngüler platformdan platforma değişiyor; bir içerik bazı araçlarda günler içinde alıntılanırken bazılarında hiç görünmeyebiliyor. Yaptığımız iş, alıntılanma olasılığını artıran yapısal koşulları kurmak: net tanımlar, yapılandırılmış veri, erişilebilir sayfalar ve üçüncü taraf kaynaklarda tutarlı bilgi. Süre taahhüdü veren bir ajans varsa, ölçemediği bir şeyi taahhüt ediyordur." } },
+          { "@type": "Question", "name": "Sonuç nasıl ölçülür?", "acceptedAnswer": { "@type": "Answer", "text": "Bu alanın standartlaşmış bir ölçüm aracı henüz yok; sıralama takibinin SEO’daki karşılığı GEO’da mevcut değil. Bizim yöntemimiz şu: markanızla ilgili gerçek soruların listesini çıkarıyoruz, bu soruları kapsamdaki araçlara düzenli aralıklarla soruyoruz ve yanıtlarda markanın anılıp anılmadığını, hangi bağlamda ve hangi kaynağa atıfla anıldığını kaydediyoruz. Çıktı, dönem dönem karşılaştırılabilir bir tablo. Yanıtlar aynı soruya her seferinde birebir aynı gelmediği için tek bir ölçüm değil, eğilim okunuyor." } },
           { "@type": "Question", "name": "SEO yaptırıyorum, buna ayrıca gerek var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Büyük ölçüde aynı zemine dayanıyorlar: erişilebilir sayfalar, düzgün başlık yapısı, yapılandırılmış veri ve doğru içerik. İyi bir SEO çalışması GEO tarafına da yarar. Ayrışma amaç ve biçimde: SEO sayfayı sonuç listesinde yukarı taşımayı hedefler, GEO ise içeriğin bir yanıtın içine alıntı olarak girebilmesini hedefler. Bunun için içeriğin farklı biçimlenmesi gerekir; tanımların net ve kendi başına anlaşılır olması, sorulara doğrudan cevap veren bloklar, tablolarla verilen karşılaştırmalar. SEO çalışmanız varsa GEO tarafı sıfırdan başlamaz; üzerine eklenir." } },
           { "@type": "Question", "name": "Garanti veriyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Ne alıntılanma garantisi veriyoruz ne de belirli bir araçta görüneceğinizi taahhüt ediyoruz. Yanıtları üreten modeller kendi kaynak seçim mantıklarıyla çalışıyor, bu mantık kamuya açık değil ve zaman içinde değişiyor. Taahhüt edebileceğimiz şey yapılan iş: hangi çalışmaların yapıldığı, hangi sayfaların düzenlendiği, hangi kaynaklarda marka bilgisinin güncellendiği ve ölçümün ne gösterdiği. Sonucu garanti eden bir teklif görürseniz, o teklifin neye dayandığını sorun." } },
           { "@type": "Question", "name": "Hangi platformlar kapsamda?", "acceptedAnswer": { "@type": "Answer", "text": "Şu an ChatGPT, Perplexity, Google AI Overviews ve Gemini üzerinde çalışıyoruz. Bu liste sabit değil: yeni araçlar çıkıyor, mevcut araçların kaynak gösterme biçimi değişiyor ve bazıları belirli bölgelerde farklı davranıyor. Kapsamı teklif aşamasında yazılı olarak belirliyoruz ve dönem içinde değişiklik olursa raporda belirtiyoruz. Platformların tamamını kapsadığını söyleyen bir kapsam tanımı gerçekçi değil." } }
