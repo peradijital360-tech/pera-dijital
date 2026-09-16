@@ -150,6 +150,19 @@ function u(string $path): string
     return BASE . ltrim($path, '/');
 }
 
+/* A stylesheet or script URL that changes whenever the file does.
+   .htaccess tells browsers to keep CSS and JS for a year without asking
+   again, so a plain /assets/css/main.css is never fetched twice: after a
+   deploy the fresh HTML would be styled by last month's CSS. The file's
+   modification time — reset by every upload of a changed file — goes on
+   as ?v=, so a new file is a new URL and an unchanged one stays cached. */
+function asset(string $path): string
+{
+    $file = dirname(__DIR__, 2) . '/' . ltrim($path, '/');
+    $version = is_file($file) ? filemtime($file) : false;
+    return u($path) . ($version ? '?v=' . $version : '');
+}
+
 /* Look a service up by slug and return its URL, so a cross-link written on
    one page upgrades itself the moment that service's page is built. */
 function service_url_by_slug(string $slug): string

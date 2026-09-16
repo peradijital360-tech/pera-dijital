@@ -79,11 +79,11 @@ $page['tw_desc']  = $page['tw_desc']  !== '' ? $page['tw_desc']  : $page['og_des
 <meta name="twitter:title" content="<?= e($page['tw_title']) ?>">
 <meta name="twitter:description" content="<?= e($page['tw_desc']) ?>">
 <link rel="preload" href="<?= u('assets/fonts/figtree-var.woff2') ?>" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="<?= u('assets/css/reset.css') ?>">
-<link rel="stylesheet" href="<?= u('assets/css/tokens.css') ?>">
-<link rel="stylesheet" href="<?= u('assets/css/main.css') ?>">
+<link rel="stylesheet" href="<?= e(asset('assets/css/reset.css')) ?>">
+<link rel="stylesheet" href="<?= e(asset('assets/css/tokens.css')) ?>">
+<link rel="stylesheet" href="<?= e(asset('assets/css/main.css')) ?>">
 <?php foreach ($page['css'] as $sheet): ?>
-<link rel="stylesheet" href="<?= u('assets/css/' . $sheet) ?>">
+<link rel="stylesheet" href="<?= e(asset('assets/css/' . $sheet)) ?>">
 <?php endforeach; ?>
 </head>
 <body<?= $page['body_class'] ? ' class="' . e($page['body_class']) . '"' : '' ?>>

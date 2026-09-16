@@ -29,6 +29,7 @@ for row in re.findall(r'\[([^\]]*)\],', re.search(r'const CLIENTS = \[(.*?)\n\];
     d.update({k:int(v) for k,v in re.findall(r"'(\w+)'\s*=>\s*(\d+)",row)}); CLIENTS.append(d)
 def e(v): return html.escape(str(v),quote=True).replace('&#x27;',"'")
 def u(p): return BASE+str(p).lstrip('/')
+def asset(p): return u(p)
 def service_url(s): return u('cozumlerimiz/'+s['slug']+'/') if s['built'] else u('cozumlerimiz/')
 def service_url_by_slug(slug):
     for x in SERVICES:
@@ -56,7 +57,7 @@ def client_filter_is_useful(s): return len(s)>=2
 DEFAULTS={'title':SITE_NAME,'description':'','canonical':'/','nav':'','css':[],'js':[],
  'og_type':'website','body_class':'page-inner','home':u(''),'cta':u('#contact'),'robots':'',
  'og_title':'','og_desc':'','tw_title':'','tw_desc':''}
-ENV=dict(sprintf=lambda fmt,*args: fmt % args,e=e,u=u,service_url=service_url,service_url_by_slug=service_url_by_slug,whatsapp_url=whatsapp_url,
+ENV=dict(sprintf=lambda fmt,*args: fmt % args,e=e,u=u,asset=asset,service_url=service_url,service_url_by_slug=service_url_by_slug,whatsapp_url=whatsapp_url,
  ai_url=ai_url,AI_PROMPT=AI_PROMPT,address_line=address_line,has_map=has_map,map_embed_url=map_embed_url,map_directions_url=map_directions_url,
  MAP_LAT=MAP_LAT,MAP_LNG=MAP_LNG,MAP_ZOOM=MAP_ZOOM,
  SITE_URL=SITE_URL,BASE=BASE,SITE_NAME=SITE_NAME,SERVICES=SERVICES,CONTACT_EMAIL=CONTACT_EMAIL,

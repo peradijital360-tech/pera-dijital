@@ -175,11 +175,11 @@ $aiLinks = [
 }
 </script>
 
-<script type="module" src="<?= u('assets/js/main.js') ?>"></script>
-<script type="module" src="<?= u('assets/js/nav.js') ?>"></script>
-<script type="module" src="<?= u('assets/js/consent.js') ?>"></script>
+<script type="module" src="<?= e(asset('assets/js/main.js')) ?>"></script>
+<script type="module" src="<?= e(asset('assets/js/nav.js')) ?>"></script>
+<script type="module" src="<?= e(asset('assets/js/consent.js')) ?>"></script>
 <?php foreach ($page['js'] as $module): ?>
-<script type="module" src="<?= u('assets/js/' . $module) ?>"></script>
+<script type="module" src="<?= e(asset('assets/js/' . $module)) ?>"></script>
 <?php endforeach; ?>
 
 <!-- WhatsApp: one <a>, two shapes. Vertical tab on the right edge from 60rem,
