@@ -173,7 +173,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
           </tbody>
         </table>
       </div>
-      <p class="compare__note">Kayıttan satışa geçen süre ve kayıtların ziyarete dönüşme oranı projeye, fiyat bandına ve bölgeye göre çok değişiyor: <strong>[REPLACE &mdash; kendi projelerinizden ölçülen aralık]</strong>. Bu alanı ilk kampanyaların verisiyle doldurun; başka projeden taşınan oran bu projeyi anlatmaz.</p>
     </div>
   </section>
 
