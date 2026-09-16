@@ -88,8 +88,14 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
           </div>
 
           <div class="field">
-            <label class="field__label" for="f-email">E-posta <span class="field__required">(zorunlu)</span></label>
-            <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error">
+            <label class="field__label" for="f-phone">Telefon <span class="field__required">(zorunlu)</span></label>
+            <input class="field__input" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-error">
+            <p class="field__error" id="f-phone-error" data-error-for="f-phone"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-email">E-posta <span class="field__optional">(opsiyonel)</span></label>
+            <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" aria-describedby="f-email-error">
             <p class="field__error" id="f-email-error" data-error-for="f-email"></p>
           </div>
 
@@ -113,8 +119,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
           </div>
 
           <div class="field">
-            <label class="field__label" for="f-message">Şu an neler yapıyorsunuz? <span class="field__required">(zorunlu)</span></label>
-            <textarea class="field__input field__input--textarea" id="f-message" name="message" rows="4" required aria-describedby="f-message-error"></textarea>
+            <label class="field__label" for="f-message">Şu an neler yapıyorsunuz? <span class="field__optional">(opsiyonel)</span></label>
+            <textarea class="field__input field__input--textarea" id="f-message" name="message" rows="4" aria-describedby="f-message-error"></textarea>
             <p class="field__error" id="f-message-error" data-error-for="f-message"></p>
           </div>
 

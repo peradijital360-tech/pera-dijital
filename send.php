@@ -100,10 +100,11 @@ $SOURCES = [
         'back'    => '/#contact',
         'fields'  => [
             'name'    => ['label' => 'Ad Soyad',              'type' => 'text',   'required' => true,  'max' => 120],
-            'email'   => ['label' => 'E-posta',               'type' => 'email',  'required' => true,  'max' => 190],
+            'phone'   => ['label' => 'Telefon',               'type' => 'phone',  'required' => true,  'max' => 40],
+            'email'   => ['label' => 'E-posta',               'type' => 'email',  'required' => false, 'max' => 190],
             'website' => ['label' => 'Web sitesi',            'type' => 'url',    'required' => false, 'max' => 190],
             'budget'  => ['label' => 'Aylık reklam bütçesi',  'type' => 'choice', 'required' => true,  'options' => $BUDGETS],
-            'message' => ['label' => 'Mesaj',                 'type' => 'long',   'required' => true,  'max' => 4000],
+            'message' => ['label' => 'Mesaj',                 'type' => 'long',   'required' => false, 'max' => 4000],
         ],
     ],
     'iletisim' => [
@@ -111,10 +112,11 @@ $SOURCES = [
         'back'    => '/iletisim/#form',
         'fields'  => [
             'name'    => ['label' => 'Ad Soyad',              'type' => 'text',   'required' => true,  'max' => 120],
-            'email'   => ['label' => 'E-posta',               'type' => 'email',  'required' => true,  'max' => 190],
+            'phone'   => ['label' => 'Telefon',               'type' => 'phone',  'required' => true,  'max' => 40],
+            'email'   => ['label' => 'E-posta',               'type' => 'email',  'required' => false, 'max' => 190],
             'website' => ['label' => 'Web sitesi',            'type' => 'url',    'required' => false, 'max' => 190],
             'budget'  => ['label' => 'Aylık reklam bütçesi',  'type' => 'choice', 'required' => true,  'options' => $BUDGETS],
-            'message' => ['label' => 'Mesaj',                 'type' => 'long',   'required' => true,  'max' => 4000],
+            'message' => ['label' => 'Mesaj',                 'type' => 'long',   'required' => false, 'max' => 4000],
         ],
     ],
     'lead-generation' => [
@@ -123,7 +125,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'Sektör',      'type' => 'choice', 'required' => true, 'options' => $LEADS],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],
@@ -134,7 +136,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'İlgilendiği çalışma', 'type' => 'choice', 'required' => true, 'options' => $SEO],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],
@@ -145,7 +147,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'İlgilendiği çalışma', 'type' => 'choice', 'required' => true, 'options' => $GEO],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],
@@ -156,7 +158,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'İlgilendiği iş', 'type' => 'choice', 'required' => true, 'options' => $DESIGNS],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],
@@ -167,7 +169,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'İlgilendiği iş', 'type' => 'choice', 'required' => true, 'options' => $STORES],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],
@@ -178,7 +180,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'İlgilendiği iş', 'type' => 'choice', 'required' => true, 'options' => $PROJECTS],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],
@@ -189,7 +191,7 @@ $SOURCES = [
         'fields'  => [
             'name'             => ['label' => 'Ad Soyad',    'type' => 'text',   'required' => true,  'max' => 120],
             'phone'            => ['label' => 'Telefon',     'type' => 'phone',  'required' => true,  'max' => 40],
-            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => true,  'max' => 190],
+            'email'            => ['label' => 'E-posta',     'type' => 'email',  'required' => false,  'max' => 190],
             'service_interest' => ['label' => 'İlgilendiği hizmet', 'type' => 'choice', 'required' => true, 'options' => $INTERESTS],
             'message'          => ['label' => 'Mesaj',       'type' => 'long',   'required' => false, 'max' => 4000],
         ],

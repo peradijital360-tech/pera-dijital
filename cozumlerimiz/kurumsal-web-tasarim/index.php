@@ -401,8 +401,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
           </div>
 
           <div class="field">
-            <label class="field__label" for="f-email">E-posta <span class="field__required">(zorunlu)</span></label>
-            <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error">
+            <label class="field__label" for="f-email">E-posta <span class="field__optional">(opsiyonel)</span></label>
+            <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" aria-describedby="f-email-error">
             <p class="field__error" id="f-email-error" data-error-for="f-email"></p>
           </div>
 
