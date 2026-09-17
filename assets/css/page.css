@@ -1570,6 +1570,74 @@
   to { background-position: 0 10px; }
 }
 
+/* ------------------------------------------------------------
+   Graphic design hero: Atölye No:30 identity collage
+   Real project images, shown whole. Scoped to .identity.
+   ------------------------------------------------------------ */
+
+.service-hero__media--identity { container: identity / inline-size; }
+
+/* Narrow first: the shop front across the top, ribbon and apron side by
+   side beneath it, the box across the bottom. */
+.identity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+
+.identity__item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: var(--hairline) solid rgb(19 19 19 / 0.12);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px rgb(19 19 19 / 0.05), 0 18px 40px -26px rgb(19 19 19 / 0.5);
+  transition: transform var(--dur-hover) var(--ease-out),
+              box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.identity__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 2px rgb(19 19 19 / 0.05), 0 22px 44px -24px rgb(19 19 19 / 0.55);
+}
+
+/* The image fills its frame at its own ratio: nothing is cropped, and the
+   radius comes from the frame, so the photograph itself is untouched. */
+.service-hero__media--identity .identity__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.identity__item--front,
+.identity__item--box { grid-column: 1 / -1; }
+
+/* ---- Wide enough: editorial arrangement -------------------------------
+   A stage with a fixed ratio; every frame is placed and sized in
+   percentages of it, so the whole arrangement scales as one piece. The shop
+   front is the largest and sits in front; ribbon above-left, apron
+   below-left, box below-right. Overlaps land on image edges — wall, strap,
+   sill — never on a logo. */
+@container identity (min-width: 28rem) {
+  .identity {
+    position: relative;
+    display: block;
+    aspect-ratio: 625 / 487;
+  }
+
+  .identity__item { position: absolute; }
+
+  /* Worked out on a 625 × 487 board: the shop front overlaps the ribbon and
+     the apron by about 22px (bow edge, apron strap) and the box overlaps
+     the shop front by about 8px (window sill). */
+  .identity__item--ribbon { left: 0;      top: 0;      width: 41.6%; z-index: 1; }
+  .identity__item--apron  { left: 0;      top: 42.7%;  width: 41.6%; z-index: 1; }
+  .identity__item--front  { left: 38.08%; top: 5.75%;  width: 61.92%; z-index: 2; }
+  .identity__item--box    { left: 49.92%; top: 57.1%;  width: 50.08%; z-index: 3; }
+}
+
 .avatar-row {
   display: flex;
   align-items: center;

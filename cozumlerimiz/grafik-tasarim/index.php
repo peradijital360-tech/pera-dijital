@@ -81,9 +81,36 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
             <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
           </div>
         </div>
-        <div class="service-hero__media">
-          <!-- LCP element: never lazy-loaded. -->
-          <img src="/assets/img/service/grafik-tasarim/hero.webp" alt="Yer tutucu: logo ve kurumsal kimlik uygulamaları" width="1000" height="750" fetchpriority="high" decoding="async">
+        <div class="service-hero__media service-hero__media--identity">
+          <!-- Atölye No:30 — one identity across four touchpoints: the shop
+               window, the gift box, the ribbon, the apron. Real project work,
+               used as delivered: each file is only scaled down, never cropped,
+               recoloured, filtered or redrawn, and the frames keep every image
+               at its own proportions so nothing is trimmed on screen either.
+
+               Layout follows the width of this box (container query in
+               page.css): an editorial arrangement around the shop front when
+               there is room, the shop front first and the rest beneath it when
+               there is not. Positions are percentages of a fixed-ratio stage,
+               so the arrangement scales as one piece instead of reflowing.
+
+               The shop front is the likely LCP: fetchpriority high, never
+               lazy. The other three are in the first view too, so they are not
+               lazy either. -->
+          <div class="identity">
+            <figure class="identity__item identity__item--front">
+              <img src="/assets/img/service/grafik-tasarim/atolye-no30/magaza-cephesi-800.webp" srcset="/assets/img/service/grafik-tasarim/atolye-no30/magaza-cephesi-480.webp 480w, /assets/img/service/grafik-tasarim/atolye-no30/magaza-cephesi-800.webp 800w, /assets/img/service/grafik-tasarim/atolye-no30/magaza-cephesi-1200.webp 1200w" sizes="(min-width: 60rem) 30vw, (min-width: 40rem) 62vw, 92vw" alt="Atölye No:30 mağaza cephesi kurumsal kimlik uygulaması: vitrin camında altın renkli logo" width="1200" height="800" fetchpriority="high" decoding="async">
+            </figure>
+            <figure class="identity__item identity__item--ribbon">
+              <img src="/assets/img/service/grafik-tasarim/atolye-no30/kurdele-600.webp" srcset="/assets/img/service/grafik-tasarim/atolye-no30/kurdele-360.webp 360w, /assets/img/service/grafik-tasarim/atolye-no30/kurdele-600.webp 600w, /assets/img/service/grafik-tasarim/atolye-no30/kurdele-900.webp 900w" sizes="(min-width: 60rem) 19vw, (min-width: 40rem) 40vw, 46vw" alt="Atölye No:30 kurdele marka uygulaması: haki yeşil saten kurdele üzerine baskılı logo" width="900" height="675" decoding="async">
+            </figure>
+            <figure class="identity__item identity__item--apron">
+              <img src="/assets/img/service/grafik-tasarim/atolye-no30/onluk-600.webp" srcset="/assets/img/service/grafik-tasarim/atolye-no30/onluk-360.webp 360w, /assets/img/service/grafik-tasarim/atolye-no30/onluk-600.webp 600w, /assets/img/service/grafik-tasarim/atolye-no30/onluk-900.webp 900w" sizes="(min-width: 60rem) 19vw, (min-width: 40rem) 40vw, 46vw" alt="Atölye No:30 önlük nakış logo uygulaması: haki yeşil önlük üzerinde krem nakış logo" width="900" height="675" decoding="async">
+            </figure>
+            <figure class="identity__item identity__item--box">
+              <img src="/assets/img/service/grafik-tasarim/atolye-no30/kutu-600.webp" srcset="/assets/img/service/grafik-tasarim/atolye-no30/kutu-360.webp 360w, /assets/img/service/grafik-tasarim/atolye-no30/kutu-600.webp 600w, /assets/img/service/grafik-tasarim/atolye-no30/kutu-900.webp 900w" sizes="(min-width: 60rem) 23vw, (min-width: 40rem) 48vw, 92vw" alt="Atölye No:30 ambalaj kutusu tasarımı: haki yeşil kutu kapağında kabartma logo" width="900" height="600" decoding="async">
+            </figure>
+          </div>
         </div>
       </div>
 
