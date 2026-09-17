@@ -72,14 +72,119 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       }
       </script>
 
-      <div class="service-hero__content">
-        <h1 class="service-hero__title" id="hero-title">
-          <span class="service-hero__title-main">Lead Generation</span>
-          <span class="service-hero__title-sub">Satış ekibinizin arayabileceği potansiyel müşteri kayıtları</span>
-        </h1>
-        <p class="service-hero__lede">Form, telefon ve WhatsApp üzerinden kayıt toplayan kampanyaları ve bu kampanyaların yönlendirdiği sayfayı birlikte kuruyoruz. Saydığımız şey gelen kayıt değil, görüşmeye dönen kayıt.</p>
-        <div class="service-hero__actions">
-          <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
+      <div class="service-hero__grid">
+        <div class="service-hero__content">
+          <h1 class="service-hero__title" id="hero-title">
+            <span class="service-hero__title-main">Lead Generation</span>
+            <span class="service-hero__title-sub">Satış ekibinizin arayabileceği potansiyel müşteri kayıtları</span>
+          </h1>
+          <p class="service-hero__lede">Form, telefon ve WhatsApp üzerinden kayıt toplayan kampanyaları ve bu kampanyaların yönlendirdiği sayfayı birlikte kuruyoruz. Saydığımız şey gelen kayıt değil, görüşmeye dönen kayıt.</p>
+          <div class="service-hero__actions">
+            <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
+          </div>
+        </div>
+        <div class="service-hero__media service-hero__media--lead">
+          <!-- The lead system: ad traffic reaches a landing page built to
+               convert, leaves a record by form, WhatsApp or phone, is checked,
+               and the qualified record goes to the sales team. The one shape
+               on the site that branches: three contact channels fan out of the
+               landing page and join again at the qualified lead.
+
+               HTML, CSS and inline SVG; no platform UI, no device frame. NO
+               NUMBERS: no spend, lead counts, rates or costs — states are
+               words. One described image; card titles are spans, and the
+               connectors sit inside the aria-hidden stage.
+
+               Layout follows the width of this box (container query in
+               page.css): the branching board when there is room, and the same
+               order stacked — campaign, landing page, the three channels side
+               by side, qualified lead, CRM — when there is not. -->
+          <figure class="lead" role="img" aria-label="Lead generation akışı: Google Ads ve Meta Ads kampanyalarından gelen trafik dönüşüm odaklı bir landing page’e ulaşır; ziyaretçi form, WhatsApp veya telefonla kayıt bırakır; kayıt nitelik açısından değerlendirilir ve görüşmeye uygun kayıt CRM üzerinden satış ekibine aktarılarak takip edilir.">
+            <div class="lead__stage" aria-hidden="true">
+
+              <!-- Connectors, in board units: x across 24 columns, y down
+                   one-rem rows. The moving ones carry traffic: campaign to
+                   landing page, and the three channels into the lead. -->
+              <svg class="lead__links" viewBox="0 0 24 36" preserveAspectRatio="none" focusable="false">
+                <path class="lead__link lead__link--flow" d="M4.5 6.6 V10 C4.5 11 5 11.5 6 11.5 H8"/>
+                <path class="lead__link" d="M14 19.1 C14 20.4 3.5 19.8 3.5 21"/>
+                <path class="lead__link" d="M14 19.1 C14 20.4 11.5 19.8 11.5 21"/>
+                <path class="lead__link" d="M14 19.1 C14 20.4 19.5 19.8 19.5 21"/>
+                <path class="lead__link lead__link--flow" d="M3.5 23.7 C3.5 25.1 6.5 24.9 6.5 26"/>
+                <path class="lead__link lead__link--flow" d="M11.5 23.7 C11.5 25.1 6.5 24.9 6.5 26"/>
+                <path class="lead__link lead__link--flow" d="M19.5 23.7 C19.5 25.1 6.5 24.9 6.5 26"/>
+                <path class="lead__link" d="M13 30.5 H15"/>
+              </svg>
+
+              <!-- 1 · Campaign -->
+              <div class="lead-card lead-card--campaign">
+                <span class="lead-card__head">
+                  <span class="lead-card__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 10.5v3a1 1 0 001 1h2.5L13 18V6L6.5 9.5H4a1 1 0 00-1 1z"/><path d="M16.5 9a4 4 0 010 6M19 6.5a7.5 7.5 0 010 11"/></svg></span>
+                  <span class="lead-card__title">Kampanya</span>
+                </span>
+                <span class="lead-tags"><span class="lead-tag">Google Ads</span><span class="lead-tag">Meta Ads</span><span class="lead-tag">Hedefleme</span><span class="lead-tag">Kreatif</span></span>
+              </div>
+
+              <!-- 2 · Landing page: the centre, drawn as a working page -->
+              <div class="lead-card lead-card--landing">
+                <span class="lead-card__head">
+                  <span class="lead-card__icon lead-card__icon--solid"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.5h18M7 13h5M7 16h3"/></svg></span>
+                  <span class="lead-card__title lead-card__title--lg">Landing Page</span>
+                  <span class="lead-tag lead-tag--outline">Dönüşüm odaklı</span>
+                </span>
+                <span class="lead-page">
+                  <span class="lead-page__offer"><span class="lead-page__label">Teklif</span><span class="lead-page__h"></span><span class="lead-page__h lead-page__h--short"></span></span>
+                  <span class="lead-page__form">
+                    <span class="lead-page__label">Form</span>
+                    <span class="lead-page__input"></span>
+                    <span class="lead-page__input"></span>
+                    <span class="lead-page__cta">Teklif Al</span>
+                  </span>
+                  <span class="lead-page__quick">
+                    <span class="lead-page__btn"><svg width="12" height="12" focusable="false"><use href="/assets/icons/sprite.svg#icon-whatsapp"></use></svg>WhatsApp</span>
+                    <span class="lead-page__btn"><svg width="12" height="12" focusable="false"><use href="/assets/icons/sprite.svg#icon-phone"></use></svg>Telefon</span>
+                  </span>
+                </span>
+              </div>
+
+              <!-- 3 · Contact channels: three branches out of the page. On the
+                   board the wrapper steps aside (display: contents) and each
+                   channel is placed on its own; stacked, they share a row. -->
+              <div class="lead-channels">
+                <span class="lead-channel lead-channel--form"><span class="lead-channel__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></span>Form</span>
+                <span class="lead-channel lead-channel--whatsapp"><span class="lead-channel__icon"><svg width="15" height="15" focusable="false"><use href="/assets/icons/sprite.svg#icon-whatsapp"></use></svg></span>WhatsApp</span>
+                <span class="lead-channel lead-channel--phone"><span class="lead-channel__icon"><svg width="15" height="15" focusable="false"><use href="/assets/icons/sprite.svg#icon-phone"></use></svg></span>Telefon</span>
+              </div>
+
+              <!-- 4 · Qualified lead: where the branches meet. States, never counts. -->
+              <div class="lead-card lead-card--lead">
+                <span class="lead-card__head">
+                  <span class="lead-card__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.4-5.5 6.5-5.5 1.3 0 2.5.3 3.5.9M15.5 17.5l2 2 4-4"/></svg></span>
+                  <span class="lead-card__title">Nitelikli Lead</span>
+                </span>
+                <span class="lead-record">
+                  <span class="lead-record__avatar"></span>
+                  <span class="lead-record__lines"><span></span><span></span></span>
+                </span>
+                <span class="lead-states">
+                  <span class="lead-state lead-state--new"><span class="lead-state__dot"></span>Yeni Kayıt</span>
+                  <span class="lead-state lead-state--ok">Nitelikli</span>
+                  <span class="lead-state lead-state--call">Görüşmeye Uygun</span>
+                </span>
+              </div>
+
+              <!-- 5 · CRM and the sales team: the end of the flow -->
+              <div class="lead-card lead-card--crm">
+                <span class="lead-card__head">
+                  <span class="lead-card__icon lead-card__icon--dark"><svg width="15" height="15" focusable="false"><use href="/assets/icons/sprite.svg#icon-people"></use></svg></span>
+                  <span class="lead-card__title">CRM / Satış Ekibi</span>
+                </span>
+                <span class="lead-tags"><span class="lead-tag">CRM</span><span class="lead-tag">E-posta</span><span class="lead-tag">Takip</span></span>
+                <span class="lead-handoff"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Satış Ekibine Aktarıldı</span>
+              </div>
+
+            </div>
+          </figure>
         </div>
       </div>
 
