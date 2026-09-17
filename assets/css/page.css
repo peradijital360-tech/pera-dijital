@@ -1571,13 +1571,17 @@
 
 @media (max-width: 59.99rem) {
 
+  /* section-nav.js centres the active tab, so tabs snap to their centre as
+     well: the centred position is then itself a snap point and nothing pulls
+     it back to a tab's left edge. proximity, not mandatory, so a hand swipe
+     can still come to rest at either end of the bar. */
   .section-nav__inner {
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent 100%);
   }
 
-  .section-nav__link { scroll-snap-align: start; }
+  .section-nav__link { scroll-snap-align: center; }
 
   .section-nav__link--accent { margin-left: var(--sp-2); }
 }
