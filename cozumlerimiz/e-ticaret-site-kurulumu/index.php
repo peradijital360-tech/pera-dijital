@@ -101,9 +101,100 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
             <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
           </div>
         </div>
-        <div class="service-hero__media">
-          <!-- LCP element: never lazy-loaded. -->
-          <img src="/assets/img/service/e-ticaret-site-kurulumu/hero.webp" alt="Yer tutucu: e-ticaret mağazası ürün ve sepet ekranları" width="1000" height="750" fetchpriority="high" decoding="async">
+        <div class="service-hero__media service-hero__media--shop">
+          <!-- Store setup timeline: the five pieces of work that stand between
+               an idea and a shop that can take an order — platform, product
+               structure, payment, shipping, e-invoicing — pinned in order to a
+               single order-flow spine that ends at the live store.
+
+               HTML, CSS and inline SVG; no image, no script, no platform or
+               bank logos (platform names are plain text), no device frame.
+               NO NUMBERS: no orders, revenue or counts, and product and price
+               are shapes, not values. One described image to assistive
+               technology; card titles are spans, so the H1 stays the hero's
+               only heading.
+
+               Layout follows the width of this box (container query in
+               page.css): cards zigzag left and right of a central spine when
+               there is room, and line up down a left-hand timeline when there
+               is not. -->
+          <figure class="shop" role="img" aria-label="E-ticaret mağaza kurulum süreci: Shopify, ikas, Ticimax veya T-Soft üzerinde mağaza kurulur; kategori, varyant, stok, görsel ve filtreyle ürün yapısı hazırlanır; sanal POS, kart ve taksitle güvenli ödeme bağlanır; kargo entegrasyonu, kargo etiketi ve sipariş durumu kurulur; e-fatura ve e-arşiv otomatikleştirilir; mağaza responsive ve SEO’ya hazır olarak yayına alınır ve sipariş almaya başlar.">
+            <div class="shop__stage" aria-hidden="true">
+
+              <span class="shop__spine"></span>
+
+              <!-- 1 · Store setup -->
+              <div class="shop-card shop-card--1">
+                <span class="shop-node"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+                <span class="shop-card__head">
+                  <span class="shop-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 9.5L5.5 4h13L20 9.5"/><path d="M4 9.5a2.7 2.7 0 005.3 0 2.7 2.7 0 005.4 0 2.7 2.7 0 005.3 0"/><path d="M5.5 12v8h13v-8M10 20v-4.5h4V20"/></svg></span>
+                  <span class="shop-card__title">Mağaza Kurulumu</span>
+                </span>
+                <span class="shop-tags"><span class="shop-tag">Shopify</span><span class="shop-tag">ikas</span><span class="shop-tag">Ticimax</span><span class="shop-tag">T-Soft</span></span>
+              </div>
+
+              <!-- 2 · Product structure: one product row as shapes, then the parts -->
+              <div class="shop-card shop-card--2">
+                <span class="shop-node"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+                <span class="shop-card__head">
+                  <span class="shop-card__icon"><svg width="16" height="16" focusable="false"><use href="/assets/icons/sprite.svg#icon-layers"></use></svg></span>
+                  <span class="shop-card__title">Ürün Yapısı</span>
+                </span>
+                <span class="shop-product">
+                  <span class="shop-product__img"></span>
+                  <span class="shop-product__info"><span class="shop-product__name"></span><span class="shop-product__meta"></span></span>
+                  <span class="shop-swatches"><span></span><span></span><span></span></span>
+                </span>
+                <span class="shop-tags"><span class="shop-tag">Kategori</span><span class="shop-tag">Varyant</span><span class="shop-tag">Stok</span><span class="shop-tag">Filtre</span></span>
+              </div>
+
+              <!-- 3 · Payment -->
+              <div class="shop-card shop-card--3">
+                <span class="shop-node"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+                <span class="shop-card__head">
+                  <span class="shop-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 14.5h3"/></svg></span>
+                  <span class="shop-card__title">Ödeme</span>
+                  <span class="shop-secure"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Güvenli</span>
+                </span>
+                <span class="shop-tags"><span class="shop-tag">Sanal POS</span><span class="shop-tag">Kart</span><span class="shop-tag">Taksit</span></span>
+              </div>
+
+              <!-- 4 · Shipping: an order-status line, no dates, no counts -->
+              <div class="shop-card shop-card--4">
+                <span class="shop-node"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+                <span class="shop-card__head">
+                  <span class="shop-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M2.5 6.5h11v10h-11zM13.5 10h4l3 3.5v3h-7"/><circle cx="6.5" cy="17.5" r="1.75"/><circle cx="17" cy="17.5" r="1.75"/></svg></span>
+                  <span class="shop-card__title">Kargo</span>
+                </span>
+                <span class="shop-status">
+                  <span class="shop-status__step is-done">Hazırlanıyor</span>
+                  <span class="shop-status__step is-done">Kargoda</span>
+                  <span class="shop-status__step">Teslim</span>
+                </span>
+                <span class="shop-tags"><span class="shop-tag">Entegrasyon</span><span class="shop-tag">Kargo etiketi</span></span>
+              </div>
+
+              <!-- 5 · E-invoice -->
+              <div class="shop-card shop-card--5">
+                <span class="shop-node"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+                <span class="shop-card__head">
+                  <span class="shop-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 3h9l4 4v14H6z"/><path d="M14.5 3v4.5H19M9 12h7M9 15.5h7M9 19h4"/></svg></span>
+                  <span class="shop-card__title">E-Fatura</span>
+                </span>
+                <span class="shop-tags"><span class="shop-tag">Fatura</span><span class="shop-tag">E-arşiv</span><span class="shop-tag shop-tag--auto">Otomatik</span></span>
+              </div>
+
+              <!-- 6 · The end of the spine: the store is live -->
+              <div class="shop-card shop-card--live">
+                <span class="shop-node shop-node--live"></span>
+                <span class="shop-card__head">
+                  <span class="shop-live"><span class="shop-live__dot"></span>Satışa Hazır</span>
+                </span>
+                <span class="shop-tags"><span class="shop-tag">Sipariş Alabilir</span><span class="shop-tag">Responsive</span><span class="shop-tag">SEO Ready</span></span>
+              </div>
+
+            </div>
+          </figure>
         </div>
       </div>
 
