@@ -17,6 +17,10 @@
   /* On the dark card only. --accent-light under white text is 2.84:1, so it
      is never a fill behind white type; on --ink it reads 6.61:1 as text. */
   --surface-tint: #f4f0fc;  /* accent at ~6% over white, flattened */
+  /* Homepage hero ground: lighter than --surface-tint, so the hero's own
+     tinted diagram panel still reads as a panel on it. */
+  --surface-hero: #f8f5ff;
+  --rule-hero:    #ebe5f6;  /* the hairline under it: a lilac grey, not a line */
 
   --ink-invert:       #ffffff;
   --ink-invert-muted: #d0d0d0;  /* reference .text-span, 12.3:1 on --ink */

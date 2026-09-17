@@ -319,8 +319,15 @@ body {
    SECTION — HERO
    ============================================================ */
 
+/* Its own ground and a hairline foot, so the hero ends where it ends and the
+   white capabilities band below reads as the next section rather than more
+   of the same. A little more room at the bottom than the top: the hairline
+   needs air on the hero's side, and it is clamped, so phones gain 16px, not
+   a screen. The white header above meets the tint at a clean edge. */
 .hero {
-  padding-block: var(--sp-section);
+  padding-block: var(--sp-section) calc(var(--sp-section) + var(--sp-2));
+  background: var(--surface-hero);
+  border-bottom: var(--hairline) solid var(--rule-hero);
   overflow: hidden;
 }
 
