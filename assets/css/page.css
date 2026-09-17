@@ -1638,6 +1638,369 @@
   .identity__item--box    { left: 49.92%; top: 57.1%;  width: 50.08%; z-index: 3; }
 }
 
+/* ------------------------------------------------------------
+   SEO hero: crawl → technical → content → authority → measurement
+   Scoped to .seo.
+   ------------------------------------------------------------ */
+
+.service-hero__media--seo { container: seo / inline-size; }
+
+.seo {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+/* Narrow first: the cards in reading order, a short dashed tick between
+   each pair standing in for the board's connectors. */
+.seo__stage {
+  position: relative;
+  display: grid;
+  gap: 1.125rem;
+}
+
+.seo__links { display: none; }
+
+.seo-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 0.75rem 0.875rem;
+  background: var(--surface);
+  border: var(--hairline) solid rgb(19 19 19 / 0.14);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px rgb(19 19 19 / 0.05), 0 14px 30px -20px rgb(19 19 19 / 0.4);
+  transition: transform var(--dur-hover) var(--ease-out),
+              border-color var(--dur-hover) var(--ease-out);
+}
+
+.seo-card:hover {
+  transform: translateY(-2px);
+  border-color: rgb(111 59 221 / 0.55);
+}
+
+.seo-card + .seo-card::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 1px);
+  left: 50%;
+  height: 1.125rem;
+  border-left: 1.5px dashed rgb(111 59 221 / 0.5);
+}
+
+.seo-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.seo-card__title {
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+}
+
+.seo-card__title--lg { font-size: 1rem; }
+
+.seo-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--accent);
+  background: var(--surface-tint);
+  border-radius: var(--radius-button);
+}
+
+.seo-card__icon--solid {
+  color: var(--surface);
+  background: var(--accent);
+}
+
+.seo-card__icon svg { fill: none; }
+
+.seo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.seo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.125rem 0.5rem;
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-medium);
+  line-height: 1.5;
+  white-space: nowrap;
+  background: var(--surface-tint);
+  border-radius: 999px;
+}
+
+.seo-tag--index {
+  color: var(--accent);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 var(--hairline) rgb(111 59 221 / 0.45);
+}
+
+.seo-tag__dot,
+.seo-watch__dot {
+  position: relative;
+  width: 0.375rem;
+  height: 0.375rem;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* ---- Site health ---- */
+.seo-card--health {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  padding-block: 0.5rem;
+}
+
+.seo-watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-bold);
+  white-space: nowrap;
+}
+
+/* ---- Crawl tree ---- */
+.seo-tree {
+  display: block;
+  width: 100%;
+  max-width: 15rem;
+  height: 3.5rem;
+  overflow: visible;
+}
+
+.seo-tree__line {
+  fill: none;
+  stroke: rgb(19 19 19 / 0.28);
+  stroke-width: 1.25;
+}
+
+.seo-tree__root { fill: var(--ink); }
+.seo-tree__page { fill: var(--surface); stroke: rgb(19 19 19 / 0.35); stroke-width: 1.25; }
+.seo-tree__page--on { fill: var(--accent); stroke: var(--accent); }
+.seo-tree__leaf { fill: rgb(19 19 19 / 0.12); }
+.seo-tree__leaf--on { fill: var(--accent-light); }
+
+/* ---- Technical: vitals as bars without values ---- */
+.seo-card--tech { border-top: 3px solid var(--accent); }
+
+.seo-vitals {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.seo-vital {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.seo-vital__name {
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-bold);
+  letter-spacing: 0.04em;
+}
+
+.seo-vital__bar {
+  height: 0.375rem;
+  overflow: hidden;
+  background: var(--surface-tint);
+  border-radius: 999px;
+}
+
+.seo-vital__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: inherit;
+}
+
+.seo-vital:nth-child(1) .seo-vital__bar span { width: 78%; }
+.seo-vital:nth-child(2) .seo-vital__bar span { width: 64%; }
+.seo-vital:nth-child(3) .seo-vital__bar span { width: 86%; }
+
+/* ---- Content outline ---- */
+.seo-outline {
+  display: grid;
+  gap: 0.3125rem;
+  padding: 0.5rem 0.625rem;
+  border: var(--hairline) solid var(--rule);
+  border-radius: 0.5rem;
+}
+
+.seo-outline span { height: 0.25rem; border-radius: 2px; }
+
+.seo-outline__h1 { width: 62%; height: 0.4375rem !important; background: var(--ink); }
+.seo-outline__h2 { width: 48%; margin-left: 0.625rem; height: 0.3125rem !important; background: rgb(19 19 19 / 0.55); }
+.seo-outline__h2--short { width: 36%; }
+.seo-outline__p { width: 80%; margin-left: 0.625rem; background: rgb(19 19 19 / 0.16); }
+
+/* An in-text link: part of the line in the accent colour. */
+.seo-outline__p--link {
+  background: linear-gradient(90deg, rgb(19 19 19 / 0.16) 0 40%, var(--accent) 40% 62%, rgb(19 19 19 / 0.16) 62%);
+}
+
+/* ---- Authority ---- */
+.seo-refs {
+  display: block;
+  width: 100%;
+  max-width: 10rem;
+  height: 2.5rem;
+  overflow: visible;
+}
+
+.seo-refs__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-opacity: 0.55;
+  stroke-width: 1.25;
+}
+
+.seo-refs__site { fill: var(--surface); stroke: rgb(19 19 19 / 0.4); stroke-width: 1.25; }
+.seo-refs__home { fill: var(--ink); }
+
+/* ---- Measurement ---- */
+.seo-chart {
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+  overflow: visible;
+}
+
+.seo-chart__grid {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.seo-chart__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ---- Wide enough: the board ---------------------------------------------
+   24 columns, one-rem rows. Crawl top-left with site health beside it,
+   technical wide across the middle, content lower right, authority lower
+   left, measurement at the foot. Cards overlap only by padding; the
+   connectors run through the gaps between them. */
+@container seo (min-width: 28rem) {
+  .seo__stage {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    grid-template-rows: repeat(38, 1rem);
+    gap: 0;
+  }
+
+  .seo__stage::before {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    background-image: radial-gradient(rgb(19 19 19 / 0.12) 1px, transparent 1.2px);
+    background-size: 1.25rem 1.25rem;
+    border-radius: var(--radius-panel);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 55%, transparent 85%);
+            mask-image: radial-gradient(ellipse at 50% 50%, #000 55%, transparent 85%);
+  }
+
+  .seo-card + .seo-card::before { display: none; }
+
+  .seo-card { align-self: start; }
+
+  .seo-card--health    { grid-column: 17 / 25; grid-row: 1;  margin-top: 0.5rem; z-index: 2; }
+  .seo-card--crawl     { grid-column: 1 / 13;  grid-row: 1;  }
+  .seo-card--tech      { grid-column: 5 / 21;  grid-row: 9;  z-index: 3; }
+  .seo-card--content   { grid-column: 13 / 25; grid-row: 20; z-index: 2; }
+  .seo-card--authority { grid-column: 1 / 11;  grid-row: 21; z-index: 2; }
+  .seo-card--measure   { grid-column: 3 / 19;  grid-row: 31; z-index: 4; }
+
+  .seo__links {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .seo__links--narrow { display: none; }
+
+  .seo__link {
+    fill: none;
+    stroke: var(--accent);
+    stroke-opacity: 0.55;
+    stroke-width: 1.25;
+    stroke-dasharray: 3 4;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+/* Narrow board — the desktop column between roughly 960 and 1100px. Tag
+   rows wrap at this width and every card grows, so the cards after the
+   first start lower and the narrow connector set replaces the wide one. */
+@container seo (min-width: 28rem) and (max-width: 35.99rem) {
+  .seo__stage { grid-template-rows: repeat(45, 1rem); }
+
+  .seo-card--health    { grid-column: 14 / 25; }
+  .seo-card--tech      { grid-row: 12; }
+  .seo-card--content   { grid-row: 23; }
+  .seo-card--authority { grid-row: 24; }
+  .seo-card--measure   { grid-row: 35; }
+
+  .seo__links:not(.seo__links--narrow) { display: none; }
+  .seo__links--narrow { display: block; }
+}
+
+/* ---- Motion ---------------------------------------------------------------
+   The crawl moves (tree lines and the first connector), the Index tag and
+   the site-health dot pulse, hover lifts a card. Nothing else; all of it
+   stops under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .seo-tree__line {
+    stroke-dasharray: 3 3;
+    animation: seo-crawl 1.6s linear infinite;
+  }
+
+  .seo__link--crawl { animation: seo-crawl 1.6s linear infinite; }
+
+  .seo-tag__dot::after,
+  .seo-watch__dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: ops-pulse 2.4s var(--ease-out) infinite;
+  }
+
+  .seo-watch__dot::after { animation-delay: 1.2s; }
+}
+
+@keyframes seo-crawl {
+  to { stroke-dashoffset: -12; }
+}
+
 .avatar-row {
   display: flex;
   align-items: center;

@@ -71,14 +71,133 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       }
       </script>
 
-      <div class="service-hero__content">
-        <h1 class="service-hero__title" id="hero-title">
-          <span class="service-hero__title-main">Arama Motoru Optimizasyonu (SEO)</span>
-          <span class="service-hero__title-sub">Önce teknik zemin, sonra içerik, sonra otorite</span>
-        </h1>
-        <p class="service-hero__lede">Sitenin arama sonuçlarındaki konumunu iyileştiriyoruz. Sıralama taahhüdü vermeden: yapılan işi ve ölçümün gösterdiğini raporluyoruz.</p>
-        <div class="service-hero__actions">
-          <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
+      <div class="service-hero__grid">
+        <div class="service-hero__content">
+          <h1 class="service-hero__title" id="hero-title">
+            <span class="service-hero__title-main">Arama Motoru Optimizasyonu (SEO)</span>
+            <span class="service-hero__title-sub">Önce teknik zemin, sonra içerik, sonra otorite</span>
+          </h1>
+          <p class="service-hero__lede">Sitenin arama sonuçlarındaki konumunu iyileştiriyoruz. Sıralama taahhüdü vermeden: yapılan işi ve ölçümün gösterdiğini raporluyoruz.</p>
+          <div class="service-hero__actions">
+            <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
+          </div>
+        </div>
+        <div class="service-hero__media service-hero__media--seo">
+          <!-- SEO in the order the page's own subtitle gives it: crawl and
+               index, then the technical ground, then content, then authority,
+               measured throughout. Technical SEO is the widest card, at the
+               centre, because everything after it depends on it.
+
+               HTML, CSS and inline SVG; no screenshot and no copy of Search
+               Console or PageSpeed. NO SCORES OR NUMBERS: vitals are bars
+               without values, the site-health card says it is watched, not
+               how healthy, and the chart has no axis. Card titles are spans
+               and the connectors sit inside the aria-hidden stage, so screen
+               readers get the one description on the figure and the H1 stays
+               the hero's only heading.
+
+               Layout follows the width of this box (container query in
+               page.css): a flowing board when there is room, a vertical
+               sequence when there is not. -->
+          <figure class="seo" role="img" aria-label="SEO çalışma akışı: arama motoru siteyi tarar ve sayfaları sitemap ve robots kurallarıyla indeksler; teknik SEO site hızını, Core Web Vitals değerlerini, mobil uyumu, canonical ve schema yapısını düzenler; içerik arama niyetine, başlık yapısına ve iç linklemeye göre kurulur; backlink, referans ve anılmalarla otorite oluşur; sonuçlar Search Console ve GA4 üzerinden sıralama ve organik trafik olarak ölçülür.">
+            <div class="seo__stage" aria-hidden="true">
+
+              <!-- Connectors, in board units: x across 24 columns, y down
+                   one-rem rows. The first one is the crawl and moves. -->
+              <svg class="seo__links" viewBox="0 0 24 38" preserveAspectRatio="none" focusable="false">
+                <g class="seo__wide">
+                  <path class="seo__link seo__link--crawl" d="M12 4.4 H16.9 C17.7 4.4 17.7 5 17.7 5.8 V8"/>
+                  <path class="seo__link" d="M20 13 H21.5 C22.3 13 22.3 13.6 22.3 14.4 V19"/>
+                  <path class="seo__link" d="M12 23.5 H10"/>
+                  <path class="seo__link" d="M1 27.7 V33.5 C1 34.2 1.4 34.5 2 34.5"/>
+                </g>
+              </svg>
+              <!-- The same four connectors for the narrow board, where wrapped
+                   tag rows push every card after the first further down. -->
+              <svg class="seo__links seo__links--narrow" viewBox="0 0 24 45" preserveAspectRatio="none" focusable="false">
+                <path class="seo__link seo__link--crawl" d="M12 4.4 H16.9 C17.7 4.4 17.7 5 17.7 5.8 V11"/>
+                <path class="seo__link" d="M20 16 H21.5 C22.3 16 22.3 16.6 22.3 17.4 V22"/>
+                <path class="seo__link" d="M12 27 H10"/>
+                <path class="seo__link" d="M1 32 V37.2 C1 37.9 1.4 38.2 2 38.2"/>
+              </svg>
+
+              <!-- Site health: watched, never scored -->
+              <div class="seo-card seo-card--health">
+                <span class="seo-card__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span>
+                <span class="seo-card__title">Site Sağlığı</span>
+                <span class="seo-watch"><span class="seo-watch__dot"></span>İzleniyor</span>
+              </div>
+
+              <!-- 1 · Crawl and index: a site tree being walked -->
+              <div class="seo-card seo-card--crawl">
+                <span class="seo-card__head"><span class="seo-card__title">Tarama ve İndeksleme</span></span>
+                <svg class="seo-tree" viewBox="0 0 220 56" preserveAspectRatio="xMinYMid meet" focusable="false">
+                  <path class="seo-tree__line" d="M26 28 H56 M56 28 V10 H92 M56 28 H92 M56 28 V46 H92 M112 10 H140 V4 H162 M140 10 V16 H162 M112 28 H162 M112 46 H140 V40 H162 M140 46 V52 H162"/>
+                  <rect class="seo-tree__root" x="6" y="18" width="20" height="20" rx="4"/>
+                  <rect class="seo-tree__page" x="92" y="3" width="20" height="14" rx="3"/>
+                  <rect class="seo-tree__page seo-tree__page--on" x="92" y="21" width="20" height="14" rx="3"/>
+                  <rect class="seo-tree__page" x="92" y="39" width="20" height="14" rx="3"/>
+                  <rect class="seo-tree__leaf" x="162" y="0" width="14" height="8" rx="2"/>
+                  <rect class="seo-tree__leaf" x="162" y="12" width="14" height="8" rx="2"/>
+                  <rect class="seo-tree__leaf seo-tree__leaf--on" x="162" y="24" width="14" height="8" rx="2"/>
+                  <rect class="seo-tree__leaf" x="162" y="36" width="14" height="8" rx="2"/>
+                  <rect class="seo-tree__leaf" x="162" y="48" width="14" height="8" rx="2"/>
+                </svg>
+                <span class="seo-tags"><span class="seo-tag">Crawl</span><span class="seo-tag seo-tag--index"><span class="seo-tag__dot"></span>Index</span><span class="seo-tag">Sitemap</span><span class="seo-tag">Robots</span></span>
+              </div>
+
+              <!-- 2 · Technical SEO: the hub. Vitals as bars, no values. -->
+              <div class="seo-card seo-card--tech">
+                <span class="seo-card__head">
+                  <span class="seo-card__icon seo-card__icon--solid"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></span>
+                  <span class="seo-card__title seo-card__title--lg">Teknik SEO</span>
+                </span>
+                <span class="seo-vitals">
+                  <span class="seo-vital"><span class="seo-vital__name">LCP</span><span class="seo-vital__bar"><span></span></span></span>
+                  <span class="seo-vital"><span class="seo-vital__name">INP</span><span class="seo-vital__bar"><span></span></span></span>
+                  <span class="seo-vital"><span class="seo-vital__name">CLS</span><span class="seo-vital__bar"><span></span></span></span>
+                </span>
+                <span class="seo-tags"><span class="seo-tag">Site Hızı</span><span class="seo-tag">Core Web Vitals</span><span class="seo-tag">Mobil Uyumluluk</span><span class="seo-tag">Canonical</span><span class="seo-tag">Schema</span></span>
+              </div>
+
+              <!-- 3 · Content: a page's heading outline and a link -->
+              <div class="seo-card seo-card--content">
+                <span class="seo-card__head"><span class="seo-card__title">İçerik ve Sayfa Yapısı</span></span>
+                <span class="seo-outline">
+                  <span class="seo-outline__h1"></span>
+                  <span class="seo-outline__h2"></span>
+                  <span class="seo-outline__p"></span>
+                  <span class="seo-outline__h2 seo-outline__h2--short"></span>
+                  <span class="seo-outline__p seo-outline__p--link"></span>
+                </span>
+                <span class="seo-tags"><span class="seo-tag">Search Intent</span><span class="seo-tag">İç Linkleme</span><span class="seo-tag">Başlık Yapısı</span><span class="seo-tag">İçerik Kapsamı</span><span class="seo-tag">On-page SEO</span></span>
+              </div>
+
+              <!-- 4 · Authority: other sites pointing at this one -->
+              <div class="seo-card seo-card--authority">
+                <span class="seo-card__head"><span class="seo-card__title">Otorite</span></span>
+                <svg class="seo-refs" viewBox="0 0 160 40" preserveAspectRatio="xMinYMid meet" focusable="false">
+                  <path class="seo-refs__line" d="M18 8 C60 8 80 20 118 20 M18 20 H118 M18 32 C60 32 80 20 118 20"/>
+                  <circle class="seo-refs__site" cx="12" cy="8" r="6"/>
+                  <circle class="seo-refs__site" cx="12" cy="20" r="6"/>
+                  <circle class="seo-refs__site" cx="12" cy="32" r="6"/>
+                  <rect class="seo-refs__home" x="118" y="8" width="28" height="24" rx="5"/>
+                </svg>
+                <span class="seo-tags"><span class="seo-tag">Backlink</span><span class="seo-tag">Referans</span><span class="seo-tag">Mention</span></span>
+              </div>
+
+              <!-- 5 · Measurement: a trend shape, no axis, no values -->
+              <div class="seo-card seo-card--measure">
+                <span class="seo-card__head"><span class="seo-card__title">Ölçümleme</span></span>
+                <svg class="seo-chart" viewBox="0 0 200 40" preserveAspectRatio="none" focusable="false">
+                  <path class="seo-chart__grid" d="M0 13 H200 M0 27 H200"/>
+                  <path class="seo-chart__line" d="M2 34 C24 32 34 26 52 27 S80 30 96 22 S126 12 144 15 S178 8 198 4"/>
+                </svg>
+                <span class="seo-tags"><span class="seo-tag">Search Console</span><span class="seo-tag">GA4</span><span class="seo-tag">Sıralama</span><span class="seo-tag">Organik Trafik</span></span>
+              </div>
+
+            </div>
+          </figure>
         </div>
       </div>
 
