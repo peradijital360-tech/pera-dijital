@@ -290,13 +290,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         <div class="offer__pitch">
           <p class="offer__eyebrow">Başlamaya hazır mısınız?</p>
           <h2 class="offer__title" id="offer-title">Pera Dijital ile Çalışın</h2>
-          <p class="offer__lede">Tek bir aylık ücret, ekibin tamamını ve aşağıdaki her şeyi kapsar. Şu an neler yaptığınızı anlatın; genellikle iki iş günü içinde sabit bir rakamla dönelim.</p>
-
-          <h3 class="offer__subtitle">Neler dahil:</h3>
-          <ul class="checklist" role="list">
-            <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Her ay kurulan ve test edilen iki yeni landing page</span></li>
-            <li class="checklist__item"><svg class="checklist__icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-star"></use></svg><span>Kurulan ve sürekli bakımı yapılan ölçümleme ve atıf</span></li>
-          </ul>
+          <p class="offer__lede">Tek bir aylık ücret, ekibin tamamını kapsar. Şu an neler yaptığınızı anlatın; genellikle iki iş günü içinde sabit bir rakamla dönelim.</p>
         </div>
 
         <div class="offer__form">
