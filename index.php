@@ -24,34 +24,95 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
     <div class="hero__inner">
 
       <div class="hero__content">
-        <h1 class="hero__title" id="hero-title">Kâr Getiren Performans Reklamları.</h1>
-        <p class="hero__lede">Pera Dijital, büyüyen markalara sabit aylık ücretle kıdemli bir performans pazarlama ekibi verir. Strateji, kreatif, medya satın alma ve raporlama; baştan sona tek elden.</p>
+        <h1 class="hero__title" id="hero-title"><span class="hero__title-line">Kâr Getiren</span> <span class="hero__title-line">Performans Reklamları.</span></h1>
+        <p class="hero__lede">Google Ads, Meta Ads, landing page ve ölçümlemeyi tek sistemde yönetiyoruz. Reklam bütçesini görünür sonuçlara dönüştürüyoruz.</p>
         <div class="hero__actions">
           <a class="btn btn--dark btn--lg" href="#contact" data-hero-cta>Projeyi Başlatalım</a>
           <a class="btn btn--accent btn--lg" href="#process">Nasıl Çalışıyoruz?</a>
         </div>
       </div>
 
-      <!-- Ships in the HTML so the hero is never empty, with or without JS.
-           Removed by main.js only once a WebGL context is confirmed. -->
-      <div class="hero-collage" data-collage aria-hidden="true">
-        <div class="hero-collage__col">
-          <img class="hero-collage__card" src="/assets/img/cards/card-01.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-03.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-05.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-07.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-09.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-11.webp" alt="" width="800" height="1000" decoding="async">
+      <!-- The working model as a diagram: ads feed a landing page, the page
+           produces leads and sales, measurement closes the loop back into the
+           ads. Pure HTML/CSS/inline SVG — no images, no canvas, no script.
+
+           One image to assistive technology, described in full by aria-label;
+           everything inside is presentational, so the card labels are never
+           read as a list of stray words or mistaken for headings.
+
+           NO NUMBERS, on purpose. Every metric here is a label or a shape,
+           never a value: this is how we work, not a result we are claiming.
+
+           Geometry the CSS relies on: the ad row and the measurement row have
+           fixed heights (--sys-node-h, --sys-measure-h) because the feedback
+           rail's ends are inset by half of each to land on their centres.
+           Connectors are 100-wide viewBoxes stretched to the row, so x=25 and
+           x=75 are the two column centres at any width. -->
+      <figure class="hero-system" role="img" aria-label="Pera Dijital çalışma modeli: Google Ads ve Meta Ads trafiği landing page’e gelir, landing page lead ve satış üretir, GA4 ölçümlemesi dönüşümleri izler ve optimizasyonla reklamlara geri döner.">
+        <div class="hero-system__panel" aria-hidden="true">
+
+          <div class="hero-system__bar">
+            <span class="hero-system__name">Performans sistemi</span>
+            <span class="hero-system__live"><span class="hero-system__pulse"></span>Aktif kampanya</span>
+          </div>
+
+          <div class="hero-system__flow">
+
+            <div class="sys-node sys-node--source">
+              <span class="sys-node__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></span>
+              <span class="sys-node__text"><span class="sys-node__title">Google Ads</span><span class="sys-node__meta">Arama niyeti</span></span>
+              <span class="sys-node__dot"></span>
+            </div>
+
+            <div class="sys-node sys-node--source">
+              <span class="sys-node__icon"><svg width="18" height="18" focusable="false"><use href="/assets/icons/sprite.svg#icon-people"></use></svg></span>
+              <span class="sys-node__text"><span class="sys-node__title">Meta Ads</span><span class="sys-node__meta">Kitle ve kreatif</span></span>
+              <span class="sys-node__dot sys-node__dot--late"></span>
+            </div>
+
+            <svg class="sys-link sys-link--merge" viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
+              <path d="M25 0 C25 22 50 18 50 40"/><path d="M75 0 C75 22 50 18 50 40"/>
+            </svg>
+
+            <div class="sys-node sys-node--page">
+              <span class="sys-node__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.5h18M7 13h6M7 16h4"/></svg></span>
+              <span class="sys-node__text"><span class="sys-node__title">Landing Page</span><span class="sys-node__chips"><span class="sys-chip">Teklif</span><span class="sys-chip">Form</span><span class="sys-chip">Hız</span></span></span>
+            </div>
+
+            <svg class="sys-link sys-link--split" viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
+              <path d="M50 0 C50 22 25 18 25 40"/><path d="M50 0 C50 22 75 18 75 40"/>
+            </svg>
+
+            <div class="sys-node">
+              <span class="sys-node__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.4-5.5 6.5-5.5 1.4 0 2.7.4 3.8 1.1M18 14v6M15 17h6"/></svg></span>
+              <span class="sys-node__text"><span class="sys-node__title">Lead</span><span class="sys-node__meta">Form, arama, WhatsApp</span></span>
+            </div>
+
+            <div class="sys-node">
+              <span class="sys-node__icon"><svg width="18" height="18" focusable="false"><use href="/assets/icons/sprite.svg#icon-cart"></use></svg></span>
+              <span class="sys-node__text"><span class="sys-node__title">Satış</span><span class="sys-node__meta">Satış ekibine aktarım</span></span>
+            </div>
+
+            <svg class="sys-link sys-link--merge" viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
+              <path d="M25 0 C25 22 50 18 50 40"/><path d="M75 0 C75 22 50 18 50 40"/>
+            </svg>
+
+            <div class="sys-node sys-node--measure">
+              <span class="sys-node__icon"><svg width="18" height="18" focusable="false"><use href="/assets/icons/sprite.svg#icon-chart"></use></svg></span>
+              <span class="sys-node__text"><span class="sys-node__title">GA4 &middot; Ölçümleme</span><span class="sys-node__chips"><span class="sys-chip">Dönüşüm</span><span class="sys-chip">Optimizasyon</span></span></span>
+              <svg class="sys-spark" viewBox="0 0 64 24" preserveAspectRatio="none" focusable="false"><path d="M1 20 L12 17 L22 18.5 L33 12 L44 13.5 L54 7 L63 4"/></svg>
+            </div>
+
+            <!-- Measurement feeds back into the ads: the loop runs up the right
+                 edge from the GA4 row to the source row. -->
+            <div class="sys-rail">
+              <svg class="sys-rail__line" viewBox="0 0 20 100" preserveAspectRatio="none" focusable="false"><path d="M0 100 H14 V0 H0"/></svg>
+              <span class="sys-rail__head"></span>
+            </div>
+
+          </div>
         </div>
-        <div class="hero-collage__col">
-          <img class="hero-collage__card" src="/assets/img/cards/card-02.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-04.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-06.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-08.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-10.webp" alt="" width="800" height="1000" decoding="async">
-          <img class="hero-collage__card" src="/assets/img/cards/card-12.webp" alt="" width="800" height="1000" decoding="async">
-        </div>
-      </div>
+      </figure>
 
     </div>
   </section>
