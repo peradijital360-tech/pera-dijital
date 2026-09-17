@@ -68,6 +68,15 @@ $page['tw_desc']  = $page['tw_desc']  !== '' ? $page['tw_desc']  : $page['og_des
 <?php endif; ?>
 <?php endif; ?>
 <meta name="theme-color" content="#ffffff">
+<!-- Icons. favicon.ico and apple-touch-icon.png sit at the site root because
+     crawlers and iOS ask for those exact paths even without a link. Google
+     shows the favicon beside search results from these links on the home
+     page: square, at least 48px, and not blocked by robots.txt. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="<?= u('assets/img/favicon/favicon-192.png') ?>" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:site_name" content="<?= e(SITE_NAME) ?>">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:type" content="<?= e($page['og_type']) ?>">
 <meta property="og:title" content="<?= e($page['og_title']) ?>">
@@ -75,9 +84,16 @@ $page['tw_desc']  = $page['tw_desc']  !== '' ? $page['tw_desc']  : $page['og_des
 <?php if ($page['canonical']): ?>
 <meta property="og:url" content="<?= e(SITE_URL . $page['canonical']) ?>">
 <?php endif; ?>
+<meta property="og:image" content="<?= e(SITE_URL . OG_IMAGE) ?>">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="<?= e(OG_IMAGE_ALT) ?>">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?= e($page['tw_title']) ?>">
 <meta name="twitter:description" content="<?= e($page['tw_desc']) ?>">
+<meta name="twitter:image" content="<?= e(SITE_URL . OG_IMAGE) ?>">
+<meta name="twitter:image:alt" content="<?= e(OG_IMAGE_ALT) ?>">
 <link rel="preload" href="<?= u('assets/fonts/figtree-var.woff2') ?>" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('assets/css/reset.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('assets/css/tokens.css')) ?>">

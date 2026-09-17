@@ -12,6 +12,7 @@ CONTACT_PHONE_HREF=_c('CONTACT_PHONE_HREF'); CONTACT_ADDRESS=_c('CONTACT_ADDRESS
 WHATSAPP_NUMBER=_c('WHATSAPP_NUMBER'); WHATSAPP_TEXT=_c('WHATSAPP_TEXT')
 MAP_LAT=_c('MAP_LAT',''); MAP_LNG=_c('MAP_LNG','')
 AI_PROMPT=_c('AI_PROMPT','')
+OG_IMAGE=_c('OG_IMAGE',''); OG_IMAGE_ALT=_c('OG_IMAGE_ALT','')
 MAP_ZOOM=(re.search(r'const MAP_ZOOM\s*=\s*(\d+)',_cfg) or [None,'17'])[1]
 SHOW_WORK=_b('SHOW_WORK'); SHOW_SECTOR_FILTER=_b('SHOW_SECTOR_FILTER')
 _loc=pathlib.Path('assets/inc/config.local.php')
@@ -58,7 +59,7 @@ DEFAULTS={'title':SITE_NAME,'description':'','canonical':'/','nav':'','css':[],'
  'og_type':'website','body_class':'page-inner','home':u(''),'cta':u('#contact'),'robots':'',
  'og_title':'','og_desc':'','tw_title':'','tw_desc':''}
 ENV=dict(sprintf=lambda fmt,*args: fmt % args,e=e,u=u,asset=asset,service_url=service_url,service_url_by_slug=service_url_by_slug,whatsapp_url=whatsapp_url,
- ai_url=ai_url,AI_PROMPT=AI_PROMPT,address_line=address_line,has_map=has_map,map_embed_url=map_embed_url,map_directions_url=map_directions_url,
+ ai_url=ai_url,AI_PROMPT=AI_PROMPT,OG_IMAGE=OG_IMAGE,OG_IMAGE_ALT=OG_IMAGE_ALT,address_line=address_line,has_map=has_map,map_embed_url=map_embed_url,map_directions_url=map_directions_url,
  MAP_LAT=MAP_LAT,MAP_LNG=MAP_LNG,MAP_ZOOM=MAP_ZOOM,
  SITE_URL=SITE_URL,BASE=BASE,SITE_NAME=SITE_NAME,SERVICES=SERVICES,CONTACT_EMAIL=CONTACT_EMAIL,
  CONTACT_PHONE=CONTACT_PHONE,CONTACT_PHONE_HREF=CONTACT_PHONE_HREF,CONTACT_ADDRESS=CONTACT_ADDRESS,

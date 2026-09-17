@@ -20,6 +20,13 @@ if (!defined('SITE_ENV')) {
 const BASE = '/';
 
 const SITE_NAME = 'Pera Dijital';
+
+/* The image a link to any page shows when it is shared (Open Graph and
+   X/Twitter): the full logo on the hero's pale lilac, 1200 × 630, the size
+   every platform crops from safely. Rename the file if it ever changes —
+   platforms cache it by URL for weeks. */
+const OG_IMAGE     = '/assets/img/og/pera-dijital-og.png';
+const OG_IMAGE_ALT = 'Pera Dijital logosu';
 const SITE_URL  = 'https://www.peradijital.com.tr';
 
 /* ▸ REPLACE: the email is still unconfirmed. Phone and address are real.
