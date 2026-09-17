@@ -2388,6 +2388,376 @@
   to { stroke-dashoffset: -14; }
 }
 
+/* ------------------------------------------------------------
+   GEO hero: brand content, structured data and source trust feed an AI
+   answer that cites the brand. Scoped to .geo.
+   ------------------------------------------------------------ */
+
+.service-hero__media--geo { container: geo / inline-size; }
+
+.geo {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+/* Narrow first: inputs, then the answer, then where the brand appears. */
+.geo__stage {
+  position: relative;
+  display: grid;
+  gap: 1.125rem;
+}
+
+.geo__links { display: none; }
+
+.geo-card,
+.geo-cite {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border: var(--hairline) solid rgb(19 19 19 / 0.14);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px rgb(19 19 19 / 0.05), 0 14px 30px -20px rgb(19 19 19 / 0.4);
+  transition: transform var(--dur-hover) var(--ease-out),
+              border-color var(--dur-hover) var(--ease-out);
+}
+
+.geo-card:hover,
+.geo-cite:hover {
+  transform: translateY(-2px);
+  border-color: rgb(111 59 221 / 0.55);
+}
+
+.geo__stage > * + *::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 1px);
+  left: 50%;
+  height: 1.125rem;
+  border-left: 1.5px dashed rgb(111 59 221 / 0.5);
+}
+
+.geo__links + .geo-card::before { display: none; }
+
+.geo-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 0.75rem 0.875rem;
+}
+
+.geo-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.geo-card__title {
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+  white-space: nowrap;
+}
+
+.geo-card__title--lg { font-size: 1rem; }
+
+.geo-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--accent);
+  background: var(--surface-tint);
+  border-radius: var(--radius-button);
+}
+
+.geo-card__icon--solid { color: var(--surface); background: var(--accent); }
+
+.geo-card__icon svg[fill="none"],
+.geo-cite svg { fill: none; }
+
+.geo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.geo-tag {
+  padding: 0.125rem 0.5rem;
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-medium);
+  line-height: 1.5;
+  white-space: nowrap;
+  background: var(--surface-tint);
+  border-radius: 999px;
+}
+
+/* Schema types in a code face: a hint of structure, not code. */
+.geo-tags--code .geo-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 var(--hairline) rgb(19 19 19 / 0.16);
+}
+
+.geo-tag--outline {
+  margin-left: auto;
+  color: var(--accent);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 var(--hairline) rgb(111 59 221 / 0.45);
+}
+
+/* ---- The AI answer ------------------------------------------------------- */
+.geo-card--answer {
+  gap: 0.625rem;
+  border-color: rgb(19 19 19 / 0.22);
+  box-shadow: 0 1px 2px rgb(19 19 19 / 0.06), 0 22px 44px -24px rgb(19 19 19 / 0.5);
+}
+
+.geo-chat {
+  display: grid;
+  gap: 0.625rem;
+}
+
+/* The question: a plain bubble on the right. */
+.geo-chat__ask {
+  justify-self: end;
+  max-width: 85%;
+  padding: 0.4375rem 0.75rem;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--wt-medium);
+  line-height: 1.35;
+  background: var(--surface-tint);
+  border-radius: 0.75rem 0.75rem 0.25rem 0.75rem;
+}
+
+/* The reply: the brand named, the rest as lines — nothing put in an
+   assistant's mouth beyond the name. */
+.geo-chat__reply {
+  display: grid;
+  gap: 0.375rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--accent);
+}
+
+.geo-chat__line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.geo-chat__brand {
+  flex: 0 0 auto;
+  padding: 0 0.25rem;
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: var(--wt-bold);
+  background: rgb(111 59 221 / 0.12);
+  border-radius: 0.25rem;
+}
+
+.geo-chat__bar {
+  height: 0.3125rem;
+  background: rgb(19 19 19 / 0.16);
+  border-radius: 2px;
+}
+
+.geo-chat__bar--inline { flex: 1 1 auto; }
+.geo-chat__bar--short { width: 62%; }
+
+.geo-sources {
+  display: grid;
+  gap: 0.3125rem;
+  padding-top: 0.5rem;
+  border-top: var(--hairline) solid var(--rule);
+}
+
+.geo-sources__label {
+  color: rgb(19 19 19 / 0.55);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.geo-source {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.3125rem 0.5rem;
+  border: var(--hairline) solid var(--rule);
+  border-radius: 0.5rem;
+}
+
+.geo-source__mark {
+  flex: 0 0 auto;
+  width: 0.875rem;
+  height: 0.875rem;
+  background: rgb(19 19 19 / 0.14);
+  border-radius: 0.25rem;
+}
+
+.geo-source__bar {
+  width: 45%;
+  height: 0.3125rem;
+  background: rgb(19 19 19 / 0.16);
+  border-radius: 2px;
+}
+
+/* The brand's own site among the sources. */
+.geo-source--own { border-color: rgb(111 59 221 / 0.45); }
+.geo-source--own .geo-source__mark { background: var(--accent); }
+
+.geo-source__name {
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--wt-bold);
+}
+
+/* ---- Citations ------------------------------------------------------------ */
+.geo-cite {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--wt-bold);
+  white-space: nowrap;
+}
+
+.geo-cite svg { flex: 0 0 auto; color: var(--accent); }
+
+.geo-cite--source {
+  color: var(--surface);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.geo-cite--source svg { color: var(--accent-light); }
+.geo-cite--source:hover { border-color: var(--accent-light); }
+
+.geo-cite__dot {
+  position: relative;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  margin-left: auto;
+  background: var(--accent-light);
+  border-radius: 50%;
+}
+
+.geo-cites {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+/* ---- Wide enough: the answer network ------------------------------------
+   24 columns, one-rem rows. Inputs down the left, each joining the answer's
+   left edge; the answer large on the right; where the brand appears sits
+   under it. Cards overlap only by padding; connectors run through gaps. */
+@container geo (min-width: 28rem) {
+  .geo__stage {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    grid-template-rows: repeat(27, 1rem);
+    gap: 0;
+  }
+
+  .geo__stage::before {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    background-image: radial-gradient(rgb(19 19 19 / 0.12) 1px, transparent 1.2px);
+    background-size: 1.25rem 1.25rem;
+    border-radius: var(--radius-panel);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 55%, transparent 85%);
+            mask-image: radial-gradient(ellipse at 50% 50%, #000 55%, transparent 85%);
+  }
+
+  .geo__stage > * + *::before { display: none; }
+
+  .geo-cites { display: contents; }
+
+  .geo-card,
+  .geo-cite { align-self: start; }
+
+  .geo-card--brand   { grid-column: 1 / 9;   grid-row: 1;  }
+  .geo-card--schema  { grid-column: 1 / 9;   grid-row: 9;  }
+  .geo-card--trust   { grid-column: 2 / 10;  grid-row: 19; }
+  .geo-card--answer  { grid-column: 10 / 25; grid-row: 4;  z-index: 2; }
+  .geo-cite--source  { grid-column: 13 / 25; grid-row: 20; z-index: 2; }
+  .geo-cite--mention { grid-column: 12 / 19; grid-row: 24; }
+  .geo-cite--web     { grid-column: 19 / 25; grid-row: 24; margin-left: 0.5rem; }
+
+  .geo__links {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .geo__links--narrow { display: none; }
+
+  .geo__link {
+    fill: none;
+    stroke: var(--accent);
+    stroke-opacity: 0.55;
+    stroke-width: 1.25;
+    stroke-dasharray: 3 4;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+/* Narrow board — the desktop column between roughly 960 and 1100px. The
+   input cards are too narrow for their titles on one line, so titles wrap,
+   every card grows, the rows below move down, the three citations stack
+   under the answer, and the narrow connector set replaces the wide one. */
+@container geo (min-width: 28rem) and (max-width: 35.99rem) {
+  .geo__stage { grid-template-rows: repeat(32, 1rem); }
+
+  .geo-card--brand .geo-card__title,
+  .geo-card--schema .geo-card__title,
+  .geo-card--trust .geo-card__title { white-space: normal; }
+
+  .geo-card--schema  { grid-row: 12; }
+  .geo-card--trust   { grid-row: 23; }
+  .geo-cite--source  { grid-column: 12 / 25; grid-row: 22; }
+  .geo-cite--mention { grid-column: 12 / 25; grid-row: 25; }
+  .geo-cite--web     { grid-column: 12 / 25; grid-row: 28; margin-left: 0; }
+
+  .geo__links:not(.geo__links--narrow) { display: none; }
+  .geo__links--narrow { display: block; }
+}
+
+/* ---- Motion ---------------------------------------------------------------
+   The three inputs flow into the answer; the citation dot pulses; hover
+   lifts a card. Nothing else, and all of it stops under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .geo__link--flow { animation: geo-flow 1.8s linear infinite; }
+
+  .geo-cite__dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent-light);
+    border-radius: 50%;
+    animation: ops-pulse 2.4s var(--ease-out) infinite;
+  }
+}
+
+@keyframes geo-flow {
+  to { stroke-dashoffset: -14; }
+}
+
 .avatar-row {
   display: flex;
   align-items: center;

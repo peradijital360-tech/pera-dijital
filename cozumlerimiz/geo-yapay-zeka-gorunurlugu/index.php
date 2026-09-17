@@ -82,14 +82,126 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       }
       </script>
 
-      <div class="service-hero__content">
-        <h1 class="service-hero__title" id="hero-title">
-          <span class="service-hero__title-main">Yapay Zekada Görünürlük (GEO)</span>
-          <span class="service-hero__title-sub">Yanıtın içinde anılmak, listenin başında olmak değil</span>
-        </h1>
-        <p class="service-hero__lede">Yapay zeka araçları soruları yanıtlarken belirli kaynakları anıyor. Bu çalışma, markanızın o kaynaklardan biri olma olasılığını artırmak için yapılıyor.</p>
-        <div class="service-hero__actions">
-          <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
+      <div class="service-hero__grid">
+        <div class="service-hero__content">
+          <h1 class="service-hero__title" id="hero-title">
+            <span class="service-hero__title-main">Yapay Zekada Görünürlük (GEO)</span>
+            <span class="service-hero__title-sub">Yanıtın içinde anılmak, listenin başında olmak değil</span>
+          </h1>
+          <p class="service-hero__lede">Yapay zeka araçları soruları yanıtlarken belirli kaynakları anıyor. Bu çalışma, markanızın o kaynaklardan biri olma olasılığını artırmak için yapılıyor.</p>
+          <div class="service-hero__actions">
+            <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
+          </div>
+        </div>
+        <div class="service-hero__media service-hero__media--geo">
+          <!-- An AI answer and the network behind it: the brand's own content,
+               the structured data that explains it, and the trust other sources
+               lend it all lead into the answer; the answer names the brand and
+               lists its site among its sources, and that citation is what the
+               work is for.
+
+               HTML, CSS and inline SVG; not a copy of any assistant's interface,
+               no assistant logos, no real schema code. NO SCORES OR NUMBERS: no
+               authority scores, percentages, rankings or numbered citations. The
+               answer text beyond "Pera Dijital" is shapes, so nothing is claimed
+               in an assistant's voice. One described image; titles are spans and
+               the connectors sit inside the aria-hidden stage.
+
+               Layout follows the width of this box (container query in
+               page.css): the three inputs down the left feeding the answer on
+               the right when there is room, the same order stacked when there is
+               not. -->
+          <figure class="geo" role="img" aria-label="Yapay zekada görünürlük: web sitesi, hizmet sayfaları ve rehber içeriklerden oluşan marka içeriği; Organization, Service, Article ve FAQ gibi yapılandırılmış veriler; referanslar, dış kaynaklar ve tutarlı marka bilgisiyle oluşan kaynak güveni birlikte yapay zekâ araçlarının yanıtını besler. Yanıt markayı anar ve markanın web sitesini kaynak olarak gösterir; marka kaynak olarak ve mention olarak yer alır.">
+            <div class="geo__stage" aria-hidden="true">
+
+              <!-- Connectors, in board units: x across 24 columns, y down
+                   one-rem rows. The three into the answer carry the flow. -->
+              <svg class="geo__links" viewBox="0 0 24 27" preserveAspectRatio="none" focusable="false">
+                <path class="geo__link geo__link--flow" d="M8 4.5 C8.6 4.5 8.4 7 9 7"/>
+                <path class="geo__link geo__link--flow" d="M8 12 C8.6 12 8.4 10.5 9 10.5"/>
+                <path class="geo__link geo__link--flow" d="M5 18 V17.4 C5 17 5.4 16.8 6 16.8 H9"/>
+                <path class="geo__link" d="M18 18 V19"/>
+                <path class="geo__link" d="M15 22.3 V23"/>
+                <path class="geo__link" d="M21.5 22.3 V23"/>
+              </svg>
+              <!-- The same connections for the narrow board, where titles and
+                   tags wrap, every card grows, and the three citations stack. -->
+              <svg class="geo__links geo__links--narrow" viewBox="0 0 24 32" preserveAspectRatio="none" focusable="false">
+                <path class="geo__link geo__link--flow" d="M8 5 C8.6 5 8.4 7 9 7"/>
+                <path class="geo__link geo__link--flow" d="M8 16 C8.6 16 8.4 14 9 14"/>
+                <path class="geo__link geo__link--flow" d="M9 25 H9.4 C10 25 10 24.4 10 23.6 V20.4"/>
+                <path class="geo__link" d="M18 20.4 V21"/>
+                <path class="geo__link" d="M17.5 23.4 V24"/>
+                <path class="geo__link" d="M17.5 26.6 V27"/>
+              </svg>
+
+              <!-- Inputs -->
+              <div class="geo-card geo-card--brand">
+                <span class="geo-card__head">
+                  <span class="geo-card__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 3h9l4 4v14H6z"/><path d="M14.5 3v4.5H19M9 12h7M9 15.5h7M9 19h4"/></svg></span>
+                  <span class="geo-card__title">Marka / İçerik</span>
+                </span>
+                <span class="geo-tags"><span class="geo-tag">Web sitesi</span><span class="geo-tag">Hizmet sayfaları</span><span class="geo-tag">Blog / rehber</span><span class="geo-tag">Marka bilgisi</span></span>
+              </div>
+
+              <div class="geo-card geo-card--schema">
+                <span class="geo-card__head">
+                  <span class="geo-card__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M8 4H7a2 2 0 00-2 2v3.5a2 2 0 01-2 2.5 2 2 0 012 2.5V18a2 2 0 002 2h1M16 4h1a2 2 0 012 2v3.5a2 2 0 002 2.5 2 2 0 00-2 2.5V18a2 2 0 01-2 2h-1"/></svg></span>
+                  <span class="geo-card__title">Yapılandırılmış Veri</span>
+                </span>
+                <span class="geo-tags geo-tags--code"><span class="geo-tag">Schema</span><span class="geo-tag">Organization</span><span class="geo-tag">Service</span><span class="geo-tag">Article</span><span class="geo-tag">FAQ</span></span>
+              </div>
+
+              <div class="geo-card geo-card--trust">
+                <span class="geo-card__head">
+                  <span class="geo-card__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.4-7.5 9.5-4.3-1.1-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg></span>
+                  <span class="geo-card__title">Kaynak Güveni</span>
+                </span>
+                <span class="geo-tags"><span class="geo-tag">Marka adı</span><span class="geo-tag">Referans</span><span class="geo-tag">Mention</span><span class="geo-tag">Dış kaynak</span><span class="geo-tag">Tutarlılık</span></span>
+              </div>
+
+              <!-- The AI answer: a question, an answer that names the brand, and
+                   the sources it drew on. No assistant's look, no numbered cites. -->
+              <div class="geo-card geo-card--answer">
+                <span class="geo-card__head">
+                  <span class="geo-card__icon geo-card__icon--solid"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 2.5c.5 4.6 2.4 6.9 7.5 7.5-5.1.6-7 2.9-7.5 7.5-.5-4.6-2.4-6.9-7.5-7.5 5.1-.6 7-2.9 7.5-7.5z"/><path d="M19 15.5c.2 1.8 1 2.7 3 3-2 .3-2.8 1.2-3 3-.2-1.8-1-2.7-3-3 2-.3 2.8-1.2 3-3z"/></svg></span>
+                  <span class="geo-card__title geo-card__title--lg">AI Yanıtı</span>
+                  <span class="geo-tag geo-tag--outline">Kaynaklı yanıt</span>
+                </span>
+                <span class="geo-chat">
+                  <span class="geo-chat__ask">Performans pazarlama ajansı önerir misin?</span>
+                  <span class="geo-chat__reply">
+                    <span class="geo-chat__line"><strong class="geo-chat__brand">Pera Dijital</strong><span class="geo-chat__bar geo-chat__bar--inline"></span></span>
+                    <span class="geo-chat__bar"></span>
+                    <span class="geo-chat__bar geo-chat__bar--short"></span>
+                  </span>
+                  <span class="geo-sources">
+                    <span class="geo-sources__label">Kaynaklar</span>
+                    <span class="geo-source geo-source--own"><span class="geo-source__mark"></span><span class="geo-source__name">peradijital.com.tr</span></span>
+                    <span class="geo-source"><span class="geo-source__mark"></span><span class="geo-source__bar"></span></span>
+                  </span>
+                </span>
+              </div>
+
+              <!-- Where the brand shows up in the answer -->
+              <div class="geo-cite geo-cite--source">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                <span>Kaynak olarak anılma</span>
+                <span class="geo-cite__dot"></span>
+              </div>
+              <div class="geo-cites">
+                <div class="geo-cite geo-cite--mention">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="3.5"/><path d="M15.5 12v1.5a2.5 2.5 0 005 0V12a8.5 8.5 0 10-3.3 6.7"/></svg>
+                  <span>Marka mention</span>
+                </div>
+                <div class="geo-cite geo-cite--web">
+                  <svg width="14" height="14" focusable="false"><use href="/assets/icons/sprite.svg#icon-globe"></use></svg>
+                  <span>Web kaynağı</span>
+                </div>
+              </div>
+
+            </div>
+          </figure>
         </div>
       </div>
 
