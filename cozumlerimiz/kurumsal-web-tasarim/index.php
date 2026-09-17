@@ -82,9 +82,96 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
             <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
           </div>
         </div>
-        <div class="service-hero__media">
-          <!-- LCP element: never lazy-loaded. -->
-          <img src="/assets/img/service/kurumsal-web-tasarim/hero.webp" alt="Yer tutucu: masaüstü ve mobil site tasarımı görünümü" width="1000" height="750" fetchpriority="high" decoding="async">
+        <div class="service-hero__media service-hero__media--build">
+          <!-- Build board: the same page four times, as it matures — sketched
+               in grey, designed in the brand colours, written as code, live in
+               a browser. That repetition is the message: one site, made for
+               this brand, not a theme filled in.
+
+               HTML, CSS and inline SVG; no image, no script, no screenshot, no
+               device frame. One described image to assistive technology; card
+               labels are spans, so the H1 stays the hero's only heading.
+
+               Layout follows the width of this box (container query in
+               page.css): a Z-shaped board — Wireframe → UI across, down to
+               Code, across to Live — when there is room, a vertical flow with
+               arrows between the cards when there is not. -->
+          <figure class="build" role="img" aria-label="Kurumsal web tasarım süreci: bilgi mimarisiyle çizilen wireframe, marka renkleriyle UI tasarımına dönüşür, tasarım özel kodla geliştirilir ve responsive, teknik SEO’ya uygun ve hızlı bir site olarak yayına alınır.">
+            <div class="build__stage" aria-hidden="true">
+
+              <!-- Connectors, in board units: x across 24 columns, y down
+                   one-rem rows. Arrowheads are the .build-arrow elements. -->
+              <svg class="build__links" viewBox="0 0 24 34" preserveAspectRatio="none" focusable="false">
+                <path class="build__link build__link--live" d="M13 3 H16.4 C17.5 3 17.5 3.8 17.5 5 V6"/>
+                <path class="build__link" d="M11 15.5 H7.6 C6.5 15.5 6.5 16 6.5 16.4 V17"/>
+                <path class="build__link build__link--wide" d="M4.5 27.2 V29.4 C4.5 30.5 5.2 30.5 6.3 30.5 H9"/>
+                <path class="build__link build__link--narrow" d="M4.5 27.2 V29.4 C4.5 30.5 5.2 30.5 6.3 30.5 H11"/>
+              </svg>
+
+              <!-- 1 · Wireframe -->
+              <div class="build-card build-card--wire">
+                <span class="build-card__head"><span class="build-card__title">Wireframe</span><span class="build-tag">Bilgi Mimarisi</span></span>
+                <span class="sketch sketch--wire">
+                  <span class="sketch__nav"><span class="sketch__logo"></span><span class="sketch__links"><span></span><span></span><span></span></span></span>
+                  <span class="sketch__hero">
+                    <span class="sketch__copy"><span class="sketch__h"></span><span class="sketch__h sketch__h--short"></span><span class="sketch__p"></span><span class="sketch__btn"></span></span>
+                    <span class="sketch__img"></span>
+                  </span>
+                  <span class="sketch__grid"><span></span><span></span><span></span></span>
+                </span>
+              </div>
+
+              <span class="build-arrow build-arrow--1"><svg width="14" height="14" focusable="false"><use href="/assets/icons/sprite.svg#icon-arrow"></use></svg></span>
+
+              <!-- 2 · UI design: the same layout, finished -->
+              <div class="build-card build-card--ui">
+                <span class="build-card__head"><span class="build-card__title">UI Design</span><span class="build-tag build-tag--accent">UI/UX</span></span>
+                <span class="sketch sketch--ui">
+                  <span class="sketch__nav"><span class="sketch__logo"></span><span class="sketch__links"><span></span><span></span><span></span></span></span>
+                  <span class="sketch__hero">
+                    <span class="sketch__copy"><span class="sketch__h"></span><span class="sketch__h sketch__h--short"></span><span class="sketch__p"></span><span class="sketch__btn"></span></span>
+                    <span class="sketch__img"></span>
+                  </span>
+                  <span class="sketch__grid"><span></span><span></span><span></span></span>
+                </span>
+              </div>
+
+              <span class="build-arrow build-arrow--2"><svg width="14" height="14" focusable="false"><use href="/assets/icons/sprite.svg#icon-arrow"></use></svg></span>
+
+              <!-- 3 · Code: a few short lines, not a real listing -->
+              <div class="build-card build-card--code">
+                <span class="build-card__head"><span class="build-card__title">Özel Kod</span><span class="build-files"><span class="build-file build-file--on">index.html</span><span class="build-file">site.css</span></span></span>
+                <span class="code">
+                  <span class="code__line"><span class="code__n">1</span><span class="code__t">&lt;header</span> <span class="code__a">class</span>=<span class="code__s">"site"</span><span class="code__t">&gt;</span></span>
+                  <span class="code__line"><span class="code__n">2</span><span class="code__in"></span><span class="code__t">&lt;nav&gt;</span>…<span class="code__t">&lt;/nav&gt;</span></span>
+                  <span class="code__line"><span class="code__n">3</span><span class="code__t">&lt;/header&gt;</span></span>
+                  <span class="code__line"><span class="code__n">4</span><span class="code__a">.site</span> { <span class="code__p">display</span>: grid }</span>
+                  <span class="code__line"><span class="code__n">5</span><span class="code__k">const</span> nav = …<span class="code__cursor"></span></span>
+                </span>
+              </div>
+
+              <span class="build-arrow build-arrow--3"><svg width="14" height="14" focusable="false"><use href="/assets/icons/sprite.svg#icon-arrow"></use></svg></span>
+
+              <!-- 4 · Live site: a plain window with an address field, no device -->
+              <div class="build-card build-card--live">
+                <span class="build-bar">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+                  <span class="build-bar__url">markaniz.com.tr</span>
+                  <span class="build-live"><span class="build-live__dot"></span>Yayında</span>
+                </span>
+                <span class="sketch sketch--live">
+                  <span class="sketch__nav"><span class="sketch__logo"></span><span class="sketch__links"><span></span><span></span><span></span></span></span>
+                  <span class="sketch__hero">
+                    <span class="sketch__copy"><span class="sketch__h"></span><span class="sketch__h sketch__h--short"></span><span class="sketch__p"></span><span class="sketch__btn"></span></span>
+                    <span class="sketch__img"></span>
+                  </span>
+                  <span class="sketch__grid"><span></span><span></span><span></span></span>
+                </span>
+                <span class="build-tags"><span class="build-tag">Responsive</span><span class="build-tag">Teknik SEO</span><span class="build-tag">Hız</span></span>
+              </div>
+
+            </div>
+          </figure>
         </div>
       </div>
 
