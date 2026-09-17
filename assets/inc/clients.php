@@ -49,8 +49,6 @@ const CLIENTS = [
        value the others should converge on once re-exported tight. */
     ['file' => 'birgundekargo.webp', 'name' => 'Bir Günde Kargo', 'sector' => 'lojistik', 'logo_h' => '2.25rem', 'width' => 327, 'height' => 94, 'href' => ''],
 
-    ['file' => 'fikoocakbasi.webp', 'name' => 'Fiko Ocakbaşı', 'sector' => 'gastronomi', 'logo_h' => '3.4375rem', 'width' => 600, 'height' => 150, 'href' => ''],  /* CAPPED: wants to be bigger but the letterboxed frame will not allow it — re-crop */
-
     ['file' => 'orka.webp', 'name' => 'Orka', 'sector' => 'banyo', 'logo_h' => '2.375rem', 'width' => 600, 'height' => 150, 'href' => ''],
 
     ['file' => 'banyomarka.webp', 'name' => 'Banyomarka', 'sector' => 'e-ticaret', 'logo_h' => '2.0625rem', 'width' => 600, 'height' => 150, 'href' => ''],
