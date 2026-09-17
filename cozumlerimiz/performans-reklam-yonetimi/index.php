@@ -81,9 +81,102 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
             <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
           </div>
         </div>
-        <div class="service-hero__media">
-          <!-- LCP element: never lazy-loaded. -->
-          <img src="/assets/img/service/hero.webp" alt="Yer tutucu: kampanya panosu görünümü" width="1000" height="750" fetchpriority="high" decoding="async">
+        <div class="service-hero__media service-hero__media--ops">
+          <!-- Campaign operations board: five floating cards that say what the
+               service does — run the campaigns, test the creative, track the
+               conversions, move the budget — on Google Ads and Meta Ads.
+               HTML, CSS and inline SVG; no image, no script.
+
+               One described image to assistive technology; inside, every card
+               label is a span, never a heading, so the page's H1 stays the only
+               heading in the hero.
+
+               NO NUMBERS anywhere: no spend, no ROAS, no counts, no rates. The
+               chart has no axis and no values. States are words ("Aktif",
+               "Güncel"), never results.
+
+               Layout is decided by the width of this box, not the viewport
+               (container query in page.css): the overlapping board needs about
+               28rem, and below that the cards stack in a tidy column. -->
+          <figure class="ad-ops" role="img" aria-label="Performans reklam yönetimi paneli: Google Ads ve Meta Ads kampanyaları Search, Performance ve Remarketing yapısıyla yönetilir; reklam kreatifleri A/B testiyle karşılaştırılır; GA4, form, telefon ve WhatsApp dönüşümleri takip edilir; bütçe sonuçlara göre yeniden dağıtılır.">
+            <div class="ad-ops__stage" aria-hidden="true">
+
+              <!-- In board units: x is the 12 columns, y the 32 one-rem rows. -->
+              <svg class="ad-ops__links" viewBox="0 0 12 33" preserveAspectRatio="none" focusable="false">
+                <path d="M11.5 3.4 V12.5"/>
+                <path d="M9 9 H9.6 C10.1 9 10.1 9.6 10.1 10.2 V12.5"/>
+                <path d="M2 24.6 V27 C2 28 2.6 28.5 4 28.5"/>
+              </svg>
+
+              <!-- 1 · Campaign management -->
+              <div class="ops-card ops-card--main">
+                <div class="ops-card__head">
+                  <span class="ops-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="17" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg></span>
+                  <span class="ops-card__title">Kampanya Yönetimi</span>
+                  <span class="ops-status"><span class="ops-status__dot"></span>Aktif</span>
+                </div>
+                <span class="ops-tags">
+                  <span class="ops-tag">Search</span>
+                  <span class="ops-tag">Performance</span>
+                  <span class="ops-tag">Remarketing</span>
+                </span>
+                <span class="ops-rows">
+                  <span class="ops-row"><span class="ops-row__name">Hedefleme</span><span class="ops-row__state">Güncel</span></span>
+                  <span class="ops-row"><span class="ops-row__name">Teklif stratejisi</span><span class="ops-row__state">Güncel</span></span>
+                  <span class="ops-row"><span class="ops-row__name">Kreatif seti</span><span class="ops-row__state ops-row__state--accent">Testte</span></span>
+                </span>
+              </div>
+
+              <!-- 2 · Creative test -->
+              <div class="ops-card ops-card--creative">
+                <div class="ops-card__head">
+                  <span class="ops-card__title">Kreatif Test</span>
+                  <span class="ops-pill">A/B</span>
+                </div>
+                <span class="ops-thumbs">
+                  <span class="ops-thumb"><span class="ops-thumb__art ops-thumb__art--a"></span><span class="ops-thumb__label">A</span></span>
+                  <span class="ops-thumb ops-thumb--lead"><span class="ops-thumb__art ops-thumb__art--b"></span><span class="ops-thumb__label">B</span></span>
+                  <span class="ops-thumb"><span class="ops-thumb__art ops-thumb__art--c"></span><span class="ops-thumb__label">C</span></span>
+                </span>
+              </div>
+
+              <!-- 3 · Conversion tracking -->
+              <div class="ops-card ops-card--tracking">
+                <div class="ops-card__head">
+                  <span class="ops-card__title">Dönüşüm Takibi</span>
+                </div>
+                <span class="ops-points">
+                  <span class="ops-point"><svg width="16" height="16" focusable="false"><use href="/assets/icons/sprite.svg#icon-chart"></use></svg>GA4</span>
+                  <span class="ops-point"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg>Form</span>
+                  <span class="ops-point"><svg width="16" height="16" focusable="false"><use href="/assets/icons/sprite.svg#icon-phone"></use></svg>Telefon</span>
+                  <span class="ops-point"><svg width="16" height="16" focusable="false"><use href="/assets/icons/sprite.svg#icon-whatsapp"></use></svg>WhatsApp</span>
+                </span>
+              </div>
+
+              <!-- 4 · Budget optimisation: shape only, no axis, no values -->
+              <div class="ops-card ops-card--budget">
+                <div class="ops-card__head">
+                  <span class="ops-card__title">Bütçe Optimizasyonu</span>
+                </div>
+                <svg class="ops-chart" viewBox="0 0 120 44" preserveAspectRatio="none" focusable="false">
+                  <rect class="ops-chart__bar" x="4"  y="26" width="12" height="18" rx="2"/>
+                  <rect class="ops-chart__bar" x="24" y="30" width="12" height="14" rx="2"/>
+                  <rect class="ops-chart__bar" x="44" y="20" width="12" height="24" rx="2"/>
+                  <rect class="ops-chart__bar ops-chart__bar--on" x="64" y="12" width="12" height="32" rx="2"/>
+                  <rect class="ops-chart__bar" x="84" y="22" width="12" height="22" rx="2"/>
+                  <rect class="ops-chart__bar ops-chart__bar--on" x="104" y="6" width="12" height="38" rx="2"/>
+                  <path class="ops-chart__trend" d="M10 22 C30 26 40 16 50 16 S66 8 70 8 S96 16 110 3"/>
+                </svg>
+              </div>
+
+              <!-- 5 · Platforms: names only, no logos, no platform UI -->
+              <div class="ops-card ops-card--platforms">
+                <span class="ops-platform"><span class="ops-platform__mark"></span>Google Ads</span>
+                <span class="ops-platform"><span class="ops-platform__mark ops-platform__mark--alt"></span>Meta Ads</span>
+              </div>
+
+            </div>
+          </figure>
         </div>
       </div>
 

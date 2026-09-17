@@ -296,6 +296,403 @@
   border-radius: var(--radius-card);
 }
 
+/* ------------------------------------------------------------
+   Performance ads hero: floating operations board
+   Scoped to .ad-ops, so the other service heroes keep their images.
+   ------------------------------------------------------------ */
+
+/* The board decides its own layout from its own width. */
+.service-hero__media--ops { container: ad-ops / inline-size; }
+
+.ad-ops {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+/* Narrow first: a clean column with the cards nudged alternately left and
+   right, so the stack still reads as loose cards rather than a list. */
+.ad-ops__stage {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ad-ops__links { display: none; }
+
+.ops-card {
+  position: relative;
+  z-index: 1;
+  padding: 0.875rem 1rem;
+  background: var(--surface);
+  border: var(--hairline) solid rgb(19 19 19 / 0.14);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px rgb(19 19 19 / 0.05), 0 14px 30px -20px rgb(19 19 19 / 0.4);
+  transition: transform var(--dur-hover) var(--ease-out),
+              border-color var(--dur-hover) var(--ease-out);
+}
+
+.ops-card:hover {
+  transform: translateY(-2px);
+  border-color: rgb(111 59 221 / 0.55);
+}
+
+.ops-card--main     { margin-right: 1.25rem; }
+.ops-card--creative { margin-left: 1.25rem; }
+.ops-card--tracking { margin-right: 1.25rem; }
+.ops-card--budget   { margin-left: 1.25rem; }
+.ops-card--platforms { justify-self: start; }
+
+.ops-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.ops-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  color: var(--accent);
+  background: var(--surface-tint);
+  border-radius: var(--radius-button);
+}
+
+.ops-card__icon svg,
+.ops-point svg[viewBox] { fill: none; }
+
+.ops-card__title {
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: var(--wt-bold);
+  line-height: var(--lh-h3);
+}
+
+/* ---- Status "Aktif" ---- */
+.ops-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  margin-left: auto;
+  padding: 0.1875rem 0.5625rem;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--wt-bold);
+  background: var(--surface-tint);
+  border-radius: 999px;
+}
+
+.ops-status__dot {
+  position: relative;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.ops-pill {
+  margin-left: auto;
+  padding: 0.125rem 0.5rem;
+  color: var(--surface);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-bold);
+  letter-spacing: 0.04em;
+  background: var(--ink);
+  border-radius: 999px;
+}
+
+/* ---- Campaign types and setup rows ---- */
+.ops-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3125rem;
+  margin-top: 0.75rem;
+}
+
+.ops-tag {
+  padding: 0.1875rem 0.5625rem;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--wt-medium);
+  border: var(--hairline) solid rgb(19 19 19 / 0.16);
+  border-radius: 999px;
+}
+
+.ops-rows {
+  display: grid;
+  margin-top: 0.75rem;
+}
+
+.ops-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-block: 0.4375rem;
+  font-size: 0.8125rem;
+  border-top: var(--hairline) solid var(--rule);
+}
+
+.ops-row__name { color: var(--ink); }
+
+.ops-row__state {
+  font-size: 0.75rem;
+  font-weight: var(--wt-medium);
+}
+
+.ops-row__state::before {
+  content: "";
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  margin-right: 0.375rem;
+  vertical-align: 0.0625rem;
+  background: rgb(19 19 19 / 0.35);
+  border-radius: 50%;
+}
+
+.ops-row__state--accent { color: var(--accent); }
+.ops-row__state--accent::before { background: var(--accent); }
+
+/* ---- Creative thumbnails: abstract compositions, never real ads ---- */
+.ops-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.ops-thumb {
+  display: grid;
+  gap: 0.3125rem;
+  justify-items: center;
+}
+
+.ops-thumb__art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--surface-tint);
+  border: var(--hairline) solid rgb(19 19 19 / 0.12);
+  border-radius: 0.5rem;
+}
+
+.ops-thumb__art::before,
+.ops-thumb__art::after {
+  content: "";
+  position: absolute;
+  border-radius: 0.1875rem;
+}
+
+.ops-thumb__art--a::before { top: 16%; left: 16%; width: 36%; aspect-ratio: 1; background: var(--accent-light); border-radius: 50%; }
+.ops-thumb__art--a::after  { left: 16%; bottom: 16%; width: 60%; height: 0.3125rem; background: var(--ink); box-shadow: 0 -0.5rem 0 rgb(19 19 19 / 0.3); }
+
+.ops-thumb__art--b { background: var(--ink); border-color: var(--ink); }
+.ops-thumb__art--b::before { top: 14%; right: 14%; width: 44%; height: 38%; background: var(--accent); }
+.ops-thumb__art--b::after  { left: 14%; bottom: 16%; width: 56%; height: 0.3125rem; background: var(--surface); box-shadow: 0 -0.5rem 0 rgb(255 255 255 / 0.4); }
+
+.ops-thumb__art--c { background: var(--surface); }
+.ops-thumb__art--c::before { inset: 12% 12% 42% 12%; background: var(--surface-tint); }
+.ops-thumb__art--c::after  { left: 12%; bottom: 16%; width: 44%; height: 0.75rem; background: var(--ink); border-radius: 999px; }
+
+.ops-thumb__label {
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: var(--wt-bold);
+}
+
+/* The variant currently ahead: an outline and a filled letter. A test
+   state, not a result. */
+.ops-thumb--lead .ops-thumb__art { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.ops-thumb--lead .ops-thumb__label {
+  padding-inline: 0.375rem;
+  color: var(--surface);
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+/* ---- Conversion points ---- */
+.ops-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+}
+
+.ops-point {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  min-width: 0;
+  padding: 0.375rem 0.5rem;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: var(--wt-medium);
+  background: var(--surface-tint);
+  border-radius: var(--radius-button);
+}
+
+.ops-point svg { flex: 0 0 auto; color: var(--accent); }
+
+/* ---- Budget chart ---- */
+.ops-chart {
+  display: block;
+  width: 100%;
+  height: 3.25rem;
+  margin-top: 0.75rem;
+  overflow: visible;
+}
+
+.ops-chart__bar { fill: rgb(19 19 19 / 0.1); }
+.ops-chart__bar--on { fill: var(--accent-light); }
+
+.ops-chart__trend {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ---- Platforms ---- */
+.ops-card--platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  padding: 0.5rem;
+}
+
+.ops-platform {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.3125rem 0.625rem;
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: var(--wt-bold);
+  white-space: nowrap;
+  background: var(--surface-tint);
+  border-radius: var(--radius-button);
+}
+
+.ops-platform__mark {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+.ops-platform__mark--alt {
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* ---- Wide enough: the floating board ------------------------------------
+   Twelve columns, rows of 1rem. Cards are placed by their top-left corner
+   and take their own height; the overlaps are planned onto empty areas —
+   the right of the main card (its rows stop short), and card padding
+   elsewhere — so no label is ever covered. */
+@container ad-ops (min-width: 28rem) {
+  .ad-ops__stage {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(32, 1rem);
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  /* Faint dot grid under the cards: the board's surface, not decoration
+     for its own sake. */
+  .ad-ops__stage::before {
+    content: "";
+    position: absolute;
+    inset: -0.5rem -0.5rem;
+    background-image: radial-gradient(rgb(19 19 19 / 0.12) 1px, transparent 1.2px);
+    background-size: 1.25rem 1.25rem;
+    border-radius: var(--radius-panel);
+    -webkit-mask-image: radial-gradient(ellipse at 55% 50%, #000 55%, transparent 85%);
+            mask-image: radial-gradient(ellipse at 55% 50%, #000 55%, transparent 85%);
+  }
+
+  .ops-card { margin: 0; align-self: start; }
+
+  .ops-card--platforms { grid-column: 7 / 13;  grid-row: 1;  justify-self: end; z-index: 2; }
+  .ops-card--main      { grid-column: 1 / 10;  grid-row: 4;  }
+  .ops-card--creative  { grid-column: 7 / 13;  grid-row: 12; z-index: 2; }
+  .ops-card--tracking  { grid-column: 1 / 7;   grid-row: 17; z-index: 3; }
+  .ops-card--budget    { grid-column: 5 / 11;  grid-row: 24; z-index: 4; }
+
+  /* Square thumbnails on the board keep the creative card short enough
+     that the budget card below only ever overlaps its padding. */
+  .ops-thumb__art { aspect-ratio: 1; }
+
+  /* The rows stop short of the card's right side, which is where the
+     creative card lands. */
+  .ops-card--main .ops-rows { max-width: 58%; }
+
+  .ad-ops__links {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .ad-ops__links path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-opacity: 0.5;
+    stroke-width: 1.25;
+    stroke-dasharray: 3 4;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+/* ---- Motion ---------------------------------------------------------------
+   A slow drift on each card (the individual translate property, so hover's
+   transform still adds its lift), a pulse on the live dot. Transform and
+   opacity only; nothing moves under reduced motion or on the narrow stack. */
+@media (prefers-reduced-motion: no-preference) {
+  .ops-status__dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: ops-pulse 2.4s var(--ease-out) infinite;
+  }
+
+  @container ad-ops (min-width: 28rem) {
+    .ops-card { animation: ops-float 9s ease-in-out infinite; }
+    .ops-card--platforms { animation-delay: -1.5s; }
+    .ops-card--creative  { animation-delay: -3s; }
+    .ops-card--tracking  { animation-delay: -4.5s; }
+    .ops-card--budget    { animation-delay: -6s; }
+
+    .ad-ops__links path { animation: ops-dash 2.2s linear infinite; }
+  }
+}
+
+@keyframes ops-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -4px; }
+}
+
+@keyframes ops-pulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  70%  { transform: scale(3.2); opacity: 0; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+@keyframes ops-dash {
+  to { stroke-dashoffset: -14; }
+}
+
 .avatar-row {
   display: flex;
   align-items: center;
