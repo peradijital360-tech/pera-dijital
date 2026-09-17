@@ -53,8 +53,6 @@ const CLIENTS = [
 
     ['file' => 'banyomarka.webp', 'name' => 'Banyomarka', 'sector' => 'e-ticaret', 'logo_h' => '2.0625rem', 'width' => 600, 'height' => 150, 'href' => ''],
 
-    ['file' => 'bricks4kidz.webp', 'name' => 'Bricks 4 Kidz', 'sector' => 'egitim', 'logo_h' => '3.4375rem', 'width' => 600, 'height' => 150, 'href' => ''],  /* CAPPED: wants to be bigger but the letterboxed frame will not allow it — re-crop */
-
     ['file' => 'armisyatak.webp', 'name' => 'Armis Yatak', 'sector' => 'ev-yasam', 'logo_h' => '2rem', 'width' => 600, 'height' => 150, 'href' => ''],
 
     ['file' => 'milamore.webp', 'name' => 'Milamore', 'sector' => 'mucevher', 'logo_h' => '2.9375rem', 'width' => 600, 'height' => 150, 'href' => ''],
