@@ -1,4 +1,13 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/config.php';
+
+// Unfinished case studies stay unavailable until their content is verified.
+if (!SHOW_WORK) {
+    http_response_code(404);
+    require $_SERVER['DOCUMENT_ROOT'] . '/404.php';
+    exit;
+}
+
 $page = [
     'title'       => "İşlerimiz — Pera Dijital",
     'description' => "Kurumsal web siteleri, e-ticaret altyapıları, marka kimlikleri ve Meta reklam kampanyaları. Yayına aldığımız seçili işler ve her biri için ne yaptığımız.",
@@ -13,9 +22,6 @@ $page = [
     'og_desc'     => "Kurumsal web siteleri, e-ticaret altyapıları, marka kimlikleri ve Meta reklam kampanyaları. Yayına aldığımız seçili işler.",
     'tw_desc'     => "Kurumsal web siteleri, e-ticaret altyapıları, marka kimlikleri ve Meta reklam kampanyaları.",
 ];
-/* Out of the live site while SHOW_WORK is false. noindex keeps it out of
-   the index; nofollow stops it passing signals to the other work pages. */
-$page['robots'] = SHOW_WORK ? '' : 'noindex, nofollow';
 require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 ?>
