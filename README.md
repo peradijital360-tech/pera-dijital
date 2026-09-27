@@ -256,20 +256,19 @@ dead end.
 studies are **not deleted** — every file is where it was. While the flag is off:
 
 - no header nav link, no footer link
-- both pages send `<meta name="robots" content="noindex, nofollow">`
+- both pages return the branded HTTP 404 page with `noindex, follow`
 - neither URL is in `sitemap.xml`
 - Referanslarımız no longer links across to them
 
-The pages still answer on their URLs. That is deliberate: they are unlisted,
-not blocked, so you can send someone the link. **Do not add a `Disallow` for
-them in `robots.txt`** — a blocked crawler cannot read the `noindex`, and the
-URL can then get indexed anyway from an external link. `noindex` only works if
-the crawler is allowed in.
+The unfinished case studies are unavailable while the flag is off, including
+to visitors with a direct link. This keeps placeholder content off the public
+site. Review them locally before enabling the flag. Leave robots.txt open so
+crawlers can see the 404 response.
 
 ### Re-enabling İşlerimiz — three steps
 
 1. `assets/inc/config.php` → `const SHOW_WORK = true;`
-   This alone restores the header link, the footer link and both `robots` tags.
+   This restores the header link, footer link and access to both pages.
 2. `sitemap.xml` → add the two `<url>` blocks back:
    `https://www.peradijital.com.tr/islerimiz/` and `/islerimiz/marka-01/`
    (`changefreq`/`priority` copied from any neighbouring entry).

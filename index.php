@@ -1,7 +1,7 @@
 <?php
 $page = [
-    'title'       => "Pera Dijital — Kâra dönüşen performans reklamları",
-    'description' => "Sabit aylık ücretle kıdemli bir performans pazarlama ekibi. Strateji, kreatif, medya satın alma ve raporlama tek elden; kampanyalar yedi iş gününde yayında.",
+    'title'       => "İstanbul Dijital Pazarlama Ajansı | Pera Dijital",
+    'description' => "İstanbul Bahçeşehir merkezli Pera Dijital; Google Ads, Meta Ads, web tasarım ve ölçümlemeyi bir araya getirir. İşletmeniz için hizmetleri inceleyin, teklif alın.",
     'canonical'   => '/',
     'nav'         => 'home',
     'css'         => [],
@@ -25,7 +25,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 
       <div class="hero__content">
         <h1 class="hero__title" id="hero-title"><span class="hero__title-line">Kâr Getiren</span> <span class="hero__title-line">Performans Reklamları.</span></h1>
-        <p class="hero__lede">Google Ads, Meta Ads, landing page ve ölçümlemeyi tek sistemde yönetiyoruz. Reklam bütçesini görünür sonuçlara dönüştürüyoruz.</p>
+        <p class="hero__lede">İstanbul Bahçeşehir merkezli dijital pazarlama ajansıyız. Google Ads, Meta Ads, landing page ve ölçümlemeyi tek sistemde yönetiyoruz. Türkiye genelindeki markaların reklam bütçesini görünür sonuçlara dönüştürmek için çalışıyoruz.</p>
         <div class="hero__actions">
           <a class="btn btn--dark btn--lg" href="#contact" data-hero-cta>Projeyi Başlatalım</a>
           <a class="btn btn--accent btn--lg" href="#process">Nasıl Çalışıyoruz?</a>
@@ -254,29 +254,15 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
        ============================================================ -->
   <section class="proof" id="proof" aria-labelledby="proof-title" data-reveal>
     <div class="proof__inner">
-      <h2 class="section-title section-title--centre" id="proof-title">Bunun getirdiği sonuçlar</h2>
-
-      <!-- ▸ REPLACE EVERY FIGURE BELOW WITH A REAL, VERIFIABLE RESULT.
-             These four are illustrative placeholders only. Keep the qualifier
-             format: client type, then time window. Do not ship them as-is. -->
-      <dl class="proof__grid">
-        <div class="card metric-card" style="--i:0">
-          <dt class="metric-card__figure"><span class="metric-card__value" data-placeholder>118</span><span class="metric-card__unit">% ROAS</span></dt>
-          <dd class="metric-card__note">Harmanlanmış reklam getirisi, DTC ev tekstili hesabı, ilk iki çeyrek</dd>
+      <h2 class="section-title section-title--centre" id="proof-title">Referanslarımızı inceleyin</h2>
+      <!-- Publish measured results here only with a verified source and period. -->
+      <div class="proof__reference">
+        <p class="section-lede">Birlikte çalıştığımız markaları referanslar sayfamızda görebilir, işletmenizin ihtiyacına uygun hizmeti inceleyebilirsiniz.</p>
+        <div class="hero__actions">
+          <a class="btn btn--dark" href="/referanslarimiz/">Referanslarımızı Görün</a>
+          <a class="btn btn--accent" href="/cozumlerimiz/">Hizmetleri İnceleyin</a>
         </div>
-        <div class="card metric-card" style="--i:1">
-          <dt class="metric-card__figure"><span class="metric-card__value" data-placeholder>34</span><span class="metric-card__unit">% düşüş</span></dt>
-          <dd class="metric-card__note">Nitelikli potansiyel müşteri maliyeti, B2B hizmet hesabı, altı ay</dd>
-        </div>
-        <div class="card metric-card" style="--i:2">
-          <dt class="metric-card__figure"><span class="metric-card__value" data-placeholder>7</span><span class="metric-card__unit">gün</span></dt>
-          <dd class="metric-card__note">Başlangıçtan ilk kampanyanın yayınına kadar ortanca süre, son on iki müşteri</dd>
-        </div>
-        <div class="card metric-card" style="--i:3">
-          <dt class="metric-card__figure"><span class="metric-card__value" data-placeholder>41</span><span class="metric-card__unit">içerik</span></dt>
-          <dd class="metric-card__note">Ayda üretilen yeni kreatif, aktif hesaplar ortalaması</dd>
-        </div>
-      </dl>
+      </div>
     </div>
   </section>
 

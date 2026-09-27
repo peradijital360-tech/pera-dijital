@@ -812,6 +812,16 @@ body {
    SECTION — PROOF
    ============================================================ */
 
+.proof__reference {
+  max-width: var(--measure);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.proof__reference .hero__actions {
+  justify-content: center;
+}
+
 .proof__grid {
   display: grid;
   grid-template-columns: 1fr;
