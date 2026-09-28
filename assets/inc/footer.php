@@ -14,9 +14,11 @@ $social = [
 ];
 $footerNav = [
     ['title' => 'Hizmetler', 'links' => [
+        ['label' => 'Meta Reklam Yönetimi', 'href' => 'cozumlerimiz/meta-reklam-yonetimi/'],
+        ['label' => 'Shopify Site Kurulumu', 'href' => 'cozumlerimiz/shopify-site-kurulumu/'],
         ['label' => 'Performans Pazarlama',    'href' => 'cozumlerimiz/performans-reklam-yonetimi/'],
         ['label' => 'Web Tasarım',             'href' => 'cozumlerimiz/kurumsal-web-tasarim/'],
-        ['label' => 'E-Ticaret Danışmanlığı',  'href' => 'cozumlerimiz/e-ticaret-site-kurulumu/'],
+        ['label' => 'E-Ticaret Site Kurulumu',  'href' => 'cozumlerimiz/e-ticaret-site-kurulumu/'],
         ['label' => 'SEO',                     'href' => 'cozumlerimiz/seo/'],
         ['label' => 'Lead Generation',         'href' => 'cozumlerimiz/lead-generation/'],
     ]],
@@ -133,7 +135,7 @@ $aiLinks = [
         "https://www.linkedin.com/company/peradijital/",
         "https://www.instagram.com/peradijital/"
       ],
-      "description": "İstanbul Bahçeşehir’de markalar için tasarım, yazılım ve dijital pazarlama çalışmaları yürüten dijital ajans. Web sitelerini hazır tema kullanmadan elde kodlar; reklam, SEO ve yapay zeka görünürlüğü çalışmalarını aynı ekipte yürütür.",
+      "description": "İstanbul Başakşehir merkezli dijital pazarlama ajansı. E-ticaret markalarına aylık Meta reklam yönetimi, kurumsal web tasarım, Shopify mağaza kurulumu, logo ve kurumsal kimlik tasarımı hizmetleri sunar.",
       "foundingDate": "2017",
       "email": "hello@peradijital.com.tr",
       "telephone": "+90-501-559-24-19",

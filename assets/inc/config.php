@@ -134,13 +134,15 @@ if (!defined('SMTP_PASS')) {
    'slug' empty + 'built' false means the page does not exist yet, so the
    link falls back to the solutions index instead of 404ing. */
 const SERVICES = [
-    ['slug' => 'performans-reklam-yonetimi', 'label' => 'Performans Reklam Yönetimi', 'desc' => 'Meta, Google ve TikTok’ta kampanya kurulumu, kreatif ve günlük optimizasyon', 'built' => true],
-    ['slug' => 'lead-generation',            'label' => 'Lead Generation',             'desc' => 'İnşaat, gayrimenkul ve hizmet işletmeleri için nitelikli müşteri kaydı', 'built' => true],
+    ['slug' => 'meta-reklam-yonetimi', 'label' => 'Meta Reklam Yönetimi', 'desc' => 'E-ticaret markaları ve butiklere aylık Instagram ve Facebook reklam danışmanlığı', 'built' => true],
     ['slug' => 'kurumsal-web-tasarim',      'label' => 'Kurumsal Web Tasarım',        'desc' => 'Hazır tema kullanmadan kodlanan kurumsal siteler ve landing page’ler', 'built' => true],
+    ['slug' => 'shopify-site-kurulumu', 'label' => 'Shopify Site Kurulumu', 'desc' => 'Shopify mağaza tasarımı, tema özelleştirme, ürün yapısı ve yayın hazırlığı', 'built' => true],
+    ['slug' => 'performans-reklam-yonetimi', 'label' => 'Performans Reklam Yönetimi', 'desc' => 'Meta, Google ve TikTok’ta kampanya kurulumu, kreatif ve günlük optimizasyon', 'built' => true],
     ['slug' => 'e-ticaret-site-kurulumu',    'label' => 'E-ticaret Site Kurulumu',     'desc' => 'ikas, Shopify, Ticimax ve T-Soft üzerinde satışa hazır mağaza kurulumu', 'built' => true],
     ['slug' => 'grafik-tasarim',             'label' => 'Grafik Tasarım',              'desc' => 'Logo, kurumsal kimlik, sosyal medya tasarımları, ambalaj ve basılı işler', 'built' => true],
-    ['slug' => 'geo-yapay-zeka-gorunurlugu','label' => 'Yapay Zekada Görünürlük (GEO)', 'desc' => 'ChatGPT, Perplexity ve Google AI yanıtlarında kaynak olarak anılmak', 'built' => true],
+    ['slug' => 'lead-generation',            'label' => 'Lead Generation',             'desc' => 'İnşaat, gayrimenkul ve hizmet işletmeleri için nitelikli müşteri kaydı', 'built' => true],
     ['slug' => 'seo',                       'label' => 'Arama Motoru Optimizasyonu (SEO)', 'desc' => 'Teknik denetim, site hızı, içerik stratejisi, ölçümleme ve raporlama', 'built' => true],
+    ['slug' => 'geo-yapay-zeka-gorunurlugu','label' => 'Yapay Zekada Görünürlük (GEO)', 'desc' => 'ChatGPT, Perplexity ve Google AI yanıtlarında kaynak olarak anılmak', 'built' => true],
     ['slug' => 'sosyal-medya-reklamlari',    'label' => 'Sosyal Medya Reklamları',    'desc' => 'Sosyal medya platformlarında reklam kurgusu ve hesap yönetimi', 'built' => false],
     ['slug' => 'analitik-ve-olculeme',       'label' => 'Analitik ve Ölçümleme',      'desc' => 'Doğru kurulmuş ölçümleme ve karar verdiren raporlama', 'built' => false],
 ];

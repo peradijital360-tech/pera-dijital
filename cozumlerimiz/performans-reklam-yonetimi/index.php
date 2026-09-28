@@ -206,6 +206,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       <div class="prose">
         <h2 class="section-title" id="nedir-title">Performans reklam yönetimi neleri kapsar?</h2>
         <p class="section-lede">Yalnızca medya satın alma değil, döngünün tamamı: teklif, kreatif, bütçe, ölçümleme ve bunlardan çıkan kararlar; hepsi tek bir sorumlu ekipte.</p>
+        <p>E-ticaret mağazanız için Instagram ve Facebook odaklı aylık çalışma arıyorsanız <a href="/cozumlerimiz/meta-reklam-yonetimi/">e-ticaret için Meta reklam yönetimi</a> sayfasında butiklere ve mağazalara yönelik kapsamı inceleyebilirsiniz.</p>
         <p>Çoğu hesap teklif verme katmanında başarısız olmaz. Bir adım öncesinde, teklif net olmadığında, kreatif eskidiğinde ya da gelen rakamlara aksiyon alacak kadar güvenilemediğinde başarısız olur. Performansı yönetmek, bunların hepsine birlikte sahip çıkmaktır.</p>
         <p>Pratikte bu haftalık bir döngü demek: yeni bir şey yayına girer, sonuçlar gelir, kaybedenler kapatılır, kazananlar daha fazla bütçe alır ve sıradaki test çoktan kuyruktadır. Plan, hesap bize neyin işe yaradığını öğrettikçe değişir.</p>
       </div>
