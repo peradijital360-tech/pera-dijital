@@ -26,13 +26,12 @@ $footerNav = [
         ['label' => 'Hakkımızda',          'href' => 'hakkimizda/'],
         ['label' => 'Referanslar',         'href' => 'referanslarimiz/'],
         ['label' => 'Başarı Hikayeleri',   'href' => ''],
-        ['label' => 'Blog',                'href' => ''],
+        ['label' => 'Blog',                'href' => 'blog/'],
         ['label' => 'İletişim',            'href' => 'iletisim/'],
         ['label' => 'Site Haritası',       'href' => 'site-haritasi/'],
     ]],
 ];
 $legalLinks = [
-    ['label' => 'Blog',                'href' => ''],
     ['label' => 'Gizlilik Politikası', 'href' => ''],
     ['label' => 'KVKK',                'href' => ''],
     ['label' => 'Çerez Politikası',    'href' => ''],
