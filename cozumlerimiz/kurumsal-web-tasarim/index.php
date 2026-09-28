@@ -1,7 +1,7 @@
 <?php
 $page = [
-    'title'       => "İstanbul Kurumsal Web Tasarım Ajansı | Pera Dijital",
-    'description' => "İstanbul’da işletmelere özel kurumsal web tasarım. Başakşehir, İkitelli OSB ve Hadımköy’deki üretici ve hizmet firmaları için web sitesi ve teklif akışı.",
+    'title'       => "Kurumsal Web Tasarım Ajansı | Pera Dijital",
+    'description' => "İşletmenize özel kurumsal web tasarım, arayüz geliştirme ve teknik SEO. İstanbul merkezli Pera Dijital ile Türkiye genelinde web sitesi projeleri.",
     'canonical'   => '/cozumlerimiz/kurumsal-web-tasarim/',
     'nav'         => 'svc:kurumsal-web-tasarim',
     'css'         => ['page.css'],
@@ -74,10 +74,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       <div class="service-hero__grid">
         <div class="service-hero__content">
           <h1 class="service-hero__title" id="hero-title">
-            <span class="service-hero__title-main">Kurumsal Web Tasarım</span>
-            <span class="service-hero__title-sub">İstanbul’daki işletmelere özel web siteleri</span>
+            <span class="service-hero__title-main">Kurumsal Web Tasarım Ajansı</span>
+            <span class="service-hero__title-sub">Markanıza ve iş hedeflerinize özel web siteleri</span>
           </h1>
-          <p class="service-hero__lede">İstanbul genelindeki işletmeler için kurumsal web siteleri ve landing page&rsquo;ler tasarlayıp kodluyoruz. Başakşehir merkezli ekibimiz, hizmetlerinizi ve ürünlerinizi anlatan yapıyı teklif ve iletişim hedefinize göre planlar.</p>
+          <p class="service-hero__lede">Markanızın kimliğini yansıtan, ürün ve hizmetlerinizi anlaşılır biçimde sunan kurumsal web siteleri tasarlayıp kodluyoruz. İçerik yapısını, kullanıcı deneyimini ve teklif akışını işletmenizin hedeflerine göre birlikte planlıyoruz.</p>
           <div class="service-hero__actions">
             <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
           </div>
@@ -209,13 +209,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
     </div>
   </section>
 
-  <section class="band" id="istanbul-kurumsal" aria-labelledby="istanbul-kurumsal-title">
+  <section class="band" id="uretim-b2b" aria-labelledby="uretim-b2b-title">
     <div class="band__inner with-summary">
       <div class="prose">
-        <h2 class="section-title" id="istanbul-kurumsal-title">Üretim ve B2B işletmeleri için web tasarım</h2>
-        <p class="section-lede">Başakşehir, İkitelli OSB ve Hadımköy çevresindeki üretici ve hizmet işletmelerinde web sitesinin görevi çoğu zaman çevrimiçi ödeme almak değil, ürünleri açıklamak ve doğru teklif talebini toplamaktır. Sayfa yapısını bu ihtiyaca göre planlarız.</p>
+        <h2 class="section-title" id="uretim-b2b-title">Üretim ve B2B işletmeleri için web tasarım</h2>
+        <p class="section-lede">Üretici ve B2B işletmeleri için web sitesi; ürünleri, teknik yetkinlikleri ve hizmet kapsamını açıklamalı, ziyaretçinin doğru bilgilerle teklif istemesini kolaylaştırmalıdır. Sayfa yapısını işletmenizin satış sürecine göre planlarız.</p>
         <p>Ürün grupları, teknik özellikler, kataloglar ve hizmet verilen sektörler anlaşılır biçimde sunulmalıdır. Bir ziyaretçinin aradığı ürünü bulabilmesi, teknik dokümana ulaşabilmesi ve ilgili bilgileri paylaşarak teklif isteyebilmesi için içerik ile iletişim akışını birlikte ele alırız.</p>
-        <p>Ofisimiz Başakşehir’dedir; İstanbul genelinde hizmet veririz. Çok dilli içerik, bayi başvurusu veya özel bir katalog yapısı gerekiyorsa bunları proje kapsamında ayrıca belirleriz.</p>
+        <p>Çok dilli içerik, bayi başvurusu veya özel bir katalog yapısı gerekiyorsa bunları proje kapsamında ayrıca belirleriz.</p>
         <p>Ürünlerinizi doğrudan internetten satmak istiyorsanız <a href="/cozumlerimiz/shopify-site-kurulumu/">Shopify mağaza kurulumu</a>; marka kimliğinizi de yenilemek istiyorsanız <a href="/cozumlerimiz/grafik-tasarim/">logo ve kurumsal kimlik tasarımı</a> hizmetimizi inceleyebilirsiniz.</p>
       </div>
     </div>
