@@ -1,16 +1,16 @@
 <?php
 $page = [
     'title'       => "İstanbul Dijital Pazarlama Ajansı | Pera Dijital",
-    'description' => "İstanbul Bahçeşehir merkezli Pera Dijital; Google Ads, Meta Ads, web tasarım ve ölçümlemeyi bir araya getirir. İşletmeniz için hizmetleri inceleyin, teklif alın.",
+    'description' => "İstanbul Pera Dijital: e-ticaret markalarına aylık Meta reklam yönetimi, kurumsal web tasarım ve Shopify site kurulumu. İşletmeniz için hizmetleri inceleyin.",
     'canonical'   => '/',
     'nav'         => 'home',
-    'css'         => [],
+    'css'         => ['services.css'],
     'js'          => ['form.js'],
     'og_type'     => 'website',
     'home'        => '#top',
     'cta'         => '#contact',
     'body_class'  => "",
-    'og_desc'     => "Sabit aylık ücretle kıdemli bir performans pazarlama ekibi. Strateji, kreatif, medya satın alma ve raporlama tek elden.",
+    'og_desc'     => "E-ticaret için aylık Meta reklam yönetimi, kurumsal web tasarım ve Shopify mağaza kurulumu. İstanbul merkezli Pera Dijital.",
 ];
 require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
@@ -24,11 +24,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
     <div class="hero__inner">
 
       <div class="hero__content">
-        <h1 class="hero__title" id="hero-title"><span class="hero__title-line">Kâr Getiren</span> <span class="hero__title-line">Performans Reklamları.</span></h1>
-        <p class="hero__lede">İstanbul Bahçeşehir merkezli dijital pazarlama ajansıyız. Google Ads, Meta Ads, landing page ve ölçümlemeyi tek sistemde yönetiyoruz. Türkiye genelindeki markaların reklam bütçesini görünür sonuçlara dönüştürmek için çalışıyoruz.</p>
+        <h1 class="hero__title" id="hero-title"><span class="hero__title-line">E-ticaret İçin</span> <span class="hero__title-line">Meta Reklam Yönetimi.</span></h1>
+        <p class="hero__lede">E-ticaret markaları ve butiklere aylık Instagram ve Facebook reklam danışmanlığı sunuyoruz. İstanbul Başakşehir’deki ofisimizden reklam yönetimi, kurumsal web tasarım ve Shopify mağaza kurulumu için çalışıyoruz.</p>
         <div class="hero__actions">
-          <a class="btn btn--dark btn--lg" href="#contact" data-hero-cta>Projeyi Başlatalım</a>
-          <a class="btn btn--accent btn--lg" href="#process">Nasıl Çalışıyoruz?</a>
+          <a class="btn btn--dark btn--lg" href="/cozumlerimiz/meta-reklam-yonetimi/" data-hero-cta>Meta Reklam Hizmetini İnceleyin</a>
+          <a class="btn btn--accent btn--lg" href="#hizmetler">Diğer Hizmetler</a>
         </div>
       </div>
 
@@ -120,6 +120,17 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
   <!-- ============================================================
        CAPABILITIES — sticky left column, stacked card column right
        ============================================================ -->
+  <section class="service-paths" id="hizmetler" aria-labelledby="hizmetler-title">
+    <div class="service-paths__inner">
+      <h2 class="section-title" id="hizmetler-title">İşletmeniz için nereden başlayalım?</h2>
+      <ul class="service-paths__grid" role="list">
+        <li class="card service-path"><p class="service-path__tag">Aylık danışmanlık</p><h3 class="card__title">E-ticaret için Meta reklamları</h3><p class="card__note">Instagram ve Facebook kampanyaları, reklam içerikleri ve satış ölçümünü birlikte ele alalım.</p><a class="service-path__link" href="/cozumlerimiz/meta-reklam-yonetimi/">Meta reklam yönetimi</a></li>
+        <li class="card service-path"><p class="service-path__tag">Kurumsal web tasarım</p><h3 class="card__title">İşletmenizi anlatan web sitesi</h3><p class="card__note">Hizmetlerinizi ve ürünlerinizi anlaşılır biçimde sunan, teklif ve iletişim akışı olan bir site kuralım.</p><a class="service-path__link" href="/cozumlerimiz/kurumsal-web-tasarim/">Kurumsal web tasarım</a></li>
+        <li class="card service-path"><p class="service-path__tag">Shopify kurulumu</p><h3 class="card__title">Satışa hazırlanan mağaza</h3><p class="card__note">Tema, ürünler, koleksiyonlar ve sipariş akışını Shopify mağazanız için birlikte planlayalım.</p><a class="service-path__link" href="/cozumlerimiz/shopify-site-kurulumu/">Shopify web tasarım</a></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="capabilities" id="capabilities" aria-labelledby="capabilities-title" data-reveal>
     <div class="capabilities__inner">
 

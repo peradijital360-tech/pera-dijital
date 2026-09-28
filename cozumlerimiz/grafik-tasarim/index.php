@@ -1,7 +1,7 @@
 <?php
 $page = [
-    'title'       => "Grafik Tasarım — Pera Dijital",
-    'description' => "Logo tasarımı, kurumsal kimlik, sosyal medya ve web banner tasarımları, ambalaj, basılı işler, sunum ve katalog. Vektörel kaynak dosyalar ve kullanım kılavuzu teslim dahil.",
+    'title'       => "İstanbul Logo ve Kurumsal Kimlik Tasarımı | Pera Dijital",
+    'description' => "İstanbul’da logo ve kurumsal kimlik tasarımı. Marka kimliği, ambalaj, katalog ve dijital tasarım ihtiyaçlarınızı Başakşehir merkezli Pera Dijital ile planlayın.",
     'canonical'   => '/cozumlerimiz/grafik-tasarim/',
     'nav'         => 'svc:grafik-tasarim',
     'css'         => ['page.css'],
@@ -73,7 +73,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
       <div class="service-hero__grid">
         <div class="service-hero__content">
           <h1 class="service-hero__title" id="hero-title">
-            <span class="service-hero__title-main">Grafik Tasarım</span>
+            <span class="service-hero__title-main">Logo ve Kurumsal Kimlik Tasarımı</span>
             <span class="service-hero__title-sub">Logodan ambalaja, aynı elden çıkmış bir görsel dil</span>
           </h1>
           <p class="service-hero__lede">Logo ve kurumsal kimlikten sosyal medya, ambalaj ve basılı işlere kadar markanın görsel dilini kuruyoruz. Kaynak dosyalar ve kullanım kılavuzu teslimin parçası.</p>

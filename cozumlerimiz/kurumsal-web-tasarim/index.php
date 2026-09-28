@@ -1,7 +1,7 @@
 <?php
 $page = [
-    'title'       => "Kurumsal Web Tasarım — Pera Dijital",
-    'description' => "Kurumsal web sitelerini ve landing page’leri elde kodluyoruz; hazır tema kullanmıyoruz. Bilgi mimarisi, arayüz tasarımı, site hızı, teknik SEO, hosting ve yayına alma dahil.",
+    'title'       => "İstanbul Kurumsal Web Tasarım Ajansı | Pera Dijital",
+    'description' => "İstanbul’da işletmelere özel kurumsal web tasarım. Başakşehir, İkitelli OSB ve Hadımköy’deki üretici ve hizmet firmaları için web sitesi ve teklif akışı.",
     'canonical'   => '/cozumlerimiz/kurumsal-web-tasarim/',
     'nav'         => 'svc:kurumsal-web-tasarim',
     'css'         => ['page.css'],
@@ -75,9 +75,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         <div class="service-hero__content">
           <h1 class="service-hero__title" id="hero-title">
             <span class="service-hero__title-main">Kurumsal Web Tasarım</span>
-            <span class="service-hero__title-sub">Hazır tema değil, markaya göre yazılmış kod</span>
+            <span class="service-hero__title-sub">İstanbul’daki işletmelere özel web siteleri</span>
           </h1>
-          <p class="service-hero__lede">Kurumsal siteleri ve landing page&rsquo;leri tasarlayıp kodluyoruz. Tasarım markanın kendi ihtiyacından çıkıyor, siteyi hazır bir şablona uydurmaktan değil.</p>
+          <p class="service-hero__lede">İstanbul genelindeki işletmeler için kurumsal web siteleri ve landing page&rsquo;ler tasarlayıp kodluyoruz. Başakşehir merkezli ekibimiz, hizmetlerinizi ve ürünlerinizi anlatan yapıyı teklif ve iletişim hedefinize göre planlar.</p>
           <div class="service-hero__actions">
             <a class="btn btn--dark btn--lg" href="#iletisim">Bize Ulaşın</a>
           </div>
@@ -202,10 +202,22 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
         <h2 class="section-title" id="nedir-title">Web tasarım hizmeti neleri kapsıyor?</h2>
         <p class="section-lede">Pera Dijital kurumsal web sitelerini ve landing page&rsquo;leri tasarlar ve kodlar. Sayfalar hazır tema satın alınmadan, elde yazılmış kodla kurulur. Kapsam bilgi mimarisi, arayüz tasarımı, kodlama, site hızı, teknik SEO altyapısı, hosting ve yayına almadır. WordPress yalnızca proje gerçekten gerektirdiğinde kullanılır; o durumda da tema projeye özel yazılır.</p>
         <p>Bir proje genellikle üç parçadan oluşur: bilgi mimarisi, arayüz tasarımı ve kodlama. Bilgi mimarisi sayfaların hangi sırayla ve hangi başlıklarla kurulacağını belirler. Tasarım bu yapının üzerine gelir. Kodlama aşamasında sayfa, tasarım dosyasından birebir çıkar; araya şablon ara katmanı girmez.</p>
-        <p>Yayına alma da işin parçası. Alan adı ve DNS ayarları, SSL, hosting kurulumu, 301 yönlendirmeleri ve arama motoru doğrulamaları teslimden önce tamamlanır. Mevcut bir site yenileniyorsa eski adresler yenilerine yönlendirilir, böylece arama sonuçlarındaki mevcut konum korunur.</p>
+        <p>Yayına alma da işin parçası. Alan adı ve DNS ayarları, SSL, hosting kurulumu, 301 yönlendirmeleri ve arama motoru doğrulamaları teslimden önce tamamlanır. Mevcut bir site yenileniyorsa eski adresler yenilerine yönlendirilir, böylece eski bağlantılardan gelen ziyaretçiler ilgili sayfaya ulaşır. Geçişin arama görünürlüğüne etkisi ayrıca takip edilir.</p>
         <p>Bu sayfanın kapsamı dışında üç iş var. Ürün, ödeme ve kargo tarafı olan projeler için <a href="<?= e(service_url_by_slug('e-ticaret-site-kurulumu')) ?>">e-ticaret sitesi kurulumu hizmetimize</a> bakın. Reklam yönetimi ayrı bir hizmet: kampanyaları da biz yürütüyorsak <a href="/cozumlerimiz/performans-reklam-yonetimi/">performans reklam yönetimi sayfasında</a> anlattığımız şekilde çalışıyoruz. Logo, kurumsal kimlik ve basılı işler gibi bağımsız tasarım işleri ise <a href="<?= e(service_url_by_slug('grafik-tasarim')) ?>">grafik tasarım hizmetimizin</a> konusu.</p>
       </div>
       <?php $summary = $summaries['nedir']; require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/summary.php'; ?>
+    </div>
+  </section>
+
+  <section class="band" id="istanbul-kurumsal" aria-labelledby="istanbul-kurumsal-title">
+    <div class="band__inner with-summary">
+      <div class="prose">
+        <h2 class="section-title" id="istanbul-kurumsal-title">Üretim ve B2B işletmeleri için web tasarım</h2>
+        <p class="section-lede">Başakşehir, İkitelli OSB ve Hadımköy çevresindeki üretici ve hizmet işletmelerinde web sitesinin görevi çoğu zaman çevrimiçi ödeme almak değil, ürünleri açıklamak ve doğru teklif talebini toplamaktır. Sayfa yapısını bu ihtiyaca göre planlarız.</p>
+        <p>Ürün grupları, teknik özellikler, kataloglar ve hizmet verilen sektörler anlaşılır biçimde sunulmalıdır. Bir ziyaretçinin aradığı ürünü bulabilmesi, teknik dokümana ulaşabilmesi ve ilgili bilgileri paylaşarak teklif isteyebilmesi için içerik ile iletişim akışını birlikte ele alırız.</p>
+        <p>Ofisimiz Başakşehir’dedir; İstanbul genelinde hizmet veririz. Çok dilli içerik, bayi başvurusu veya özel bir katalog yapısı gerekiyorsa bunları proje kapsamında ayrıca belirleriz.</p>
+        <p>Ürünlerinizi doğrudan internetten satmak istiyorsanız <a href="/cozumlerimiz/shopify-site-kurulumu/">Shopify mağaza kurulumu</a>; marka kimliğinizi de yenilemek istiyorsanız <a href="/cozumlerimiz/grafik-tasarim/">logo ve kurumsal kimlik tasarımı</a> hizmetimizi inceleyebilirsiniz.</p>
+      </div>
     </div>
   </section>
 
