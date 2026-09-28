@@ -11,6 +11,7 @@ $page = [
     'cta'         => '/iletisim/#form',
     'body_class'  => "page-inner",
 ];
+require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/blog.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 ?>
@@ -33,7 +34,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 
       <!-- Only pages that exist. The service list is read from SERVICES, so a
            service page appears here the moment it is marked built — nothing
-           to remember. Pages still to come (blog, sectors, legal) are left
+           to remember. Pages still to come (sectors, legal) are left
            out entirely rather than listed as dead ends. -->
       <div class="sitemap">
 
@@ -65,6 +66,16 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
 <?php if (SHOW_WORK): ?>
             <li><a href="<?= u('islerimiz/') ?>">İşlerimiz</a></li>
 <?php endif; ?>
+          </ul>
+        </nav>
+
+        <nav class="sitemap__group" aria-labelledby="sm-blog">
+          <h2 class="sitemap__title" id="sm-blog">Blog</h2>
+          <ul class="sitemap__list" role="list">
+            <li><a href="/blog/">Tüm blog yazıları</a></li>
+<?php foreach (BLOG_POSTS as $blogEntry): ?>
+            <li><a href="<?= e($blogEntry['path']) ?>"><?= e($blogEntry['title']) ?></a></li>
+<?php endforeach; ?>
           </ul>
         </nav>
 

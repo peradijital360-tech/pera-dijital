@@ -32,10 +32,9 @@ ErrorDocument 404 /404.php
   #    dropped, case-insensitive, trailing slash optional. Patterns are
   #    anchored, so e.g. /referanslar/ does not catch /referanslarimiz/.
   #    /hakkimizda/ exists on both sites and needs no rule.
-  #    The blog is not carried over: its category, index and single post
-  #    all go to the homepage.
+  #    Legacy WordPress category and post redirects remain below.
+  #    /blog/ now serves the PHP blog; do not redirect that prefix.
   RewriteRule ^category/yapay-zeka(/.*)?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
-  RewriteRule ^blog(/.*)?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
   RewriteRule ^yapay-zeka-ve-dijital-pazarlamanin-gelecegi-2025-ve-sonrasi/?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
   RewriteRule ^teklif-al/?$ https://www.peradijital.com.tr/ [R=301,L,NC,QSD]
   RewriteRule ^web-tasarim/?$ https://www.peradijital.com.tr/cozumlerimiz/kurumsal-web-tasarim/ [R=301,L,NC,QSD]
