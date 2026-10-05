@@ -5,7 +5,7 @@ $serviceContent = [
     'description' => 'E-ticaret markaları ve butiklere aylık Meta reklam yönetimi. Instagram ve Facebook kampanyaları, kreatif testleri ve satış ölçümü. İstanbul merkezli Pera Dijital.',
     'short_name' => 'Meta Reklam Yönetimi',
     'heading' => 'E-ticaret için Meta reklam yönetimi',
-    'eyebrow' => 'İstanbul · Aylık reklam danışmanlığı',
+    'eyebrow' => 'E-ticaret · Aylık Meta reklam danışmanlığı',
     'intro' => 'Pera Dijital, e-ticaret markaları ve butiklerin Instagram ve Facebook reklamlarını aylık danışmanlık modeliyle yönetir. Kampanya planını, reklam içeriklerini ve satış verilerini birlikte değerlendirir; sonraki bütçe kararını mağazanızın ürünlerine ve sonuçlarına göre verir.',
     'cta' => 'Meta Reklam Teklifi Alın',
     'summary' => [
@@ -94,6 +94,22 @@ $serviceContent = [
                     'label' => 'Diğer reklam kanalları için performans reklam yönetimi',
                     'href' => '/cozumlerimiz/performans-reklam-yonetimi/',
                 ],
+            ],
+        ],
+        [
+            'id' => 'ucret',
+            'nav' => 'Ücret ve Teklif',
+            'title' => 'Meta reklam yönetimi ücreti nasıl belirlenir?',
+            'paragraphs' => [
+                'Aylık Meta reklam danışmanlığı için teklif hazırlarken mevcut reklam hesabınızı, ürün sayınızı, hedef pazarınızı ve ihtiyaç duyduğunuz içerikleri değerlendiririz. Teklifin hangi işleri kapsadığını baştan belirlemek, aylık toplam maliyeti görmenizi sağlar.',
+                'Ajans hizmet bedeli ile Instagram ve Facebook üzerinde harcanacak reklam bütçesi ayrı kalemlerdir. Fotoğraf veya video çekimi, mağazaya teknik müdahale ve ücretli araç ihtiyacı varsa bunları da kapsam görüşmesinde ayrıca ele alırız.',
+            ],
+            'cards' => [
+                ['title' => 'Aylık yönetim kapsamı', 'body' => 'Kampanya yönetimi, kreatif çalışma, katalog kontrolü ve raporlama ihtiyacını birlikte tanımlarız. Teklifi karşılaştırırken yalnızca bedeli değil, teslimleri ve sorumlulukları da inceleyin.'],
+                ['title' => 'Teklif için hazırlayabilecekleriniz', 'body' => 'Mağaza adresiniz, ürün grubunuz, mevcut aylık reklam harcamanız ve geliştirmek istediğiniz konu başlangıç için yeterli. Reklam vermiyorsanız bunu belirtin; ilk görüşmede şifre paylaşmanız gerekmez.'],
+            ],
+            'links' => [
+                ['label' => 'Aylık reklam yönetimi bütçesi ve teklif karşılaştırma rehberi', 'href' => '/blog/meta-reklam-yonetimi-ucreti/'],
             ],
         ],
         [
