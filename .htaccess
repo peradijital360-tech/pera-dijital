@@ -26,6 +26,10 @@ ErrorDocument 404 /404.php
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Search Console still requests the former WordPress sitemap addresses.
+  # Send those exact legacy paths to the current canonical sitemap in one hop.
+  RewriteRule ^(sitemap_index|page-sitemap|post-sitemap|local-sitemap)\.xml$ https://www.peradijital.com.tr/sitemap.xml [R=301,L,NC,QSD]
+
   # 0. OLD WORDPRESS URLS -> NEW PAGES.
   #    Every old address goes straight to the canonical https://www URL in
   #    one hop (these run before the HTTPS and www rules), query string
