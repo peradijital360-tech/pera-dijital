@@ -183,15 +183,20 @@ $aiLinks = [
 <script type="module" src="<?= e(asset('assets/js/' . $module)) ?>"></script>
 <?php endforeach; ?>
 
-<!-- WhatsApp: one <a>, two shapes. Vertical tab on the right edge from 60rem,
-     circular button bottom-right below it. The accessible name is on the <a>;
-     everything inside is aria-hidden so the name is never doubled up.
-     The number lives in WHATSAPP_NUMBER in config.php — nowhere else. -->
-<a class="wa-tab" href="<?= e(whatsapp_url()) ?>" target="_blank" rel="noopener" aria-label="WhatsApp&rsquo;tan yazın" data-wa>
-  <svg class="wa-tab__glyph" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="<?= u('assets/icons/sprite.svg') ?>#icon-whatsapp"></use></svg>
-  <span class="wa-tab__label" aria-hidden="true">WhatsApp Destek</span>
-  <span class="wa-tab__dot" aria-hidden="true"></span>
-</a>
+<!-- Persistent contact shortcuts; real contact details come from config.php. -->
+<nav class="contact-dock" aria-label="Hızlı iletişim">
+  <div class="contact-dock__intro">
+    <span class="contact-dock__mark" aria-hidden="true"><svg width="24" height="24" viewBox="11 1 222 221" focusable="false"><use href="<?= u('assets/icons/sprite.svg') ?>#mark-pera"></use></svg></span>
+    <span><strong>Sorunuz mu var?</strong><small>Pera Dijital’e ulaşın</small></span>
+  </div>
+  <a class="contact-dock__link contact-dock__whatsapp" href="<?= e(whatsapp_url()) ?>" target="_blank" rel="noopener" aria-label="WhatsApp’tan Pera Dijital’e yazın" data-wa>
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="<?= u('assets/icons/sprite.svg') ?>#icon-whatsapp"></use></svg><span>WhatsApp</span>
+  </a>
+  <a class="contact-dock__link" href="tel:<?= e(CONTACT_PHONE_HREF) ?>" aria-label="Pera Dijital’i telefonla arayın">
+    <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="<?= u('assets/icons/sprite.svg') ?>#icon-phone"></use></svg><span>Ara</span>
+  </a>
+  <a class="contact-dock__quote" href="<?= e(u('iletisim/#form')) ?>">Teklif Al <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="<?= u('assets/icons/sprite.svg') ?>#icon-arrow"></use></svg></a>
+</nav>
 
 <!-- Cookie notice. Hidden in the markup and revealed by consent.js only for a
      visitor who has not chosen yet, so it never flashes for a returning one

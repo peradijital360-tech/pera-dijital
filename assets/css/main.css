@@ -1207,9 +1207,7 @@ body {
 
 /* ============================================================
    COOKIE NOTICE
-   Bottom-left, small, above the page but not over the WhatsApp control:
-   below 60rem that control is a circle bottom-right, so on a phone the
-   notice spans the width and sits just above it instead.
+   Bottom-left on desktop; above the contact dock on narrow screens.
    ============================================================ */
 
 .consent {
@@ -1562,96 +1560,87 @@ body {
 }
 
 /* ============================================================
-   WHATSAPP TAB
-   One <a>, two shapes. Above 60rem a vertical tab on the right edge;
-   below it a circular button bottom-right, because a vertical strip on a
-   narrow screen covers content and gets caught by a scrolling thumb.
-
-   The accessible name lives on the <a> (aria-label). Everything inside is
-   aria-hidden, so the name is identical in both states and never doubled
-   up with the visible label.
-
-   Colour: WhatsApp green is the background, but the content on it is --ink,
-   not white. White on #25D366 measures 1.98:1 and fails AA outright; --ink
-   on the same green is 9.37:1. The green is what carries the recognition,
-   so the green is what we keep.
+   CONTACT DOCK — compact persistent contact actions
    ============================================================ */
-
-.wa-tab {
+.contact-dock {
   position: fixed;
   z-index: var(--z-float);
+  right: calc(1.5rem + env(safe-area-inset-right));
+  bottom: calc(1.25rem + env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* Circular button is the base state: mobile-first, like the rest of the CSS. */
-  right: calc(var(--sp-2) + env(safe-area-inset-right));
-  bottom: calc(var(--sp-2) + env(safe-area-inset-bottom));
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background: var(--wa-green);
+  gap: 0.25rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.4375rem;
+  border: 1px solid rgb(111 59 221 / 0.12);
+  border-radius: 999px;
+  background: #fff;
   color: var(--ink);
+  box-shadow: 0 8px 32px rgb(35 17 70 / 0.14), 0 2px 6px rgb(35 17 70 / 0.06);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+.contact-dock__intro {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-right: 0.375rem;
+  padding: 0 1rem 0 0.3125rem;
+  border-right: 1px solid #e7e2ef;
+}
+.contact-dock__intro strong { display: block; font-size: 0.8125rem; font-weight: 650; }
+.contact-dock__intro small { display: block; margin-top: 0.1875rem; font-size: 0.75rem; color: #665d75; }
+.contact-dock__mark {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #f0e9fc;
+  color: var(--accent);
+}
+.contact-dock__link, .contact-dock__quote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4375rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.22);
+  white-space: nowrap;
+  font-weight: 600;
 }
-
-.wa-tab__label,
-.wa-tab__dot { display: none; }
-
-@media (min-width: 60rem) {
-
-  .wa-tab {
-    /* Centred with auto margins rather than translateY(-50%), which leaves
-       transform free for the hover slide and keeps the hit area on the box. */
-    top: 0;
-    right: 0;
-    bottom: 0;
-    height: fit-content;
-    margin-block: auto;
-    flex-direction: column;
-    gap: var(--sp-1);
-    width: auto;
-    padding: var(--sp-2) 0.6875rem;
-    border-radius: var(--radius-card) 0 0 var(--radius-card);
-    box-shadow: 0 2px 14px rgb(0 0 0 / 0.16);
+.contact-dock svg { flex-shrink: 0; }
+.contact-dock__whatsapp svg { color: #12833f; }
+.contact-dock__link:hover { background: #f4f0fb; }
+.contact-dock__quote { background: var(--accent); color: #fff; padding-inline: 1rem; }
+.contact-dock__quote:hover { background: #5624b9; }
+.contact-dock a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.site-footer { padding-bottom: calc(6rem + env(safe-area-inset-bottom)); }
+/* Keep the dock out of the overlay menu's focus and visual space. */
+body:has([data-menu-toggle][aria-expanded="true"]) .contact-dock { visibility: hidden; }
+@media (max-width: 39.99rem) {
+  .contact-dock {
+    right: calc(0.75rem + env(safe-area-inset-right));
+    left: calc(0.75rem + env(safe-area-inset-left));
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    max-width: none;
+    justify-content: space-between;
+    gap: 0;
   }
-
-  /* vertical-rl runs the text top-to-bottom; the 180deg flip turns it to
-     read bottom-to-top. Only the label rotates — never the tab itself. */
-  .wa-tab__label {
-    display: block;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-size: var(--fs-caption);
-    font-weight: var(--wt-medium);
-    letter-spacing: 0.01em;
-  }
-
-  .wa-tab__dot {
-    display: block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--surface);
-  }
-
-  .wa-tab:hover,
-  .wa-tab:focus-visible { transform: translateX(-0.25rem); }
+  .contact-dock__intro { display: none; }
+  .contact-dock__link { padding-inline: 0.625rem; }
+  .contact-dock__quote { padding-inline: 0.875rem; }
 }
-
-@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
-
-  .wa-tab { transition: transform var(--dur-hover) var(--ease-out); }
+/* Cookie choices remain accessible above the dock on narrow screens. */
+@media (max-width: 63.99rem) {
+  .consent { bottom: calc(5.75rem + env(safe-area-inset-bottom)); }
 }
-
-/* The circular button sits bottom-right, which is exactly where the footer's
-   last row of links ends up at the page bottom. Measured overlap was 40px at
-   640 and 768. Reserve a landing strip under the footer so the button can
-   never sit on a link. Only below 60rem, where the button is a circle. */
-@media (max-width: 59.99rem) {
-
-  .site-footer { padding-bottom: calc(3.5rem + var(--sp-4) + env(safe-area-inset-bottom)); }
+@media (prefers-reduced-motion: no-preference) {
+  .contact-dock a { transition: background-color 160ms ease; }
 }
+@media print { .contact-dock { display: none; } }
 
 /* ============================================================
    MEGA MENU — Çözümlerimiz
@@ -1902,23 +1891,3 @@ body {
   .mega__index { transition: color var(--dur-hover) var(--ease-out); }
 }
 
-/* The vertical WhatsApp tab sits on the right edge at mid-height, which is
-   exactly where the mega menu's promo card ends up at 1024 and 1280. While
-   the menu is open (clicked or hovered) the tab steps out of the way instead
-   of overlapping it; visibility also takes it out of the tab order. Closed,
-   it is untouched. */
-@media (min-width: 64rem) {
-
-  body:has(.site-nav__item--mega [aria-expanded="true"]) .wa-tab {
-    visibility: hidden;
-    opacity: 0;
-  }
-}
-
-@media (min-width: 64rem) and (hover: hover) {
-
-  body:has(.site-nav__item--mega:hover) .wa-tab {
-    visibility: hidden;
-    opacity: 0;
-  }
-}
