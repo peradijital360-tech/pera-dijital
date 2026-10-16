@@ -470,6 +470,16 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
   <!-- ============================================================
        BAND G — CONTACT (dark)
        ============================================================ -->
+  <section class="band" id="proje-incelemeleri" aria-labelledby="ltc-project-title">
+    <div class="band__inner">
+      <p class="eyebrow">Proje incelemesi · Giyim e-ticareti</p>
+      <h2 class="section-title" id="ltc-project-title">LTC Jeans: Google ve Meta reklam danışmanlığı</h2>
+      <p class="section-lede">Kışlık üst giyim markası LTC Jeans ile reklam danışmanlığı ve kreatif strateji çalışmalarımızı, Faprika web sipariş raporlarıyla inceleyin. Eylül 2026: 627 web siparişi ve 1.365.509,61 TL sipariş tutarı.</p>
+      <p>Veriler sezon ve stok koşullarıyla birlikte değerlendirilmiştir.</p>
+      <p class="cta-band__action"><a class="btn btn--accent" href="/referanslarimiz/ltc-jeans/">LTC Jeans projesini incele</a></p>
+    </div>
+  </section>
+
   <section class="band band--dark" id="iletisim" aria-labelledby="iletisim-title">
     <div class="band__inner split split--narrow-left">
 

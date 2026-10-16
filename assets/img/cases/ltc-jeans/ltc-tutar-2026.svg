@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="480" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 480" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="480"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-480)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="480" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="44" y="434" style="font-family: Arial; font-size: 12px;fill: rgb(43%,23%,86%); stroke:none;" transform="translate(0,868) scale(1,-1)">LTC JEANS / FAPRIKA WEB SİPARİŞLERİ</text>
+			<text x="44" y="394" style="font-family: Arial; font-size: 27px;fill: rgb(7%,7%,7%); stroke:none;" transform="translate(0,788) scale(1,-1)">Web sipariş tutarının aylara göre değişimi</text>
+			<text x="44" y="365" style="font-family: Arial; font-size: 14px;fill: rgb(35%,33%,40%); stroke:none;" transform="translate(0,730) scale(1,-1)">Web sipariş tutarı; iptal/iadeler düşülmüş. Sezon ve stok farkı içerir.</text>
+			<g transform="">
+				<path d="M 140,90 L 140,325 Z" style="stroke: rgb(92%,90%,94%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 378.709677,90 L 378.709677,325 Z" style="stroke: rgb(92%,90%,94%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 617.419355,90 L 617.419355,325 Z" style="stroke: rgb(92%,90%,94%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 856.129032,90 L 856.129032,325 Z" style="stroke: rgb(92%,90%,94%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<g transform="">
+					<rect x="140.0" y="107.95138888888889" width="88.5601588387097" height="42.43055555555557" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,78%,92%); fill-rule: evenodd;"/>
+					<rect x="140.0" y="186.2847222222222" width="137.43883458064516" height="42.43055555555557" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(67%,54%,86%); fill-rule: evenodd;"/>
+					<rect x="140.0" y="264.61805555555554" width="651.920717032258" height="42.43055555555554" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(43%,23%,86%); fill-rule: evenodd;"/>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,238.560159,129.166667)">
+							<text x="0.0" y="-6.4" style="font-family: Arial; font-size: 16px;fill: rgb(7%,7%,7%); stroke:none;" transform="translate(0,-12) scale(1,-1)">185.497,63 TL</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,287.438835,207.5)">
+							<text x="0.0" y="-6.4" style="font-family: Arial; font-size: 16px;fill: rgb(7%,7%,7%); stroke:none;" transform="translate(0,-12) scale(1,-1)">287.878,64 TL</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,801.920717,285.833333)">
+							<text x="0.0" y="-6.4" style="font-family: Arial; font-size: 16px;fill: rgb(7%,7%,7%); stroke:none;" transform="translate(0,-12) scale(1,-1)">1.365.509,61 TL</text>
+						</g>
+					</g>
+				</g>
+				<g transform="">
+					<g transform=""/>
+					<g transform=""/>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,126,129.166667)">
+							<text x="-64.8984375" y="-6.4" style="font-family: Arial; font-size: 16px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-12) scale(1,-1)">Temmuz</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,126,207.5)">
+							<text x="-64.0" y="-6.4" style="font-family: Arial; font-size: 16px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-12) scale(1,-1)">Ağustos</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,126,285.833333)">
+							<text x="-38.234375" y="-6.4" style="font-family: Arial; font-size: 16px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-12) scale(1,-1)">Eylül</text>
+						</g>
+					</g>
+				</g>
+				<g transform="">
+					<g transform=""/>
+					<g transform=""/>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,140,85)">
+							<text x="-19.873046875" y="-11.0" style="font-family: Arial; font-size: 11px;fill: rgb(46%,44%,49%); stroke:none;" transform="translate(0,-22) scale(1,-1)">0 bin TL</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,378.709677,85)">
+							<text x="-25.99072265625" y="-11.0" style="font-family: Arial; font-size: 11px;fill: rgb(46%,44%,49%); stroke:none;" transform="translate(0,-22) scale(1,-1)">500 bin TL</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,617.419355,85)">
+							<text x="-29.049560546875" y="-11.0" style="font-family: Arial; font-size: 11px;fill: rgb(46%,44%,49%); stroke:none;" transform="translate(0,-22) scale(1,-1)">1000 bin TL</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,856.129032,85)">
+							<text x="-29.049560546875" y="-11.0" style="font-family: Arial; font-size: 11px;fill: rgb(46%,44%,49%); stroke:none;" transform="translate(0,-22) scale(1,-1)">1500 bin TL</text>
+						</g>
+					</g>
+				</g>
+			</g>
+			<text x="44" y="44" style="font-family: Arial; font-size: 12px;fill: rgb(39%,36%,43%); stroke:none;" transform="translate(0,88) scale(1,-1)">Kaynak: Paylaşılan Faprika raporu • 2026 • Tamamlanmış aylar</text>
+			<text x="44" y="23" style="font-family: Arial; font-size: 12px;fill: rgb(39%,36%,43%); stroke:none;" transform="translate(0,46) scale(1,-1)">Ekim (1–16) tamamlanmamış dönemdir; bu karşılaştırmaya dahil edilmedi.</text>
+		</g>
+	</g>
+</svg>

@@ -25,7 +25,7 @@ $footerNav = [
     ['title' => 'Kurumsal', 'links' => [
         ['label' => 'Hakkımızda',          'href' => 'hakkimizda/'],
         ['label' => 'Referanslar',         'href' => 'referanslarimiz/'],
-        ['label' => 'Başarı Hikayeleri',   'href' => ''],
+        ['label' => 'Başarı Hikayeleri',   'href' => 'referanslarimiz/#proje-incelemeleri'],
         ['label' => 'Blog',                'href' => 'blog/'],
         ['label' => 'İletişim',            'href' => 'iletisim/'],
         ['label' => 'Site Haritası',       'href' => 'site-haritasi/'],
