@@ -63,7 +63,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/assets/inc/header.php';
           <ul class="sitemap__list" role="list">
             <li><a href="<?= u('hakkimizda/') ?>">Hakkımızda</a></li>
             <li><a href="<?= u('referanslarimiz/') ?>">Referanslarımız</a></li>
-            <li><a href="/referanslarimiz/ltc-jeans/">LTC Jeans — Google ve Meta reklam danışmanlığı</a></li>
+            <li><a href="/basari-hikayeleri/">Başarı Hikayeleri</a></li>
+            <li><a href="/basari-hikayeleri/ltc-jeans/">LTC Jeans — Google ve Meta reklam danışmanlığı</a></li>
 <?php if (SHOW_WORK): ?>
             <li><a href="<?= u('islerimiz/') ?>">İşlerimiz</a></li>
 <?php endif; ?>

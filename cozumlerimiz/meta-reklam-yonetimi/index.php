@@ -149,7 +149,7 @@ $serviceContent = [
             'links' => [
                 [
                     'label' => 'LTC Jeans: Google ve Meta reklam danışmanlığı projesi',
-                    'href' => '/referanslarimiz/ltc-jeans/',
+                    'href' => '/basari-hikayeleri/ltc-jeans/',
                 ],
                 [
                     'label' => 'E-ticaret sitesi kurulum seçenekleri',
